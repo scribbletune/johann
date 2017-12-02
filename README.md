@@ -10,7 +10,7 @@ The same can be done for a triad. You can generate a sheet with just the notes o
 
 The green dot is the root note. 
 
-Sample jsbin for musical keyboard: http://jsbin.com/pexoxotepo/edit?css,output
+Sample jsbin for base idea: http://jsbin.com/nefosiyagi/edit?output
 
 Reference guitar to piano mapping for establish middle C on the guitar:
 ![Guitar to piano mapping](https://www.guitartricks.com/forum/userImages/u/2827474/88-key-mapping-base_95483c92.jpg)
