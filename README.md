@@ -1,6 +1,4 @@
-# Oh, sheet!
-
-The moment you realize that it's just [Scribbletune](http://scribbletune.com/) being used to generate crude guitar, musical keyboard and computer keyboard scales/chords/notes practice sheets.
+# Scribble sheets
 
 This is a new WIP project that is aimed at helping personal guitar, musical keyboard or computer keyboard music practice. It originates from a personal requirement for being able to put together a chart of notes to practice. This could be for a scale/mode or a chord across the instrument. Basically it helps you focus on the notes you wanna play and practice. For instance on a musical keyboard, you may want to just highlight the C Minor scale so that you can play over it. This little app will let you select the required root note and the scale to generate this:
 
