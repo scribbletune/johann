@@ -1,0 +1,36 @@
+{
+  "name": "practice-charts",
+  "version": "1.0.0",
+  "description": "This is a new WIP project that is aimed at helping personal guitar, musical keyboard or computer keyboard music practice. It originates from a personal requirement for being able to put together a chart of notes to practice. This could be for a scale/mode or a chord across the instrument. Basically it helps you focus on the notes you wanna play and practice. For instance on a musical keyboard, you may want to just highlight the C Minor scale so that you can play over it. This little app will let you select the required root note and the scale to generate this:",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walmik/practice-charts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/walmik/practice-charts/issues"
+  },
+  "homepage": "https://github.com/walmik/practice-charts#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.9.1"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "scribbletune": "^0.11.2"
+  }
+}
