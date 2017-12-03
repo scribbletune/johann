@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './containers/App.js';
 import {getChord} from './api.js';
-
-console.log(getChord('cmaj'));
+import './style.less';
 
 const render = () => {
 	ReactDOM.render(
@@ -12,3 +11,4 @@ const render = () => {
 	);
 };
 
+render();
