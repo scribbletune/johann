@@ -14,7 +14,7 @@ export const rootReducer = (state = initialState, action = {}) => {
 			let pointer = 0;
 			let scale = getScale(action.data.rootNote, action.data.scale);
 			state.octaves = [];
-			[2, 3, 4].forEach(oct => {
+			[2, 3, 4, 5].forEach(oct => {
 				let keys = [];
 				state.pitches.forEach(pitch => {
 					let note = pitch.name + oct;
@@ -27,6 +27,9 @@ export const rootReducer = (state = initialState, action = {}) => {
 				});
 				state.octaves.push(keys);
 			});
+			// Take off the first item (octave 2) from the octaves arr
+			// TODO come up with a cleaner way to represent 3 octaves
+			state.octaves.shift();
 			return state;
 
 		default:
