@@ -10,7 +10,6 @@ const getOctaves = () => {
 	return octaves;
 };
 
-
 var initialState = {
 	pitches: getPitches(),
 	scales: getScaleNames(),
@@ -28,12 +27,9 @@ export const rootReducer = (state = initialState, action = {}) => {
 			let scale = getScale(state.rootNote, state.scale);
 			state.octaves = getOctaves();
 			state.octaves.forEach(oct => {
-				oct.forEach(pitch => {
-					if (scale.indexOf(pitch.note) > -1) {
-						pitch.highlight = true;
-					} else {
-						pitch.highlight = null;
-					}
+				oct.forEach(key => {
+					key.highlight = scale.indexOf(key.note) > -1;
+					key.rootNote = key.name === state.rootNote;
 				})
 			});
 			// Take off the first item (octave 2) from the octaves arr

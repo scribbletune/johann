@@ -6,6 +6,9 @@ const PianoKey = ({ keyObj }) => {
 	if (keyObj.highlight) {
 		className += ' highlight';
 	}
+	if (keyObj.rootNote) {
+		className += ' rootNote';
+	}
 	return(
 		<div className={className} key={keyObj.note}></div>
 	);

@@ -1,7 +1,8 @@
 @whiteKeyWidth: 60px;
 @blackKeyWidth: 40px;
 @blackKeyHalfWidth: @blackKeyWidth/2;
-@highlightNote: red;
+@highlightNote: #f26c4e;
+@highlightRootNote: #3db878;
 
 .keyboard {
 	display: grid;
@@ -67,3 +68,9 @@
 	bottom: 8px;
 	box-shadow: 0 0 5px #333;
 }
+
+.rootNote::after {
+	background: @highlightRootNote;
+}
+
+

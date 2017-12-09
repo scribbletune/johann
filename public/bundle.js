@@ -21100,12 +21100,9 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 			var scale = (0, _api.getScale)(state.rootNote, state.scale);
 			state.octaves = getOctaves();
 			state.octaves.forEach(function (oct) {
-				oct.forEach(function (pitch) {
-					if (scale.indexOf(pitch.note) > -1) {
-						pitch.highlight = true;
-					} else {
-						pitch.highlight = null;
-					}
+				oct.forEach(function (key) {
+					key.highlight = scale.indexOf(key.note) > -1;
+					key.rootNote = key.name === state.rootNote;
 				});
 			});
 			// Take off the first item (octave 2) from the octaves arr
@@ -22321,6 +22318,9 @@ var PianoKey = function PianoKey(_ref) {
 	if (keyObj.highlight) {
 		className += ' highlight';
 	}
+	if (keyObj.rootNote) {
+		className += ' rootNote';
+	}
 	return _react2.default.createElement('div', { className: className, key: keyObj.note });
 };
 
@@ -22366,7 +22366,7 @@ exports = module.exports = __webpack_require__(75)(undefined);
 
 
 // module
-exports.push([module.i, ".keyboard {\n  display: grid;\n  grid-template-columns: repeat(3, 420px);\n  margin: 0 auto;\n  width: 1260px;\n}\n.octave {\n  display: grid;\n  grid-template-columns: 60px 40px 60px 40px 60px 60px 40px 60px 40px 60px 40px 60px;\n}\n.key {\n  -webkit-border-bottom-right-radius: 3px;\n  -webkit-border-bottom-left-radius: 3px;\n  -moz-border-radius-bottomright: 3px;\n  -moz-border-radius-bottomleft: 3px;\n  border-bottom-right-radius: 3px;\n  border-bottom-left-radius: 3px;\n  box-shadow: 4px 0px 10px #000 ;\n  position: relative;\n}\n.white-key {\n  background: #f1f2f3;\n  border-bottom: 14px solid #c9c9c9;\n  height: 250px;\n  width: 60px;\n}\n.black-key {\n  width: 40px;\n  background: #222;\n  border-bottom: 20px solid #000;\n  height: 180px;\n  z-index: 1;\n}\n.db {\n  margin-left: -20px;\n}\n.d {\n  margin-left: -40px;\n}\n.eb {\n  margin-left: -60px;\n}\n.e {\n  margin-left: -80px;\n}\n.f {\n  margin-left: -80px;\n}\n.gb {\n  margin-left: -100px;\n}\n.g {\n  margin-left: -120px;\n}\n.ab {\n  margin-left: -140px;\n}\n.a {\n  margin-left: -160px;\n}\n.bb {\n  margin-left: -180px;\n}\n.b {\n  margin-left: -200px;\n}\n.highlight::after {\n  content: '';\n  display: block;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  -webkit-border-radius: 15px;\n  background: red;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n}\n", ""]);
+exports.push([module.i, ".keyboard {\n  display: grid;\n  grid-template-columns: repeat(3, 420px);\n  margin: 0 auto;\n  width: 1260px;\n}\n.octave {\n  display: grid;\n  grid-template-columns: 60px 40px 60px 40px 60px 60px 40px 60px 40px 60px 40px 60px;\n}\n.key {\n  -webkit-border-bottom-right-radius: 3px;\n  -webkit-border-bottom-left-radius: 3px;\n  -moz-border-radius-bottomright: 3px;\n  -moz-border-radius-bottomleft: 3px;\n  border-bottom-right-radius: 3px;\n  border-bottom-left-radius: 3px;\n  box-shadow: 4px 0px 10px #000 ;\n  position: relative;\n}\n.white-key {\n  background: #f1f2f3;\n  border-bottom: 14px solid #c9c9c9;\n  height: 250px;\n  width: 60px;\n}\n.black-key {\n  width: 40px;\n  background: #222;\n  border-bottom: 20px solid #000;\n  height: 180px;\n  z-index: 1;\n}\n.db {\n  margin-left: -20px;\n}\n.d {\n  margin-left: -40px;\n}\n.eb {\n  margin-left: -60px;\n}\n.e {\n  margin-left: -80px;\n}\n.f {\n  margin-left: -80px;\n}\n.gb {\n  margin-left: -100px;\n}\n.g {\n  margin-left: -120px;\n}\n.ab {\n  margin-left: -140px;\n}\n.a {\n  margin-left: -160px;\n}\n.bb {\n  margin-left: -180px;\n}\n.b {\n  margin-left: -200px;\n}\n.highlight::after {\n  content: '';\n  display: block;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  -webkit-border-radius: 15px;\n  background: #f26c4e;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n}\n.rootNote::after {\n  background: #3db878;\n}\n", ""]);
 
 // exports
 
