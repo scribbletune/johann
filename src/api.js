@@ -1,6 +1,9 @@
 import {modes, scale, chord, listChords} from 'scribbletune';
 
-export const getScaleNames = () => (modes);
+export const getScaleNames = () => (modes.map(mode => ({
+	name: mode,
+	label: mode[0].toUpperCase() + mode.slice(1)
+})));
 
 export const getChordNames = () => (listChords());
 

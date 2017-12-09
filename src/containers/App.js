@@ -4,11 +4,10 @@ import Piano from './Piano.js';
 
 const App = ({ store }) => {
 	var state = store.getState();
-	console.log(state);
 	return (
 		<div>
 			<h1>Practice charts - coming soon!</h1>
-			<Controls pitches={state.pitches} dispatch={store.dispatch} />
+			<Controls pitches={state.pitches} scales={state.scales} dispatch={store.dispatch} />
 			<Piano octaves={state.octaves} />
 		</div>
 	);

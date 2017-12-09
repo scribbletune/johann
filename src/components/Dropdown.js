@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Dropdown = ({pitches, onChangeEventHandler}) => {
-	const list = pitches.map(
-		pitch => <option value={pitch.name} key={pitch.name}>{pitch.label}</option>
+const Dropdown = ({data, onChangeEventHandler}) => {
+	const list = data.map(
+		item => <option value={item.name} key={item.name}>{item.label}</option>
 	);
 	return (
 		<select onChange={onChangeEventHandler}>

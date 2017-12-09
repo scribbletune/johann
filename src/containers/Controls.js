@@ -1,11 +1,12 @@
 import React from 'react';
 import Dropdown from '../components/Dropdown.js';
-import { loadScale } from '../actions/creators.js';
+import { loadScale, rootChanged, scaleChanged } from '../actions/creators.js';
 
-const Controls = ({ pitches, dispatch }) => {
+const Controls = ({ pitches, scales, dispatch }) => {
 	return (
 		<ul>
-			<li><Dropdown pitches={pitches} onChangeEventHandler={loadScale.bind(null, dispatch)} /></li>
+			<li><Dropdown data={pitches} onChangeEventHandler={rootChanged.bind(null, dispatch)} /></li>
+			<li><Dropdown data={scales} onChangeEventHandler={scaleChanged.bind(null, dispatch)} /></li>
 		</ul>
 	);
 };

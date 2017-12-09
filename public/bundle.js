@@ -2007,7 +2007,9 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = {
-	LOAD_SCALE: 'LOAD_SCALE'
+	LOAD_SCALE: 'LOAD_SCALE',
+	ROOT_CHANGED: 'ROOT_CHANGED',
+	SCALE_CHANGED: 'SCALE_CHANGED'
 };
 
 /***/ }),
@@ -3073,7 +3075,7 @@ if (typeof module != 'undefined' && module !== null) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.loadScale = exports.initApp = undefined;
+exports.scaleChanged = exports.rootChanged = exports.loadScale = exports.initApp = undefined;
 
 var _constants = __webpack_require__(23);
 
@@ -3081,8 +3083,8 @@ var _constants2 = _interopRequireDefault(_constants);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var initApp = exports.initApp = function initApp(store) {
-	store.dispatch({
+var initApp = exports.initApp = function initApp(dispatch) {
+	return dispatch({
 		type: _constants2.default.LOAD_SCALE,
 		data: {
 			rootNote: 'c',
@@ -3093,10 +3095,24 @@ var initApp = exports.initApp = function initApp(store) {
 
 var loadScale = exports.loadScale = function loadScale(dispatch, e) {
 	return dispatch({
-		type: _constants2.default.LOAD_SCALE,
+		type: _constants2.default.LOAD_SCALE
+	});
+};
+
+var rootChanged = exports.rootChanged = function rootChanged(dispatch, e) {
+	return dispatch({
+		type: _constants2.default.ROOT_CHANGED,
 		data: {
-			rootNote: e.target.value,
-			scale: 'ionian'
+			rootNote: e.target.value
+		}
+	});
+};
+
+var scaleChanged = exports.scaleChanged = function scaleChanged(dispatch, e) {
+	return dispatch({
+		type: _constants2.default.SCALE_CHANGED,
+		data: {
+			scale: e.target.value
 		}
 	});
 };
@@ -3133,12 +3149,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var store = (0, _redux.createStore)(_root.rootReducer);
 
 var render = function render() {
+	console.log('render');
 	_reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById('root'));
 };
 
 store.subscribe(render);
 
-(0, _creators.initApp)(store);
+(0, _creators.initApp)(store.dispatch);
 
 /***/ }),
 /* 31 */
@@ -21050,9 +21067,25 @@ var _api = __webpack_require__(59);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var getOctaves = function getOctaves() {
+	var pitches = (0, _api.getPitches)();
+	var octaves = [2, 3, 4, 5].map(function (oct) {
+		return pitches.map(function (pitch) {
+			return Object.assign({}, pitch, {
+				note: pitch.name + oct
+			});
+		});
+	});
+
+	return octaves;
+};
+
 var initialState = {
 	pitches: (0, _api.getPitches)(),
-	octaves: []
+	scales: (0, _api.getScaleNames)(),
+	octaves: getOctaves(),
+	scale: 'ionian',
+	rootNote: 'c'
 };
 
 var rootReducer = exports.rootReducer = function rootReducer() {
@@ -21064,24 +21097,30 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 			// Avoid doing yet another for loop inside the pitches forEach loop
 			// by doing the string subsequence finding pointer technique
 			var pointer = 0;
-			var scale = (0, _api.getScale)(action.data.rootNote, action.data.scale);
-			state.octaves = [];
-			[2, 3, 4, 5].forEach(function (oct) {
-				var keys = [];
-				state.pitches.forEach(function (pitch) {
-					var note = pitch.name + oct;
-					if (note === scale[pointer]) {
-						keys.push(Object.assign({}, pitch, { note: note, highlight: true }));
-						pointer++;
+			var scale = (0, _api.getScale)(state.rootNote, state.scale);
+			state.octaves = getOctaves();
+			state.octaves.forEach(function (oct) {
+				oct.forEach(function (pitch) {
+					if (scale.indexOf(pitch.note) > -1) {
+						pitch.highlight = true;
 					} else {
-						keys.push(Object.assign({}, pitch, { note: note }));
+						pitch.highlight = null;
 					}
 				});
-				state.octaves.push(keys);
 			});
 			// Take off the first item (octave 2) from the octaves arr
 			// TODO come up with a cleaner way to represent 3 octaves
 			state.octaves.shift();
+			return state;
+
+		case _constants2.default.ROOT_CHANGED:
+			state.rootNote = action.data.rootNote;
+			rootReducer(state, { type: _constants2.default.LOAD_SCALE });
+			return state;
+
+		case _constants2.default.SCALE_CHANGED:
+			state.scale = action.data.scale;
+			rootReducer(state, { type: _constants2.default.LOAD_SCALE });
 			return state;
 
 		default:
@@ -21104,7 +21143,12 @@ exports.getPitches = exports.getChord = exports.getScale = exports.getChordNames
 var _scribbletune = __webpack_require__(60);
 
 var getScaleNames = exports.getScaleNames = function getScaleNames() {
-	return _scribbletune.modes;
+	return _scribbletune.modes.map(function (mode) {
+		return {
+			name: mode,
+			label: mode[0].toUpperCase() + mode.slice(1)
+		};
+	});
 };
 
 var getChordNames = exports.getChordNames = function getChordNames() {
@@ -22110,7 +22154,6 @@ var App = function App(_ref) {
 	var store = _ref.store;
 
 	var state = store.getState();
-	console.log(state);
 	return _react2.default.createElement(
 		'div',
 		null,
@@ -22119,7 +22162,7 @@ var App = function App(_ref) {
 			null,
 			'Practice charts - coming soon!'
 		),
-		_react2.default.createElement(_Controls2.default, { pitches: state.pitches, dispatch: store.dispatch }),
+		_react2.default.createElement(_Controls2.default, { pitches: state.pitches, scales: state.scales, dispatch: store.dispatch }),
 		_react2.default.createElement(_Piano2.default, { octaves: state.octaves })
 	);
 };
@@ -22151,6 +22194,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Controls = function Controls(_ref) {
 	var pitches = _ref.pitches,
+	    scales = _ref.scales,
 	    dispatch = _ref.dispatch;
 
 	return _react2.default.createElement(
@@ -22159,7 +22203,12 @@ var Controls = function Controls(_ref) {
 		_react2.default.createElement(
 			'li',
 			null,
-			_react2.default.createElement(_Dropdown2.default, { pitches: pitches, onChangeEventHandler: _creators.loadScale.bind(null, dispatch) })
+			_react2.default.createElement(_Dropdown2.default, { data: pitches, onChangeEventHandler: _creators.rootChanged.bind(null, dispatch) })
+		),
+		_react2.default.createElement(
+			'li',
+			null,
+			_react2.default.createElement(_Dropdown2.default, { data: scales, onChangeEventHandler: _creators.scaleChanged.bind(null, dispatch) })
 		)
 	);
 };
@@ -22184,14 +22233,14 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Dropdown = function Dropdown(_ref) {
-	var pitches = _ref.pitches,
+	var data = _ref.data,
 	    onChangeEventHandler = _ref.onChangeEventHandler;
 
-	var list = pitches.map(function (pitch) {
+	var list = data.map(function (item) {
 		return _react2.default.createElement(
 			'option',
-			{ value: pitch.name, key: pitch.name },
-			pitch.label
+			{ value: item.name, key: item.name },
+			item.label
 		);
 	});
 	return _react2.default.createElement(
@@ -22227,7 +22276,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Piano = function Piano(_ref) {
 	var octaves = _ref.octaves;
 
-	console.log('octaves', octaves);
 	var octs = octaves.map(function (oct, idx) {
 		var keys = oct.map(function (k) {
 			return _react2.default.createElement(_PianoKey2.default, { keyObj: k, key: k.note });
@@ -22270,7 +22318,6 @@ var PianoKey = function PianoKey(_ref) {
 
 	// {label: "D", name: "d", color: "white", note: "d2", highlight: true}
 	var className = 'key ' + keyObj.color + '-key ' + keyObj.note.replace(/\d+/, '');
-	console.log(keyObj);
 	if (keyObj.highlight) {
 		className += ' highlight';
 	}

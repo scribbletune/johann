@@ -10,6 +10,7 @@ import './style.less';
 const store = createStore(rootReducer);
 
 const render = () => {
+	console.log('render');
 	ReactDOM.render(
 		<App store={store} />,
 		document.getElementById('root')
@@ -18,4 +19,4 @@ const render = () => {
 
 store.subscribe(render);
 
-initApp(store);
+initApp(store.dispatch);
