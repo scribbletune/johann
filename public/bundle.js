@@ -2007,7 +2007,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = {
-	LOAD_SCALE: 'LOAD_SCALE',
+	LOAD_NOTES: 'LOAD_NOTES',
 	ROOT_CHANGED: 'ROOT_CHANGED',
 	SCALE_CHANGED: 'SCALE_CHANGED',
 	CHORD_CHANGED: 'CHORD_CHANGED',
@@ -3087,7 +3087,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var initApp = exports.initApp = function initApp(dispatch) {
 	return dispatch({
-		type: _constants2.default.LOAD_SCALE,
+		type: _constants2.default.LOAD_NOTES,
 		data: {
 			rootNote: 'c',
 			scale: 'ionian'
@@ -3097,7 +3097,7 @@ var initApp = exports.initApp = function initApp(dispatch) {
 
 var loadScale = exports.loadScale = function loadScale(dispatch, e) {
 	return dispatch({
-		type: _constants2.default.LOAD_SCALE
+		type: _constants2.default.LOAD_NOTES
 	});
 };
 
@@ -3123,7 +3123,7 @@ var chordChanged = exports.chordChanged = function chordChanged(dispatch, e) {
 	return dispatch({
 		type: _constants2.default.CHORD_CHANGED,
 		data: {
-			scale: e.target.value
+			chord: e.target.value
 		}
 	});
 };
@@ -3132,7 +3132,7 @@ var typeChanged = exports.typeChanged = function typeChanged(dispatch, e) {
 	return dispatch({
 		type: _constants2.default.TYPE_CHANGED,
 		data: {
-			scale: e.target.value
+			type: e.target.value
 		}
 	});
 };
@@ -21115,15 +21115,18 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 	var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	switch (action.type) {
-		case _constants2.default.LOAD_SCALE:
+		case _constants2.default.LOAD_NOTES:
 			// Avoid doing yet another for loop inside the pitches forEach loop
 			// by doing the string subsequence finding pointer technique
 			var pointer = 0;
-			var scale = (0, _api.getScale)(state.rootNote, state.scale);
+			var notes = (0, _api.getScale)(state.rootNote, state.scale);
+			if (state.type === 'chord') {
+				notes = (0, _api.getChord)(state.rootNote + state.chord);
+			}
 			state.octaves = getOctaves();
 			state.octaves.forEach(function (oct) {
 				oct.forEach(function (key) {
-					key.highlight = scale.indexOf(key.note) > -1;
+					key.highlight = notes.indexOf(key.note) > -1;
 					key.rootNote = key.name === state.rootNote;
 				});
 			});
@@ -21134,11 +21137,19 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 
 		case _constants2.default.ROOT_CHANGED:
 			state.rootNote = action.data.rootNote;
-			return rootReducer(state, { type: _constants2.default.LOAD_SCALE });
+			return rootReducer(state, { type: _constants2.default.LOAD_NOTES });
 
 		case _constants2.default.SCALE_CHANGED:
 			state.scale = action.data.scale;
-			return rootReducer(state, { type: _constants2.default.LOAD_SCALE });
+			return rootReducer(state, { type: _constants2.default.LOAD_NOTES });
+
+		case _constants2.default.CHORD_CHANGED:
+			state.chord = action.data.chord;
+			return rootReducer(state, { type: _constants2.default.LOAD_NOTES });
+
+		case _constants2.default.TYPE_CHANGED:
+			state.type = action.data.type;
+			return rootReducer(state, { type: _constants2.default.LOAD_NOTES });
 
 		default:
 			return state;
@@ -21172,7 +21183,7 @@ var getChordNames = exports.getChordNames = function getChordNames() {
 	return (0, _scribbletune.listChords)().map(function (chord) {
 		return {
 			name: chord,
-			label: chord[0].toUpperCase() + chord.slice(1)
+			label: chord
 		};
 	});
 };
@@ -22418,7 +22429,7 @@ exports = module.exports = __webpack_require__(75)(undefined);
 
 
 // module
-exports.push([module.i, ".keyboard {\n  display: grid;\n  grid-template-columns: repeat(3, 420px);\n  margin: 0 auto;\n  width: 1260px;\n}\n.octave {\n  display: grid;\n  grid-template-columns: 60px 40px 60px 40px 60px 60px 40px 60px 40px 60px 40px 60px;\n}\n.key {\n  -webkit-border-bottom-right-radius: 3px;\n  -webkit-border-bottom-left-radius: 3px;\n  -moz-border-radius-bottomright: 3px;\n  -moz-border-radius-bottomleft: 3px;\n  border-bottom-right-radius: 3px;\n  border-bottom-left-radius: 3px;\n  box-shadow: 4px 0px 10px #000 ;\n  position: relative;\n}\n.white-key {\n  background: #f1f2f3;\n  border-bottom: 14px solid #c9c9c9;\n  height: 250px;\n  width: 60px;\n}\n.black-key {\n  width: 40px;\n  background: #222;\n  border-bottom: 20px solid #000;\n  height: 180px;\n  z-index: 1;\n}\n.db {\n  margin-left: -20px;\n}\n.d {\n  margin-left: -40px;\n}\n.eb {\n  margin-left: -60px;\n}\n.e {\n  margin-left: -80px;\n}\n.f {\n  margin-left: -80px;\n}\n.gb {\n  margin-left: -100px;\n}\n.g {\n  margin-left: -120px;\n}\n.ab {\n  margin-left: -140px;\n}\n.a {\n  margin-left: -160px;\n}\n.bb {\n  margin-left: -180px;\n}\n.b {\n  margin-left: -200px;\n}\n.highlight::after {\n  content: '';\n  display: block;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  -webkit-border-radius: 15px;\n  background: #f26c4e;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n}\n.rootNote::after {\n  background: #3db878;\n}\n", ""]);
+exports.push([module.i, ".keyboard {\n  display: grid;\n  grid-template-columns: repeat(3, 420px);\n  margin: 0 auto;\n  width: 1260px;\n}\n.octave {\n  display: grid;\n  grid-template-columns: 60px 40px 60px 40px 60px 60px 40px 60px 40px 60px 40px 60px;\n}\n.key {\n  -webkit-border-bottom-right-radius: 3px;\n  -webkit-border-bottom-left-radius: 3px;\n  -moz-border-radius-bottomright: 3px;\n  -moz-border-radius-bottomleft: 3px;\n  border-bottom-right-radius: 3px;\n  border-bottom-left-radius: 3px;\n  box-shadow: 4px 0px 10px #000 ;\n  position: relative;\n}\n.white-key {\n  background: #f1f2f3;\n  border-bottom: 14px solid #c9c9c9;\n  height: 250px;\n  width: 60px;\n}\n.black-key {\n  width: 40px;\n  background: #222;\n  border-bottom: 20px solid #000;\n  height: 180px;\n  z-index: 1;\n}\n.db {\n  margin-left: -20px;\n}\n.d {\n  margin-left: -40px;\n}\n.eb {\n  margin-left: -60px;\n}\n.e {\n  margin-left: -80px;\n}\n.f {\n  margin-left: -80px;\n}\n.gb {\n  margin-left: -100px;\n}\n.g {\n  margin-left: -120px;\n}\n.ab {\n  margin-left: -140px;\n}\n.a {\n  margin-left: -160px;\n}\n.bb {\n  margin-left: -180px;\n}\n.b {\n  margin-left: -200px;\n}\n.highlight::after {\n  content: '';\n  display: block;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  -webkit-border-radius: 15px;\n  background: #f26c4e;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n}\n.rootNote::after {\n  background: #3db878;\n}\n.hide {\n  display: none;\n}\n", ""]);
 
 // exports
 

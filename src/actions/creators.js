@@ -1,7 +1,7 @@
 import constants from './constants';
 
 export const initApp = (dispatch) => (dispatch({
-	type: constants.LOAD_SCALE,
+	type: constants.LOAD_NOTES,
 	data: {
 		rootNote: 'c',
 		scale: 'ionian'
@@ -9,7 +9,7 @@ export const initApp = (dispatch) => (dispatch({
 }));
 
 export const loadScale = (dispatch, e) => (dispatch({
-	type: constants.LOAD_SCALE
+	type: constants.LOAD_NOTES
 }));
 
 export const rootChanged = (dispatch, e) => (dispatch({
@@ -29,13 +29,13 @@ export const scaleChanged = (dispatch, e) => (dispatch({
 export const chordChanged = (dispatch, e) => (dispatch({
 	type: constants.CHORD_CHANGED,
 	data: {
-		scale: e.target.value
+		chord: e.target.value
 	}
 }));
 
 export const typeChanged = (dispatch, e) => (dispatch({
 	type: constants.TYPE_CHANGED,
 	data: {
-		scale: e.target.value
+		type: e.target.value
 	}
 }));

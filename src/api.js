@@ -7,7 +7,7 @@ export const getScaleNames = () => (modes.map(mode => ({
 
 export const getChordNames = () => (listChords().map(chord => ({
 	name: chord,
-	label: chord[0].toUpperCase() + chord.slice(1)
+	label: chord
 })));
 
 export const getScale = (rootNote, mode) => {

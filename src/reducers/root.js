@@ -1,5 +1,5 @@
 import constants from '../actions/constants.js';
-import {getScale, getPitches, getScaleNames, getChordNames} from '../api.js';
+import {getScale, getPitches, getScaleNames, getChordNames, getChord} from '../api.js';
 
 const getOctaves = () => {
 	let pitches = getPitches();
@@ -23,15 +23,18 @@ var initialState = {
 
 export const rootReducer = (state = initialState, action = {}) => {
 	switch (action.type) {
-		case constants.LOAD_SCALE:
+		case constants.LOAD_NOTES:
 			// Avoid doing yet another for loop inside the pitches forEach loop
 			// by doing the string subsequence finding pointer technique
 			let pointer = 0;
-			let scale = getScale(state.rootNote, state.scale);
+			let notes = getScale(state.rootNote, state.scale);
+			if (state.type === 'chord') {
+				notes = getChord(state.rootNote + state.chord);
+			}
 			state.octaves = getOctaves();
 			state.octaves.forEach(oct => {
 				oct.forEach(key => {
-					key.highlight = scale.indexOf(key.note) > -1;
+					key.highlight = notes.indexOf(key.note) > -1;
 					key.rootNote = key.name === state.rootNote;
 				})
 			});
@@ -42,11 +45,19 @@ export const rootReducer = (state = initialState, action = {}) => {
 
 		case constants.ROOT_CHANGED:
 			state.rootNote = action.data.rootNote;
-			return rootReducer(state, {type: constants.LOAD_SCALE});
+			return rootReducer(state, {type: constants.LOAD_NOTES});
 
 		case constants.SCALE_CHANGED:
 			state.scale = action.data.scale;
-			return rootReducer(state, {type: constants.LOAD_SCALE});
+			return rootReducer(state, {type: constants.LOAD_NOTES});
+
+		case constants.CHORD_CHANGED:
+			state.chord = action.data.chord;
+			return rootReducer(state, {type: constants.LOAD_NOTES});
+
+		case constants.TYPE_CHANGED:
+			state.type = action.data.type;
+			return rootReducer(state, {type: constants.LOAD_NOTES});
 
 		default:
 			return state;
