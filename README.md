@@ -1,5 +1,5 @@
-# Notation
-Generate practice charts for guitars & keyboards
+# Johann
+Generate practice charts and learn to play guitars & keyboards
 
 ---
 
