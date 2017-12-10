@@ -5,7 +5,10 @@ export const getScaleNames = () => (modes.map(mode => ({
 	label: mode[0].toUpperCase() + mode.slice(1)
 })));
 
-export const getChordNames = () => (listChords());
+export const getChordNames = () => (listChords().map(chord => ({
+	name: chord,
+	label: chord[0].toUpperCase() + chord.slice(1)
+})));
 
 export const getScale = (rootNote, mode) => {
 	// concatenate scales from octave range 2 to 5

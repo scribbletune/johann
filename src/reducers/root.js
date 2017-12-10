@@ -1,5 +1,5 @@
 import constants from '../actions/constants.js';
-import {getScale, getPitches, getScaleNames} from '../api.js';
+import {getScale, getPitches, getScaleNames, getChordNames} from '../api.js';
 
 const getOctaves = () => {
 	let pitches = getPitches();
@@ -13,8 +13,11 @@ const getOctaves = () => {
 var initialState = {
 	pitches: getPitches(),
 	scales: getScaleNames(),
+	chords: getChordNames(),
 	octaves: getOctaves(),
 	scale: 'ionian',
+	chord: 'Maj',
+	type: 'scale',
 	rootNote: 'c'
 };
 

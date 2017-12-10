@@ -2009,7 +2009,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
 	LOAD_SCALE: 'LOAD_SCALE',
 	ROOT_CHANGED: 'ROOT_CHANGED',
-	SCALE_CHANGED: 'SCALE_CHANGED'
+	SCALE_CHANGED: 'SCALE_CHANGED',
+	CHORD_CHANGED: 'CHORD_CHANGED',
+	TYPE_CHANGED: 'TYPE_CHANGED'
 };
 
 /***/ }),
@@ -3075,7 +3077,7 @@ if (typeof module != 'undefined' && module !== null) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.scaleChanged = exports.rootChanged = exports.loadScale = exports.initApp = undefined;
+exports.typeChanged = exports.chordChanged = exports.scaleChanged = exports.rootChanged = exports.loadScale = exports.initApp = undefined;
 
 var _constants = __webpack_require__(23);
 
@@ -3111,6 +3113,24 @@ var rootChanged = exports.rootChanged = function rootChanged(dispatch, e) {
 var scaleChanged = exports.scaleChanged = function scaleChanged(dispatch, e) {
 	return dispatch({
 		type: _constants2.default.SCALE_CHANGED,
+		data: {
+			scale: e.target.value
+		}
+	});
+};
+
+var chordChanged = exports.chordChanged = function chordChanged(dispatch, e) {
+	return dispatch({
+		type: _constants2.default.CHORD_CHANGED,
+		data: {
+			scale: e.target.value
+		}
+	});
+};
+
+var typeChanged = exports.typeChanged = function typeChanged(dispatch, e) {
+	return dispatch({
+		type: _constants2.default.TYPE_CHANGED,
 		data: {
 			scale: e.target.value
 		}
@@ -21082,8 +21102,11 @@ var getOctaves = function getOctaves() {
 var initialState = {
 	pitches: (0, _api.getPitches)(),
 	scales: (0, _api.getScaleNames)(),
+	chords: (0, _api.getChordNames)(),
 	octaves: getOctaves(),
 	scale: 'ionian',
+	chord: 'Maj',
+	type: 'scale',
 	rootNote: 'c'
 };
 
@@ -21146,7 +21169,12 @@ var getScaleNames = exports.getScaleNames = function getScaleNames() {
 };
 
 var getChordNames = exports.getChordNames = function getChordNames() {
-	return (0, _scribbletune.listChords)();
+	return (0, _scribbletune.listChords)().map(function (chord) {
+		return {
+			name: chord,
+			label: chord[0].toUpperCase() + chord.slice(1)
+		};
+	});
 };
 
 var getScale = exports.getScale = function getScale(rootNote, mode) {
@@ -22156,7 +22184,13 @@ var App = function App(_ref) {
 			null,
 			'Practice charts - coming soon!'
 		),
-		_react2.default.createElement(_Controls2.default, { pitches: state.pitches, scales: state.scales, dispatch: store.dispatch }),
+		_react2.default.createElement(_Controls2.default, {
+			pitches: state.pitches,
+			scales: state.scales,
+			chords: state.chords,
+			type: state.type,
+			dispatch: store.dispatch
+		}),
 		_react2.default.createElement(_Piano2.default, { octaves: state.octaves })
 	);
 };
@@ -22189,8 +22223,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Controls = function Controls(_ref) {
 	var pitches = _ref.pitches,
 	    scales = _ref.scales,
+	    chords = _ref.chords,
+	    type = _ref.type,
 	    dispatch = _ref.dispatch;
 
+	var types = [{
+		name: 'scale',
+		label: 'Scale'
+	}, {
+		name: 'chord',
+		label: 'Chord'
+	}];
+	var scalesDDClass = type === 'scale' ? '' : 'hide';
+	var chordsDDClass = type === 'chord' ? '' : 'hide';
 	return _react2.default.createElement(
 		'ul',
 		null,
@@ -22201,8 +22246,18 @@ var Controls = function Controls(_ref) {
 		),
 		_react2.default.createElement(
 			'li',
-			null,
+			{ className: scalesDDClass },
 			_react2.default.createElement(_Dropdown2.default, { data: scales, onChangeEventHandler: _creators.scaleChanged.bind(null, dispatch) })
+		),
+		_react2.default.createElement(
+			'li',
+			{ className: chordsDDClass },
+			_react2.default.createElement(_Dropdown2.default, { data: chords, onChangeEventHandler: _creators.chordChanged.bind(null, dispatch) })
+		),
+		_react2.default.createElement(
+			'li',
+			null,
+			_react2.default.createElement(_Dropdown2.default, { data: types, onChangeEventHandler: _creators.typeChanged.bind(null, dispatch) })
 		)
 	);
 };
