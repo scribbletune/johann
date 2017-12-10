@@ -39,13 +39,11 @@ export const rootReducer = (state = initialState, action = {}) => {
 
 		case constants.ROOT_CHANGED:
 			state.rootNote = action.data.rootNote;
-			rootReducer(state, {type: constants.LOAD_SCALE});
-			return state;
+			return rootReducer(state, {type: constants.LOAD_SCALE});
 
 		case constants.SCALE_CHANGED:
 			state.scale = action.data.scale;
-			rootReducer(state, {type: constants.LOAD_SCALE});
-			return state;
+			return rootReducer(state, {type: constants.LOAD_SCALE});
 
 		default:
 			return state;

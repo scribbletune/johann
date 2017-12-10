@@ -3149,7 +3149,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var store = (0, _redux.createStore)(_root.rootReducer);
 
 var render = function render() {
-	console.log('render');
 	_reactDom2.default.render(_react2.default.createElement(_App2.default, { store: store }), document.getElementById('root'));
 };
 
@@ -21112,13 +21111,11 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 
 		case _constants2.default.ROOT_CHANGED:
 			state.rootNote = action.data.rootNote;
-			rootReducer(state, { type: _constants2.default.LOAD_SCALE });
-			return state;
+			return rootReducer(state, { type: _constants2.default.LOAD_SCALE });
 
 		case _constants2.default.SCALE_CHANGED:
 			state.scale = action.data.scale;
-			rootReducer(state, { type: _constants2.default.LOAD_SCALE });
-			return state;
+			return rootReducer(state, { type: _constants2.default.LOAD_SCALE });
 
 		default:
 			return state;
