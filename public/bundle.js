@@ -23085,10 +23085,10 @@ if(false) {
 
 exports = module.exports = __webpack_require__(10)(undefined);
 // imports
-exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Eczar:400,700);", ""]);
+
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Eczar', serif;\n}\n.container {\n  margin: 0 auto;\n  width: 1260px;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: Georgia, serif;\n}\n.container {\n  margin: 0 auto;\n  width: 1260px;\n}\n", ""]);
 
 // exports
 
