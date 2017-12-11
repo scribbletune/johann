@@ -7,7 +7,6 @@ const App = ({ store }) => {
 	var state = store.getState();
 	return (
 		<div>
-			<h1>Johann</h1>
 			<Controls 
 				pitches={state.pitches} 
 				scales={state.scales} 

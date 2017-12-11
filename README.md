@@ -1,5 +1,5 @@
 # Johann
-Helps you learn chords and scales for your own good.
+Learn you a scale or chord for greater good.
 
 ---
 

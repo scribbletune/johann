@@ -1,6 +1,7 @@
 import React from 'react';
 import Dropdown from '../components/Dropdown.js';
 import { loadScale, rootChanged, scaleChanged, chordChanged, typeChanged } from '../actions/creators.js';
+import './Controls.less';
 
 const Controls = ({ pitches, scales, chords, type, dispatch }) => {
 	const types = [{
