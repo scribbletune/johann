@@ -1,12 +1,13 @@
 import React from 'react';
 import Controls from './Controls.js';
 import Piano from './Piano.js';
+import './Piano.less';
 
 const App = ({ store }) => {
 	var state = store.getState();
 	return (
 		<div>
-			<h1>Practice charts - coming soon!</h1>
+			<h1>Johann</h1>
 			<Controls 
 				pitches={state.pitches} 
 				scales={state.scales} 

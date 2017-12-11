@@ -13,7 +13,7 @@ const Controls = ({ pitches, scales, chords, type, dispatch }) => {
 	let scalesDDClass = type === 'scale' ? '' : 'hide';
 	let chordsDDClass = type === 'chord' ? '' : 'hide';
 	return (
-		<ul>
+		<ul className="controls">
 			<li><Dropdown data={pitches} onChangeEventHandler={rootChanged.bind(null, dispatch)} /></li>
 			<li className={scalesDDClass}><Dropdown data={scales} onChangeEventHandler={scaleChanged.bind(null, dispatch)} /></li>
 			<li className={chordsDDClass}><Dropdown data={chords} onChangeEventHandler={chordChanged.bind(null, dispatch)} /></li>

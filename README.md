@@ -1,5 +1,5 @@
 # Johann
-Generate practice charts and learn to play guitars & keyboards
+Helps you learn chords and scales for your own good.
 
 ---
 
