@@ -1,6 +1,6 @@
 import constants from './constants';
 
-export const initApp = (dispatch) => (dispatch({
+const initApp = (dispatch) => (dispatch({
 	type: constants.LOAD_NOTES,
 	data: {
 		rootNote: 'c',
@@ -8,34 +8,48 @@ export const initApp = (dispatch) => (dispatch({
 	}
 }));
 
-export const loadScale = (dispatch, e) => (dispatch({
+const loadNotes = (dispatch) => (dispatch({
 	type: constants.LOAD_NOTES
 }));
 
-export const rootChanged = (dispatch, e) => (dispatch({
-	type: constants.ROOT_CHANGED,
-	data: {
-		rootNote: e.target.value
-	}
-}));
+const rootChanged = (dispatch, e) => {
+	dispatch({
+		type: constants.ROOT_CHANGED,
+		data: {
+			rootNote: e.target.value
+		}
+	});
+	loadNotes(dispatch);
+};
 
-export const scaleChanged = (dispatch, e) => (dispatch({
-	type: constants.SCALE_CHANGED,
-	data: {
-		scale: e.target.value
-	}
-}));
+const scaleChanged = (dispatch, e) => {
+	dispatch({
+		type: constants.SCALE_CHANGED,
+		data: {
+			scale: e.target.value
+		}
+	});
+	loadNotes(dispatch);
+};
 
-export const chordChanged = (dispatch, e) => (dispatch({
-	type: constants.CHORD_CHANGED,
-	data: {
-		chord: e.target.value
-	}
-}));
+const chordChanged = (dispatch, e) => {
+	dispatch({
+		type: constants.CHORD_CHANGED,
+		data: {
+			chord: e.target.value
+		}
+	});
+	loadNotes(dispatch);
+};
 
-export const typeChanged = (dispatch, e) => (dispatch({
-	type: constants.TYPE_CHANGED,
-	data: {
-		type: e.target.value
-	}
-}));
+const typeChanged = (dispatch, e) => {
+	dispatch({
+		type: constants.TYPE_CHANGED,
+		data: {
+			type: e.target.value
+		}
+	});
+	loadNotes(dispatch);
+};
+
+export { initApp, loadNotes, rootChanged, scaleChanged, chordChanged, typeChanged }

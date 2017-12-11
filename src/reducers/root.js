@@ -22,8 +22,8 @@ export const rootReducer = (state = initialState, action = {}) => {
 			if (state.type === 'chord') {
 				notes = api.getChord(state.rootNote + state.chord);
 			}
-			state.octaves = api.getOctaves();
-			state.octaves.forEach(oct => {
+			let octaves = api.getOctaves();
+			octaves.forEach(oct => {
 				oct.forEach(key => {
 					key.highlight = notes.indexOf(key.note) > -1;
 					key.rootNote = key.name === state.rootNote;
@@ -31,24 +31,20 @@ export const rootReducer = (state = initialState, action = {}) => {
 			});
 			// Take off the first item (octave 2) from the octaves arr
 			// TODO come up with a cleaner way to represent 3 octaves
-			state.octaves.shift();
-			return state;
+			octaves.shift();
+			return Object.assign({}, state, {octaves});
 
 		case constants.ROOT_CHANGED:
-			state.rootNote = action.data.rootNote;
-			return rootReducer(state, {type: constants.LOAD_NOTES});
+			return Object.assign({}, state, {rootNote: action.data.rootNote});
 
 		case constants.SCALE_CHANGED:
-			state.scale = action.data.scale;
-			return rootReducer(state, {type: constants.LOAD_NOTES});
+			return Object.assign({}, state, {scale: action.data.scale});
 
 		case constants.CHORD_CHANGED:
-			state.chord = action.data.chord;
-			return rootReducer(state, {type: constants.LOAD_NOTES});
+			return Object.assign({}, state, {chord: action.data.chord});
 
 		case constants.TYPE_CHANGED:
-			state.type = action.data.type;
-			return rootReducer(state, {type: constants.LOAD_NOTES});
+			return Object.assign({}, state, {type: action.data.type});
 
 		default:
 			return state;
