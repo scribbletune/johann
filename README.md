@@ -1,5 +1,5 @@
 # Johann
-Learn you a scale or chord for greater good.
+Learn you a scale or chord for greater good. BETA: http://scribbletune.com/johann/
 
 ---
 
@@ -12,9 +12,6 @@ The same can be done for a triad. You can generate a sheet with just the notes o
 ![c-minor-chord.png](./c-minor-chord.png)
 
 The green dot is the root note. 
-
-Sample jsbin for base idea: http://jsbin.com/nefosiyagi/edit?output
-Sample jsbin for HTML & CSS: http://jsbin.com/zuwoyanama/edit?css,output
 
 Reference guitar to piano mapping for establish middle C on the guitar:
 ![Guitar to piano mapping](https://www.guitartricks.com/forum/userImages/u/2827474/88-key-mapping-base_95483c92.jpg)
