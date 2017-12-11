@@ -1,20 +1,11 @@
 import constants from '../actions/constants.js';
-import {getScale, getPitches, getScaleNames, getChordNames, getChord} from '../api.js';
-
-const getOctaves = () => {
-	let pitches = getPitches();
-	let octaves = [2, 3, 4, 5].map(oct => (pitches.map(pitch => (Object.assign({}, pitch, {
-		note: pitch.name + oct
-	})))));
-
-	return octaves;
-};
+import * as api from '../api.js';
 
 var initialState = {
-	pitches: getPitches(),
-	scales: getScaleNames(),
-	chords: getChordNames(),
-	octaves: getOctaves(),
+	pitches: api.getPitches(),
+	scales: api.getScaleNames(),
+	chords: api.getChordNames(),
+	octaves: api.getOctaves(),
 	scale: 'ionian',
 	chord: 'Maj',
 	type: 'scale',
@@ -27,11 +18,11 @@ export const rootReducer = (state = initialState, action = {}) => {
 			// Avoid doing yet another for loop inside the pitches forEach loop
 			// by doing the string subsequence finding pointer technique
 			let pointer = 0;
-			let notes = getScale(state.rootNote, state.scale);
+			let notes = api.getScale(state.rootNote, state.scale);
 			if (state.type === 'chord') {
-				notes = getChord(state.rootNote + state.chord);
+				notes = api.getChord(state.rootNote + state.chord);
 			}
-			state.octaves = getOctaves();
+			state.octaves = api.getOctaves();
 			state.octaves.forEach(oct => {
 				oct.forEach(key => {
 					key.highlight = notes.indexOf(key.note) > -1;

@@ -21084,26 +21084,17 @@ var _constants2 = _interopRequireDefault(_constants);
 
 var _api = __webpack_require__(59);
 
+var api = _interopRequireWildcard(_api);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var getOctaves = function getOctaves() {
-	var pitches = (0, _api.getPitches)();
-	var octaves = [2, 3, 4, 5].map(function (oct) {
-		return pitches.map(function (pitch) {
-			return Object.assign({}, pitch, {
-				note: pitch.name + oct
-			});
-		});
-	});
-
-	return octaves;
-};
-
 var initialState = {
-	pitches: (0, _api.getPitches)(),
-	scales: (0, _api.getScaleNames)(),
-	chords: (0, _api.getChordNames)(),
-	octaves: getOctaves(),
+	pitches: api.getPitches(),
+	scales: api.getScaleNames(),
+	chords: api.getChordNames(),
+	octaves: api.getOctaves(),
 	scale: 'ionian',
 	chord: 'Maj',
 	type: 'scale',
@@ -21119,11 +21110,11 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 			// Avoid doing yet another for loop inside the pitches forEach loop
 			// by doing the string subsequence finding pointer technique
 			var pointer = 0;
-			var notes = (0, _api.getScale)(state.rootNote, state.scale);
+			var notes = api.getScale(state.rootNote, state.scale);
 			if (state.type === 'chord') {
-				notes = (0, _api.getChord)(state.rootNote + state.chord);
+				notes = api.getChord(state.rootNote + state.chord);
 			}
-			state.octaves = getOctaves();
+			state.octaves = api.getOctaves();
 			state.octaves.forEach(function (oct) {
 				oct.forEach(function (key) {
 					key.highlight = notes.indexOf(key.note) > -1;
@@ -21166,11 +21157,11 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.getPitches = exports.getChord = exports.getScale = exports.getChordNames = exports.getScaleNames = undefined;
+exports.getOctaves = exports.getPitches = exports.getChord = exports.getScale = exports.getChordNames = exports.getScaleNames = undefined;
 
 var _scribbletune = __webpack_require__(60);
 
-var getScaleNames = exports.getScaleNames = function getScaleNames() {
+var getScaleNames = function getScaleNames() {
 	return _scribbletune.modes.map(function (mode) {
 		return {
 			name: mode,
@@ -21179,7 +21170,7 @@ var getScaleNames = exports.getScaleNames = function getScaleNames() {
 	});
 };
 
-var getChordNames = exports.getChordNames = function getChordNames() {
+var getChordNames = function getChordNames() {
 	return (0, _scribbletune.listChords)().map(function (chord) {
 		return {
 			name: chord,
@@ -21188,7 +21179,7 @@ var getChordNames = exports.getChordNames = function getChordNames() {
 	});
 };
 
-var getScale = exports.getScale = function getScale(rootNote, mode) {
+var getScale = function getScale(rootNote, mode) {
 	// concatenate scales from octave range 2 to 5
 	var o2 = (0, _scribbletune.scale)(rootNote, mode, 2, false);
 	var o3 = (0, _scribbletune.scale)(rootNote, mode, 3, false);
@@ -21197,7 +21188,7 @@ var getScale = exports.getScale = function getScale(rootNote, mode) {
 	return o2.concat(o3, o4, o5);
 };
 
-var getChord = exports.getChord = function getChord(chordName) {
+var getChord = function getChord(chordName) {
 	// concatenate chords from octave range 2 to 5
 	var o2 = (0, _scribbletune.chord)(chordName + '-2');
 	var o3 = (0, _scribbletune.chord)(chordName + '-3');
@@ -21206,9 +21197,32 @@ var getChord = exports.getChord = function getChord(chordName) {
 	return o2.concat(o3, o4, o5);
 };
 
-var getPitches = exports.getPitches = function getPitches() {
+var getPitches = function getPitches() {
 	return [{ label: 'C', name: 'c', color: 'white' }, { label: 'Db', name: 'db', color: 'black' }, { label: 'D', name: 'd', color: 'white' }, { label: 'Eb', name: 'eb', color: 'black' }, { label: 'E', name: 'e', color: 'white' }, { label: 'F', name: 'f', color: 'white' }, { label: 'Gb', name: 'gb', color: 'black' }, { label: 'G', name: 'g', color: 'white' }, { label: 'Ab', name: 'ab', color: 'black' }, { label: 'A', name: 'a', color: 'white' }, { label: 'Bb', name: 'bb', color: 'black' }, { label: 'B', name: 'b', color: 'white' }];
 };
+
+/**
+ * Get a range of octaves with pitches
+ * @return {Array} Array of pitch arrays
+ */
+var getOctaves = function getOctaves() {
+	var pitches = getPitches();
+	var octaves = [2, 3, 4, 5].map(function (oct) {
+		return pitches.map(function (pitch) {
+			return Object.assign({}, pitch, {
+				note: pitch.name + oct
+			});
+		});
+	});
+	return octaves;
+};
+
+exports.getScaleNames = getScaleNames;
+exports.getChordNames = getChordNames;
+exports.getScale = getScale;
+exports.getChord = getChord;
+exports.getPitches = getPitches;
+exports.getOctaves = getOctaves;
 
 /***/ }),
 /* 60 */

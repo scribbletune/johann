@@ -1,16 +1,16 @@
 import {modes, scale, chord, listChords} from 'scribbletune';
 
-export const getScaleNames = () => (modes.map(mode => ({
+const getScaleNames = () => (modes.map(mode => ({
 	name: mode,
 	label: mode[0].toUpperCase() + mode.slice(1)
 })));
 
-export const getChordNames = () => (listChords().map(chord => ({
+const getChordNames = () => (listChords().map(chord => ({
 	name: chord,
 	label: chord
 })));
 
-export const getScale = (rootNote, mode) => {
+const getScale = (rootNote, mode) => {
 	// concatenate scales from octave range 2 to 5
 	var o2 = scale(rootNote, mode, 2, false);
 	var o3 = scale(rootNote, mode, 3, false);
@@ -19,7 +19,7 @@ export const getScale = (rootNote, mode) => {
 	return o2.concat(o3, o4, o5);
 };
 
-export const getChord = (chordName) => {
+const getChord = (chordName) => {
 	// concatenate chords from octave range 2 to 5
 	var o2 = chord(chordName + '-2');
 	var o3 = chord(chordName + '-3');
@@ -28,7 +28,7 @@ export const getChord = (chordName) => {
 	return o2.concat(o3, o4, o5);
 };
 
-export const getPitches = () => ([
+const getPitches = () => ([
 	{label: 'C', name: 'c', color: 'white'},
 	{label: 'Db', name: 'db', color: 'black'},
 	{label: 'D', name: 'd', color: 'white'},
@@ -42,3 +42,17 @@ export const getPitches = () => ([
 	{label: 'Bb', name: 'bb', color: 'black'},
 	{label: 'B', name: 'b', color: 'white'}
 ]);
+
+/**
+ * Get a range of octaves with pitches
+ * @return {Array} Array of pitch arrays
+ */
+const getOctaves = () => {
+	let pitches = getPitches();
+	let octaves = [2, 3, 4, 5].map(oct => (pitches.map(pitch => (Object.assign({}, pitch, {
+		note: pitch.name + oct
+	})))));
+	return octaves;
+};
+
+export { getScaleNames, getChordNames, getScale, getChord, getPitches, getOctaves };
