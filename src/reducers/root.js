@@ -7,7 +7,7 @@ var initialState = {
 	chords: api.getChordNames(),
 	octaves: api.getOctaves(),
 	scale: 'ionian',
-	chord: 'Maj',
+	chord: 'maj',
 	type: 'scale',
 	rootNote: 'c'
 };
