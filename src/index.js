@@ -5,8 +5,6 @@ import { rootReducer } from './reducers/root';
 import { initApp } from './actions/creators';
 import App from './containers/App.js';
 
-import './style.less';
-
 const store = createStore(rootReducer);
 
 const render = () => {
