@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown from '../components/Dropdown.js';
-import { rootChanged, scaleChanged, chordChanged, typeChanged } from '../actions/creators.js';
+import { controlChanged } from '../actions/creators.js';
 import './Controls.less';
 
 const Controls = ({ pitches, scales, chords, type, dispatch }) => {
@@ -15,10 +15,34 @@ const Controls = ({ pitches, scales, chords, type, dispatch }) => {
 	let chordsDDClass = type === 'chord' ? '' : 'hide';
 	return (
 		<ul className="controls">
-			<li><Dropdown data={pitches} onChangeEventHandler={rootChanged.bind(null, dispatch)} /></li>
-			<li className={scalesDDClass}><Dropdown data={scales} onChangeEventHandler={scaleChanged.bind(null, dispatch)} /></li>
-			<li className={chordsDDClass}><Dropdown data={chords} onChangeEventHandler={chordChanged.bind(null, dispatch)} /></li>
-			<li><Dropdown data={types} onChangeEventHandler={typeChanged.bind(null, dispatch)} /></li>
+			<li>
+				<Dropdown 
+					data={pitches} 
+					controlType="rootNote" 
+					onChangeEventHandler={controlChanged.bind(null, dispatch)} 
+				/>
+			</li>
+			<li className={scalesDDClass}>
+				<Dropdown 
+					data={scales} 
+					controlType="scale" 
+					onChangeEventHandler={controlChanged.bind(null, dispatch)} 
+				/>
+			</li>
+			<li className={chordsDDClass}>
+				<Dropdown 
+					data={chords} 
+					controlType="chord" 
+					onChangeEventHandler={controlChanged.bind(null, dispatch)} 
+				/>
+			</li>
+			<li>
+				<Dropdown 
+					data={types} 
+					controlType="type" 
+					onChangeEventHandler={controlChanged.bind(null, dispatch)} 
+				/>
+			</li>
 		</ul>
 	);
 };

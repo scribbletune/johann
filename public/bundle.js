@@ -3073,7 +3073,7 @@ if (typeof module != 'undefined' && module !== null) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.typeChanged = exports.chordChanged = exports.scaleChanged = exports.rootChanged = exports.loadNotes = exports.initApp = undefined;
+exports.controlChanged = exports.initApp = undefined;
 
 var _constants = __webpack_require__(23);
 
@@ -3085,44 +3085,17 @@ var initApp = function initApp(dispatch) {
 	return dispatch({ type: _constants2.default.LOAD_NOTES });
 };
 
-var loadNotes = function loadNotes(dispatch) {
-	return dispatch({ type: _constants2.default.LOAD_NOTES });
-};
-
-var rootChanged = function rootChanged(dispatch, e) {
+var controlChanged = function controlChanged(dispatch, e, controlType) {
+	var data = {};
+	data[e.target.dataset.controlType] = e.target.value;
 	dispatch({
 		type: _constants2.default.LOAD_NOTES,
-		data: { rootNote: e.target.value }
-	});
-};
-
-var scaleChanged = function scaleChanged(dispatch, e) {
-	dispatch({
-		type: _constants2.default.LOAD_NOTES,
-		data: { scale: e.target.value }
-	});
-};
-
-var chordChanged = function chordChanged(dispatch, e) {
-	dispatch({
-		type: _constants2.default.LOAD_NOTES,
-		data: { chord: e.target.value }
-	});
-};
-
-var typeChanged = function typeChanged(dispatch, e) {
-	dispatch({
-		type: _constants2.default.LOAD_NOTES,
-		data: { type: e.target.value }
+		data: data
 	});
 };
 
 exports.initApp = initApp;
-exports.loadNotes = loadNotes;
-exports.rootChanged = rootChanged;
-exports.scaleChanged = scaleChanged;
-exports.chordChanged = chordChanged;
-exports.typeChanged = typeChanged;
+exports.controlChanged = controlChanged;
 
 /***/ }),
 /* 30 */
@@ -22688,22 +22661,38 @@ var Controls = function Controls(_ref) {
 		_react2.default.createElement(
 			'li',
 			null,
-			_react2.default.createElement(_Dropdown2.default, { data: pitches, onChangeEventHandler: _creators.rootChanged.bind(null, dispatch) })
+			_react2.default.createElement(_Dropdown2.default, {
+				data: pitches,
+				controlType: 'rootNote',
+				onChangeEventHandler: _creators.controlChanged.bind(null, dispatch)
+			})
 		),
 		_react2.default.createElement(
 			'li',
 			{ className: scalesDDClass },
-			_react2.default.createElement(_Dropdown2.default, { data: scales, onChangeEventHandler: _creators.scaleChanged.bind(null, dispatch) })
+			_react2.default.createElement(_Dropdown2.default, {
+				data: scales,
+				controlType: 'scale',
+				onChangeEventHandler: _creators.controlChanged.bind(null, dispatch)
+			})
 		),
 		_react2.default.createElement(
 			'li',
 			{ className: chordsDDClass },
-			_react2.default.createElement(_Dropdown2.default, { data: chords, onChangeEventHandler: _creators.chordChanged.bind(null, dispatch) })
+			_react2.default.createElement(_Dropdown2.default, {
+				data: chords,
+				controlType: 'chord',
+				onChangeEventHandler: _creators.controlChanged.bind(null, dispatch)
+			})
 		),
 		_react2.default.createElement(
 			'li',
 			null,
-			_react2.default.createElement(_Dropdown2.default, { data: types, onChangeEventHandler: _creators.typeChanged.bind(null, dispatch) })
+			_react2.default.createElement(_Dropdown2.default, {
+				data: types,
+				controlType: 'type',
+				onChangeEventHandler: _creators.controlChanged.bind(null, dispatch)
+			})
 		)
 	);
 };
@@ -22729,7 +22718,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Dropdown = function Dropdown(_ref) {
 	var data = _ref.data,
-	    onChangeEventHandler = _ref.onChangeEventHandler;
+	    onChangeEventHandler = _ref.onChangeEventHandler,
+	    controlType = _ref.controlType;
 
 	var list = data.map(function (item) {
 		return _react2.default.createElement(
@@ -22740,7 +22730,7 @@ var Dropdown = function Dropdown(_ref) {
 	});
 	return _react2.default.createElement(
 		'select',
-		{ onChange: onChangeEventHandler },
+		{ onChange: onChangeEventHandler, 'data-control-type': controlType },
 		list
 	);
 };
