@@ -11,7 +11,7 @@ The same can be done for a triad. You can generate a sheet with just the notes o
 
 ![c-minor-chord.png](./c-minor-chord.png)
 
-The green dot is the root note. 
+The green dot is the root note and the red dot is a note from the selected scale or chord. 
 
 Reference guitar to piano mapping for establish middle C on the guitar:
 ![Guitar to piano mapping](https://www.guitartricks.com/forum/userImages/u/2827474/88-key-mapping-base_95483c92.jpg)
