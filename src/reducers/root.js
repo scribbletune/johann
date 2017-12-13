@@ -9,20 +9,22 @@ var initialState = {
 	scale: 'ionian',
 	chord: 'maj',
 	type: 'scale',
-	rootNote: 'c'
+	rootNote: 'c',
+	notes: []
 };
 
 export const rootReducer = (state = initialState, action = {}) => {
 	switch (action.type) {
 		case constants.LOAD_NOTES:
 			let newState = Object.assign({}, state, action.data);
-			let notes = api.getScale(newState.rootNote, newState.scale);
 			if (newState.type === 'chord') {
-				notes = api.getChord(newState.rootNote + newState.chord);
+				newState.notes = api.getChord(newState.rootNote + newState.chord);
+			} else {
+				newState.notes = api.getScale(newState.rootNote, newState.scale);
 			}
 			newState.octaves.forEach(oct => {
 				oct.forEach(key => {
-					key.highlight = notes.indexOf(key.note) > -1;
+					key.highlight = newState.notes.indexOf(key.note) > -1;
 					key.rootNote = key.name === newState.rootNote;
 				})
 			});

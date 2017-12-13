@@ -21510,7 +21510,8 @@ var initialState = {
 	scale: 'ionian',
 	chord: 'maj',
 	type: 'scale',
-	rootNote: 'c'
+	rootNote: 'c',
+	notes: []
 };
 
 var rootReducer = exports.rootReducer = function rootReducer() {
@@ -21520,13 +21521,14 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 	switch (action.type) {
 		case _constants2.default.LOAD_NOTES:
 			var newState = Object.assign({}, state, action.data);
-			var notes = api.getScale(newState.rootNote, newState.scale);
 			if (newState.type === 'chord') {
-				notes = api.getChord(newState.rootNote + newState.chord);
+				newState.notes = api.getChord(newState.rootNote + newState.chord);
+			} else {
+				newState.notes = api.getScale(newState.rootNote, newState.scale);
 			}
 			newState.octaves.forEach(function (oct) {
 				oct.forEach(function (key) {
-					key.highlight = notes.indexOf(key.note) > -1;
+					key.highlight = newState.notes.indexOf(key.note) > -1;
 					key.rootNote = key.name === newState.rootNote;
 				});
 			});
@@ -21604,7 +21606,7 @@ var getOctaves = function getOctaves() {
 			});
 		});
 	});
-	octaves.shift();
+	octaves.pop();
 	return octaves;
 };
 
@@ -22586,7 +22588,13 @@ var _Piano = __webpack_require__(76);
 
 var _Piano2 = _interopRequireDefault(_Piano);
 
+var _Guitar = __webpack_require__(80);
+
+var _Guitar2 = _interopRequireDefault(_Guitar);
+
 __webpack_require__(78);
+
+__webpack_require__(82);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22604,7 +22612,8 @@ var App = function App(_ref) {
 			type: state.type,
 			dispatch: store.dispatch
 		}),
-		_react2.default.createElement(_Piano2.default, { octaves: state.octaves })
+		_react2.default.createElement(_Piano2.default, { octaves: state.octaves }),
+		_react2.default.createElement(_Guitar2.default, { notes: state.notes, rootNote: state.rootNote })
 	);
 };
 
@@ -22990,7 +22999,175 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, ".keyboard {\n  display: grid;\n  grid-template-columns: repeat(3, 420px);\n}\n.octave {\n  display: grid;\n  grid-template-columns: 60px 40px 60px 40px 60px 60px 40px 60px 40px 60px 40px 60px;\n}\n.key {\n  -webkit-border-bottom-right-radius: 3px;\n  -webkit-border-bottom-left-radius: 3px;\n  -moz-border-radius-bottomright: 3px;\n  -moz-border-radius-bottomleft: 3px;\n  border-bottom-right-radius: 3px;\n  border-bottom-left-radius: 3px;\n  box-shadow: 4px 0px 10px #000 ;\n  position: relative;\n}\n.white-key {\n  background: #f1f2f3;\n  border-bottom: 14px solid #c9c9c9;\n  height: 250px;\n  width: 60px;\n}\n.black-key {\n  width: 40px;\n  background: #222;\n  border-bottom: 20px solid #000;\n  height: 180px;\n  z-index: 1;\n}\n.db {\n  margin-left: -20px;\n}\n.d {\n  margin-left: -40px;\n}\n.eb {\n  margin-left: -60px;\n}\n.e {\n  margin-left: -80px;\n}\n.f {\n  margin-left: -80px;\n}\n.gb {\n  margin-left: -100px;\n}\n.g {\n  margin-left: -120px;\n}\n.ab {\n  margin-left: -140px;\n}\n.a {\n  margin-left: -160px;\n}\n.bb {\n  margin-left: -180px;\n}\n.b {\n  margin-left: -200px;\n}\n.key::after {\n  content: '';\n  font-family: sans-serif;\n  font-size: 11px;\n  font-weight: bold;\n}\n.db::after {\n  content: 'Db';\n}\n.d::after {\n  content: 'D';\n}\n.eb::after {\n  content: 'Eb';\n}\n.e::after {\n  content: 'E';\n}\n.f::after {\n  content: 'F';\n}\n.gb::after {\n  content: 'Gb';\n}\n.g::after {\n  content: 'G';\n}\n.ab::after {\n  content: 'Ab';\n}\n.a::after {\n  content: 'A';\n}\n.bb::after {\n  content: 'Bb';\n}\n.b::after {\n  content: 'B';\n}\n.c::after {\n  content: 'C';\n}\n.white-key::after {\n  color: #f1f2f3;\n}\n.black-key::after {\n  color: #222;\n}\n.highlight::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  -webkit-border-radius: 15px;\n  background: #f26c4e;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n  color: black;\n}\n.rootNote::after {\n  background: #3db878;\n}\n.hide {\n  display: none;\n}\n", ""]);
+exports.push([module.i, ".keyboard {\n  display: grid;\n  grid-template-columns: repeat(3, 420px);\n}\n.octave {\n  display: grid;\n  grid-template-columns: 60px 40px 60px 40px 60px 60px 40px 60px 40px 60px 40px 60px;\n}\n.key {\n  -webkit-border-bottom-right-radius: 3px;\n  -webkit-border-bottom-left-radius: 3px;\n  -moz-border-radius-bottomright: 3px;\n  -moz-border-radius-bottomleft: 3px;\n  border-bottom-right-radius: 3px;\n  border-bottom-left-radius: 3px;\n  box-shadow: 4px 0px 10px #000 ;\n  position: relative;\n}\n.white-key {\n  background: #f1f2f3;\n  border-bottom: 14px solid #c9c9c9;\n  height: 250px;\n  width: 60px;\n}\n.black-key {\n  width: 40px;\n  background: #222;\n  border-bottom: 20px solid #000;\n  height: 180px;\n  z-index: 1;\n}\n.db {\n  margin-left: -20px;\n}\n.d {\n  margin-left: -40px;\n}\n.eb {\n  margin-left: -60px;\n}\n.e {\n  margin-left: -80px;\n}\n.f {\n  margin-left: -80px;\n}\n.gb {\n  margin-left: -100px;\n}\n.g {\n  margin-left: -120px;\n}\n.ab {\n  margin-left: -140px;\n}\n.a {\n  margin-left: -160px;\n}\n.bb {\n  margin-left: -180px;\n}\n.b {\n  margin-left: -200px;\n}\n.key::after {\n  content: '';\n  font-family: sans-serif;\n  font-size: 11px;\n  font-weight: bold;\n}\n.db::after {\n  content: 'Db';\n}\n.d::after {\n  content: 'D';\n}\n.eb::after {\n  content: 'Eb';\n}\n.e::after {\n  content: 'E';\n}\n.f::after {\n  content: 'F';\n}\n.gb::after {\n  content: 'Gb';\n}\n.g::after {\n  content: 'G';\n}\n.ab::after {\n  content: 'Ab';\n}\n.a::after {\n  content: 'A';\n}\n.bb::after {\n  content: 'Bb';\n}\n.b::after {\n  content: 'B';\n}\n.c::after {\n  content: 'C';\n}\n.white-key::after {\n  color: #f1f2f3;\n}\n.black-key::after {\n  color: #222;\n}\n.octave .highlight::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  -webkit-border-radius: 15px;\n  background: #f26c4e;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n  color: black;\n}\n.rootNote::after {\n  background: #3db878;\n}\n.hide {\n  display: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Fret = __webpack_require__(81);
+
+var _Fret2 = _interopRequireDefault(_Fret);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Guitar = function Guitar(_ref) {
+	var notes = _ref.notes,
+	    rootNote = _ref.rootNote;
+
+	var strEHi = 'e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5 ab5 a5 bb5 b5 c6 db6 d6 eb6 e6';
+	var strB = 'b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5 ab5 a5 bb5 b5';
+	var strG = 'g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5';
+	var strD = 'd3 eb3 e3 f3 gb3 g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5';
+	var strA = 'a2 bb2 b2 c3 db3 d3 eb3 e3 f3 gb3 g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4';
+	var strELo = 'e2 f2 gb2 g2 ab2 a2 bb2 b2 c3 db3 d3 eb3 e3 f3 gb3 g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4';
+
+	var eHiFrets = strEHi.split(' ').map(function (note) {
+		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
+	});
+	var bFrets = strB.split(' ').map(function (note) {
+		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
+	});
+	var gFrets = strG.split(' ').map(function (note) {
+		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
+	});
+	var dFrets = strD.split(' ').map(function (note) {
+		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
+	});
+	var aFrets = strA.split(' ').map(function (note) {
+		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
+	});
+	var eLoFrets = strELo.split(' ').map(function (note) {
+		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
+	});
+
+	return _react2.default.createElement(
+		'div',
+		{ className: 'guitar' },
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strEHi' },
+			eHiFrets
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strB' },
+			bFrets
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strG' },
+			gFrets
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strD' },
+			dFrets
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strA' },
+			aFrets
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strELo' },
+			eLoFrets
+		)
+	);
+};
+
+exports.default = Guitar;
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Fret = function Fret(_ref) {
+	var rootNote = _ref.rootNote,
+	    highlight = _ref.highlight,
+	    note = _ref.note;
+
+	var className = 'fret ' + note;
+	if (highlight) {
+		className += ' highlight';
+	}
+	if (rootNote) {
+		className += ' rootNote';
+	}
+	return _react2.default.createElement('div', { className: className });
+};
+
+exports.default = Fret;
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(83);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(31)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/less-loader/dist/cjs.js!./Guitar.less", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/less-loader/dist/cjs.js!./Guitar.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(30)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".guitar {\n  margin-top: 20px;\n}\n.str {\n  display: grid;\n  grid-template-columns: repeat(25, 50px);\n}\n.fret {\n  border: 1px solid #ccc;\n  height: 20px;\n}\n.str .highlight {\n  position: relative;\n}\n.str .highlight::after {\n  content: '';\n  display: block;\n  width: 10px;\n  height: 10px;\n  border-radius: 5px;\n  -webkit-border-radius: 5px;\n  background: #f26c4e;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n  color: black;\n}\n.str .rootNote::after {\n  background: #3db878;\n}\n", ""]);
 
 // exports
 

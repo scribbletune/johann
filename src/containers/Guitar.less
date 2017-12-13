@@ -1,0 +1,39 @@
+@highlightNote: #f26c4e;
+@highlightRootNote: #3db878;
+
+.guitar {
+	margin-top: 20px;
+}
+.str {
+	display: grid;
+	grid-template-columns: repeat(25, 50px);
+}
+
+.fret {
+	border: 1px solid #ccc;
+	height: 20px;
+}
+
+.str .highlight {
+	position: relative;
+}
+
+.str .highlight::after {
+	content: '';
+	display: block;
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background: @highlightNote;
+	position: absolute;
+	left: 50%;
+	margin-left: -15px;
+	bottom: 8px;
+	box-shadow: 0 0 5px #333;
+	color: black;
+}
+
+.str .rootNote::after {
+	background: @highlightRootNote;
+}

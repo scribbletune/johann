@@ -1,7 +1,9 @@
 import React from 'react';
 import Controls from './Controls.js';
 import Piano from './Piano.js';
+import Guitar from './Guitar.js';
 import './Piano.less';
+import './Guitar.less';
 
 const App = ({ store }) => {
 	var state = store.getState();
@@ -15,6 +17,7 @@ const App = ({ store }) => {
 				dispatch={store.dispatch}
 			/>
 			<Piano octaves={state.octaves} />
+			<Guitar notes={state.notes} rootNote={state.rootNote} />
 		</div>
 	);
 };
