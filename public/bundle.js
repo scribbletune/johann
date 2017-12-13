@@ -21524,17 +21524,12 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 			if (newState.type === 'chord') {
 				notes = api.getChord(newState.rootNote + newState.chord);
 			}
-			var octaves = api.getOctaves();
-			octaves.forEach(function (oct) {
+			newState.octaves.forEach(function (oct) {
 				oct.forEach(function (key) {
 					key.highlight = notes.indexOf(key.note) > -1;
 					key.rootNote = key.name === newState.rootNote;
 				});
 			});
-			// Take off the first item (octave 2) from the octaves arr
-			// TODO come up with a cleaner way to represent 3 octaves
-			octaves.shift();
-			newState.octaves = octaves;
 			return newState;
 
 		default:
@@ -21609,6 +21604,7 @@ var getOctaves = function getOctaves() {
 			});
 		});
 	});
+	octaves.shift();
 	return octaves;
 };
 

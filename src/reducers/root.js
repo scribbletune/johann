@@ -20,17 +20,12 @@ export const rootReducer = (state = initialState, action = {}) => {
 			if (newState.type === 'chord') {
 				notes = api.getChord(newState.rootNote + newState.chord);
 			}
-			let octaves = api.getOctaves();
-			octaves.forEach(oct => {
+			newState.octaves.forEach(oct => {
 				oct.forEach(key => {
 					key.highlight = notes.indexOf(key.note) > -1;
 					key.rootNote = key.name === newState.rootNote;
 				})
 			});
-			// Take off the first item (octave 2) from the octaves arr
-			// TODO come up with a cleaner way to represent 3 octaves
-			octaves.shift();
-			newState.octaves = octaves;
 			return newState;
 
 		default:
