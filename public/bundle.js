@@ -2007,11 +2007,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = {
-	LOAD_NOTES: 'LOAD_NOTES',
-	ROOT_CHANGED: 'ROOT_CHANGED',
-	SCALE_CHANGED: 'SCALE_CHANGED',
-	CHORD_CHANGED: 'CHORD_CHANGED',
-	TYPE_CHANGED: 'TYPE_CHANGED'
+	LOAD_NOTES: 'LOAD_NOTES'
 };
 
 /***/ }),
@@ -3086,59 +3082,39 @@ var _constants2 = _interopRequireDefault(_constants);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var initApp = function initApp(dispatch) {
-	return dispatch({
-		type: _constants2.default.LOAD_NOTES,
-		data: {
-			rootNote: 'c',
-			scale: 'ionian'
-		}
-	});
+	return dispatch({ type: _constants2.default.LOAD_NOTES });
 };
 
 var loadNotes = function loadNotes(dispatch) {
-	return dispatch({
-		type: _constants2.default.LOAD_NOTES
-	});
+	return dispatch({ type: _constants2.default.LOAD_NOTES });
 };
 
 var rootChanged = function rootChanged(dispatch, e) {
 	dispatch({
-		type: _constants2.default.ROOT_CHANGED,
-		data: {
-			rootNote: e.target.value
-		}
+		type: _constants2.default.LOAD_NOTES,
+		data: { rootNote: e.target.value }
 	});
-	loadNotes(dispatch);
 };
 
 var scaleChanged = function scaleChanged(dispatch, e) {
 	dispatch({
-		type: _constants2.default.SCALE_CHANGED,
-		data: {
-			scale: e.target.value
-		}
+		type: _constants2.default.LOAD_NOTES,
+		data: { scale: e.target.value }
 	});
-	loadNotes(dispatch);
 };
 
 var chordChanged = function chordChanged(dispatch, e) {
 	dispatch({
-		type: _constants2.default.CHORD_CHANGED,
-		data: {
-			chord: e.target.value
-		}
+		type: _constants2.default.LOAD_NOTES,
+		data: { chord: e.target.value }
 	});
-	loadNotes(dispatch);
 };
 
 var typeChanged = function typeChanged(dispatch, e) {
 	dispatch({
-		type: _constants2.default.TYPE_CHANGED,
-		data: {
-			type: e.target.value
-		}
+		type: _constants2.default.LOAD_NOTES,
+		data: { type: e.target.value }
 	});
-	loadNotes(dispatch);
 };
 
 exports.initApp = initApp;
@@ -21570,36 +21546,23 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 
 	switch (action.type) {
 		case _constants2.default.LOAD_NOTES:
-			// Avoid doing yet another for loop inside the pitches forEach loop
-			// by doing the string subsequence finding pointer technique
-			var pointer = 0;
-			var notes = api.getScale(state.rootNote, state.scale);
-			if (state.type === 'chord') {
-				notes = api.getChord(state.rootNote + state.chord);
+			var newState = Object.assign({}, state, action.data);
+			var notes = api.getScale(newState.rootNote, newState.scale);
+			if (newState.type === 'chord') {
+				notes = api.getChord(newState.rootNote + newState.chord);
 			}
 			var octaves = api.getOctaves();
 			octaves.forEach(function (oct) {
 				oct.forEach(function (key) {
 					key.highlight = notes.indexOf(key.note) > -1;
-					key.rootNote = key.name === state.rootNote;
+					key.rootNote = key.name === newState.rootNote;
 				});
 			});
 			// Take off the first item (octave 2) from the octaves arr
 			// TODO come up with a cleaner way to represent 3 octaves
 			octaves.shift();
-			return Object.assign({}, state, { octaves: octaves });
-
-		case _constants2.default.ROOT_CHANGED:
-			return Object.assign({}, state, { rootNote: action.data.rootNote });
-
-		case _constants2.default.SCALE_CHANGED:
-			return Object.assign({}, state, { scale: action.data.scale });
-
-		case _constants2.default.CHORD_CHANGED:
-			return Object.assign({}, state, { chord: action.data.chord });
-
-		case _constants2.default.TYPE_CHANGED:
-			return Object.assign({}, state, { type: action.data.type });
+			newState.octaves = octaves;
+			return newState;
 
 		default:
 			return state;
