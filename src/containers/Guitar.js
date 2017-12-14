@@ -39,9 +39,9 @@ const Guitar = ({ notes, rootNote, fretboardIsFlipped }) => {
 	);
 
 	if (fretboardIsFlipped) {
-		return (<div>{flippedFretboard}</div>);
+		return flippedFretboard;
 	} else {
-		return (<div>{regularFretboard}</div>);
+		return regularFretboard;
 	}
 	
 };

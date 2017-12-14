@@ -11,7 +11,7 @@ var initialState = {
 	type: 'scale',
 	rootNote: 'c',
 	notes: [],
-	fretboardIsFlipped: true
+	fretboardIsFlipped: false
 };
 
 export const rootReducer = (state = initialState, action = {}) => {
@@ -30,6 +30,9 @@ export const rootReducer = (state = initialState, action = {}) => {
 				})
 			});
 			return newState;
+
+		case constants.FLIP_FRETBOARD:
+			return Object.assign({}, state, {fretboardIsFlipped: !state.fretboardIsFlipped});
 
 		default:
 			return state;

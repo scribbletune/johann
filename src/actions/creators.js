@@ -11,13 +11,10 @@ const controlChanged = (dispatch, e, controlType) => {
 	});
 };
 
-const flipFretboard = (dispatch, e) => {
+const flipFretboard = (dispatch) => {
 	dispatch({
-		type: constants.LOAD_NOTES,
-		data: {
-			fretboardIsFlipped: e.target.value 
-		}
+		type: constants.FLIP_FRETBOARD
 	});
 };
 
-export { initApp,  controlChanged };
+export { initApp,  controlChanged, flipFretboard };

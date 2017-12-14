@@ -2461,7 +2461,8 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = {
-	LOAD_NOTES: 'LOAD_NOTES'
+	LOAD_NOTES: 'LOAD_NOTES',
+	FLIP_FRETBOARD: 'FLIP_FRETBOARD'
 };
 
 /***/ }),
@@ -3527,7 +3528,7 @@ if (typeof module != 'undefined' && module !== null) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.controlChanged = exports.initApp = undefined;
+exports.flipFretboard = exports.controlChanged = exports.initApp = undefined;
 
 var _constants = __webpack_require__(25);
 
@@ -3548,17 +3549,15 @@ var controlChanged = function controlChanged(dispatch, e, controlType) {
 	});
 };
 
-var flipFretboard = function flipFretboard(dispatch, e) {
+var flipFretboard = function flipFretboard(dispatch) {
 	dispatch({
-		type: _constants2.default.LOAD_NOTES,
-		data: {
-			fretboardIsFlipped: e.target.value
-		}
+		type: _constants2.default.FLIP_FRETBOARD
 	});
 };
 
 exports.initApp = initApp;
 exports.controlChanged = controlChanged;
+exports.flipFretboard = flipFretboard;
 
 /***/ }),
 /* 32 */
@@ -21521,7 +21520,7 @@ var initialState = {
 	type: 'scale',
 	rootNote: 'c',
 	notes: [],
-	fretboardIsFlipped: true
+	fretboardIsFlipped: false
 };
 
 var rootReducer = exports.rootReducer = function rootReducer() {
@@ -21543,6 +21542,9 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 				});
 			});
 			return newState;
+
+		case _constants2.default.FLIP_FRETBOARD:
+			return Object.assign({}, state, { fretboardIsFlipped: !state.fretboardIsFlipped });
 
 		default:
 			return state;
@@ -22602,9 +22604,15 @@ var _Guitar = __webpack_require__(78);
 
 var _Guitar2 = _interopRequireDefault(_Guitar);
 
-__webpack_require__(80);
+var _FretboardFlipper = __webpack_require__(80);
 
-__webpack_require__(82);
+var _FretboardFlipper2 = _interopRequireDefault(_FretboardFlipper);
+
+var _creators = __webpack_require__(31);
+
+__webpack_require__(81);
+
+__webpack_require__(83);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22623,7 +22631,8 @@ var App = function App(_ref) {
 			dispatch: store.dispatch
 		}),
 		_react2.default.createElement(_Piano2.default, { octaves: state.octaves }),
-		_react2.default.createElement(_Guitar2.default, { notes: state.notes, rootNote: state.rootNote, fretboardIsFlipped: state.fretboardIsFlipped })
+		_react2.default.createElement(_Guitar2.default, { notes: state.notes, rootNote: state.rootNote, fretboardIsFlipped: state.fretboardIsFlipped }),
+		_react2.default.createElement(_FretboardFlipper2.default, { onFretboardFlip: _creators.flipFretboard.bind(null, store.dispatch) })
 	);
 };
 
@@ -23092,17 +23101,9 @@ var Guitar = function Guitar(_ref) {
 	);
 
 	if (fretboardIsFlipped) {
-		return _react2.default.createElement(
-			'div',
-			null,
-			flippedFretboard
-		);
+		return flippedFretboard;
 	} else {
-		return _react2.default.createElement(
-			'div',
-			null,
-			regularFretboard
-		);
+		return regularFretboard;
 	}
 };
 
@@ -23146,10 +23147,39 @@ exports.default = Fret;
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FretboardFlipper = function FretboardFlipper(_ref) {
+	var onFretboardFlip = _ref.onFretboardFlip;
+
+	return _react2.default.createElement(
+		'button',
+		{ onClick: onFretboardFlip },
+		'Flip fretboard vertically'
+	);
+};
+
+exports.default = FretboardFlipper;
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(81);
+var content = __webpack_require__(82);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -23174,7 +23204,7 @@ if(false) {
 }
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(10)(undefined);
@@ -23188,13 +23218,13 @@ exports.push([module.i, ".db::after {\n  content: 'Db';\n}\n.d::after {\n  conte
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(83);
+var content = __webpack_require__(84);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -23219,7 +23249,7 @@ if(false) {
 }
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(10)(undefined);
@@ -23227,7 +23257,7 @@ exports = module.exports = __webpack_require__(10)(undefined);
 
 
 // module
-exports.push([module.i, ".db::after {\n  content: 'Db';\n}\n.d::after {\n  content: 'D';\n}\n.eb::after {\n  content: 'Eb';\n}\n.e::after {\n  content: 'E';\n}\n.f::after {\n  content: 'F';\n}\n.gb::after {\n  content: 'Gb';\n}\n.g::after {\n  content: 'G';\n}\n.ab::after {\n  content: 'Ab';\n}\n.a::after {\n  content: 'A';\n}\n.bb::after {\n  content: 'Bb';\n}\n.b::after {\n  content: 'B';\n}\n.c::after {\n  content: 'C';\n}\n.guitar {\n  margin-top: 30px;\n  font-family: sans-serif;\n}\n.str {\n  display: grid;\n  grid-template-columns: 25px repeat(24, 50px);\n}\n.fret {\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n  height: 25px;\n  position: relative;\n}\n.fret::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  content: '';\n  bottom: 2px;\n  color: black;\n  position: absolute;\n  left: 50%;\n  margin-left: -8px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  -webkit-border-radius: 8px;\n}\n.str .highlight::after {\n  background: #f26c4e;\n  box-shadow: 0 0 2px #333;\n}\n.str .rootNote::after {\n  background: #3db878;\n}\n.e4:first-child,\n.b3:first-child,\n.g3:first-child,\n.d3:first-child,\n.a2:first-child,\n.e2:first-child {\n  border: none;\n  border-right: 3px solid #333;\n  font-size: 10px;\n}\n.e4:first-child::after {\n  content: 'E';\n}\n.b3:first-child::after {\n  content: 'B';\n}\n.g3:first-child::after {\n  content: 'G';\n}\n.d3:first-child::after {\n  content: 'D';\n}\n.a2:first-child::after {\n  content: 'A';\n}\n.e2:first-child::after {\n  content: 'E';\n}\n.strD .g3,\n.strD .a3,\n.strD .b3,\n.strA .a3,\n.strG .g4,\n.strD .f4 {\n  border: none;\n  border-top: 3px solid #333;\n}\n", ""]);
+exports.push([module.i, ".db::after {\n  content: 'Db';\n}\n.d::after {\n  content: 'D';\n}\n.eb::after {\n  content: 'Eb';\n}\n.e::after {\n  content: 'E';\n}\n.f::after {\n  content: 'F';\n}\n.gb::after {\n  content: 'Gb';\n}\n.g::after {\n  content: 'G';\n}\n.ab::after {\n  content: 'Ab';\n}\n.a::after {\n  content: 'A';\n}\n.bb::after {\n  content: 'Bb';\n}\n.b::after {\n  content: 'B';\n}\n.c::after {\n  content: 'C';\n}\n.guitar {\n  margin-top: 30px;\n  font-family: sans-serif;\n}\n.str {\n  display: grid;\n  grid-template-columns: 25px repeat(24, 50px);\n}\n.fret {\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n  height: 25px;\n  position: relative;\n}\n.fret::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  content: '';\n  bottom: 2px;\n  color: black;\n  position: absolute;\n  left: 50%;\n  margin-left: -8px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  -webkit-border-radius: 8px;\n}\n.str .highlight::after {\n  background: #f26c4e;\n  box-shadow: 0 0 2px #333;\n}\n.str .rootNote::after {\n  background: #3db878;\n}\n.e4:first-child,\n.b3:first-child,\n.g3:first-child,\n.d3:first-child,\n.a2:first-child,\n.e2:first-child {\n  border: none;\n  border-right: 3px solid #333;\n  font-size: 10px;\n}\n.e4:first-child::after {\n  content: 'E';\n}\n.b3:first-child::after {\n  content: 'B';\n}\n.g3:first-child::after {\n  content: 'G';\n}\n.d3:first-child::after {\n  content: 'D';\n}\n.a2:first-child::after {\n  content: 'A';\n}\n.e2:first-child::after {\n  content: 'E';\n}\n.str:nth-child(4) .fret:nth-child(6),\n.str:nth-child(4) .fret:nth-child(8),\n.str:nth-child(4) .fret:nth-child(10),\n.str:nth-child(3) .fret:nth-child(13),\n.str:nth-child(5) .fret:nth-child(13),\n.str:nth-child(4) .fret:nth-child(16) {\n  border: none;\n  border-top: 3px solid #333;\n}\n", ""]);
 
 // exports
 
