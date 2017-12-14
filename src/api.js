@@ -52,7 +52,7 @@ const getOctaves = () => {
 	let octaves = [2, 3, 4, 5].map(oct => (pitches.map(pitch => (Object.assign({}, pitch, {
 		note: pitch.name + oct
 	})))));
-	octaves.pop();
+	octaves.shift();
 	return octaves;
 };
 

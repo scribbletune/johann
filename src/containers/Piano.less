@@ -1,10 +1,10 @@
+@import "./common";
+
 @whiteKeyWidth: 60px;
 @blackKeyWidth: 40px;
 @blackKeyHalfWidth: @blackKeyWidth/2;
 @whiteKeyColor: #f1f2f3;
 @blackKeyColor: #222;
-@highlightNote: #f26c4e;
-@highlightRootNote: #3db878;
 
 .keyboard {
 	display: grid;
@@ -61,19 +61,6 @@
 	font-weight: bold;
 }
 
-.db::after { content: 'Db'; }
-.d::after { content: 'D'; }
-.eb::after { content: 'Eb'; }
-.e::after { content: 'E'; }
-.f::after { content: 'F'; }
-.gb::after { content: 'Gb'; }
-.g::after { content: 'G'; }
-.ab::after { content: 'Ab'; }
-.a::after { content: 'A'; }
-.bb::after { content: 'Bb'; }
-.b::after { content: 'B'; }
-.c::after { content: 'C'; }
-
 .white-key::after { color: @whiteKeyColor; }
 .black-key::after { color: @blackKeyColor; }
 
@@ -94,10 +81,6 @@
 	color: black;
 }
 
-.rootNote::after {
+.octave .rootNote::after {
 	background: @highlightRootNote;
-}
-
-.hide {
-	display: none;
 }

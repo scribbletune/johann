@@ -1,39 +1,71 @@
-@highlightNote: #f26c4e;
-@highlightRootNote: #3db878;
+@import "./common";
+
+@fretWidth: 50px;
+@fretHeight: 25px;
+@highlightSide: 16px;
+@highlightBorderRadius: 8px;
 
 .guitar {
-	margin-top: 20px;
+	margin-top: 30px;
+	font-family: sans-serif;
 }
 .str {
 	display: grid;
-	grid-template-columns: repeat(25, 50px);
+	grid-template-columns: 25px repeat(24, @fretWidth);
 }
 
 .fret {
 	border: 1px solid #ccc;
-	height: 20px;
-}
-
-.str .highlight {
+	box-sizing: border-box;
+	height: @fretHeight;
 	position: relative;
 }
 
-.str .highlight::after {
+.fret::after {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	content: '';
-	display: block;
-	width: 10px;
-	height: 10px;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	background: @highlightNote;
+	bottom: 2px;
+	color: black;
 	position: absolute;
 	left: 50%;
-	margin-left: -15px;
-	bottom: 8px;
-	box-shadow: 0 0 5px #333;
-	color: black;
+	margin-left: -@highlightBorderRadius;
+	width: @highlightSide;
+	height: @highlightSide;
+	border-radius: @highlightBorderRadius;
+	-webkit-border-radius: @highlightBorderRadius;
 }
 
-.str .rootNote::after {
-	background: @highlightRootNote;
+.str .highlight::after { 
+	background: @highlightNote;
+	box-shadow: 0 0 2px #333;
 }
+
+.str .rootNote::after { background: @highlightRootNote;}
+
+.e4:first-child,
+.b3:first-child, 
+.g3:first-child, 
+.d3:first-child, 
+.a2:first-child,
+.e2:first-child {
+	border: none;
+	border-right: 3px solid #333;
+	font-size: 10px;
+}
+
+.e4:first-child::after { content: 'E'; }
+.b3:first-child::after { content: 'B'; }
+.g3:first-child::after { content: 'G'; }
+.d3:first-child::after { content: 'D'; }
+.a2:first-child::after { content: 'A'; }
+.e2:first-child::after { content: 'E'; }
+
+.strD .g3, .strD .a3, .strD .b3, .strA .a3, .strG .g4, .strD .f4 {
+	border: none;
+	border-top: 3px solid #333;
+}
+
+
+
