@@ -10,7 +10,8 @@ var initialState = {
 	chord: 'maj',
 	type: 'scale',
 	rootNote: 'c',
-	notes: []
+	notes: [],
+	fretboardIsFlipped: true
 };
 
 export const rootReducer = (state = initialState, action = {}) => {

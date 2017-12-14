@@ -11,4 +11,13 @@ const controlChanged = (dispatch, e, controlType) => {
 	});
 };
 
+const flipFretboard = (dispatch, e) => {
+	dispatch({
+		type: constants.LOAD_NOTES,
+		data: {
+			fretboardIsFlipped: e.target.value 
+		}
+	});
+};
+
 export { initApp,  controlChanged };

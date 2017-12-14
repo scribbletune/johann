@@ -3548,6 +3548,15 @@ var controlChanged = function controlChanged(dispatch, e, controlType) {
 	});
 };
 
+var flipFretboard = function flipFretboard(dispatch, e) {
+	dispatch({
+		type: _constants2.default.LOAD_NOTES,
+		data: {
+			fretboardIsFlipped: e.target.value
+		}
+	});
+};
+
 exports.initApp = initApp;
 exports.controlChanged = controlChanged;
 
@@ -21511,7 +21520,8 @@ var initialState = {
 	chord: 'maj',
 	type: 'scale',
 	rootNote: 'c',
-	notes: []
+	notes: [],
+	fretboardIsFlipped: true
 };
 
 var rootReducer = exports.rootReducer = function rootReducer() {
@@ -22613,7 +22623,7 @@ var App = function App(_ref) {
 			dispatch: store.dispatch
 		}),
 		_react2.default.createElement(_Piano2.default, { octaves: state.octaves }),
-		_react2.default.createElement(_Guitar2.default, { notes: state.notes, rootNote: state.rootNote })
+		_react2.default.createElement(_Guitar2.default, { notes: state.notes, rootNote: state.rootNote, fretboardIsFlipped: state.fretboardIsFlipped })
 	);
 };
 
@@ -22982,7 +22992,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Guitar = function Guitar(_ref) {
 	var notes = _ref.notes,
-	    rootNote = _ref.rootNote;
+	    rootNote = _ref.rootNote,
+	    fretboardIsFlipped = _ref.fretboardIsFlipped;
 
 	var strEHi = 'e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5 ab5 a5 bb5 b5 c6 db6 d6 eb6 e6';
 	var strB = 'b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5 ab5 a5 bb5 b5';
@@ -23010,7 +23021,7 @@ var Guitar = function Guitar(_ref) {
 		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
 	});
 
-	return _react2.default.createElement(
+	var regularFretboard = _react2.default.createElement(
 		'div',
 		{ className: 'guitar' },
 		_react2.default.createElement(
@@ -23044,6 +23055,55 @@ var Guitar = function Guitar(_ref) {
 			eLoFrets
 		)
 	);
+
+	var flippedFretboard = _react2.default.createElement(
+		'div',
+		{ className: 'guitar' },
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strELo' },
+			eLoFrets
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strA' },
+			aFrets
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strD' },
+			dFrets
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strG' },
+			gFrets
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strB' },
+			bFrets
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'str strEHi' },
+			eHiFrets
+		)
+	);
+
+	if (fretboardIsFlipped) {
+		return _react2.default.createElement(
+			'div',
+			null,
+			flippedFretboard
+		);
+	} else {
+		return _react2.default.createElement(
+			'div',
+			null,
+			regularFretboard
+		);
+	}
 };
 
 exports.default = Guitar;

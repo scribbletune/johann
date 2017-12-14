@@ -17,7 +17,7 @@ const App = ({ store }) => {
 				dispatch={store.dispatch}
 			/>
 			<Piano octaves={state.octaves} />
-			<Guitar notes={state.notes} rootNote={state.rootNote} />
+			<Guitar notes={state.notes} rootNote={state.rootNote} fretboardIsFlipped={state.fretboardIsFlipped} />
 		</div>
 	);
 };
