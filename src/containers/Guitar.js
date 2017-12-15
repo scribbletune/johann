@@ -1,5 +1,6 @@
 import React from 'react';
 import Fret from '../components/Fret.js';
+import './Guitar.less';
 
 const Guitar = ({ notes, rootNote, fretboardIsFlipped }) => {
 	const strEHi = 'e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5 ab5 a5 bb5 b5 c6 db6 d6 eb6 e6';

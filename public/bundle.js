@@ -27685,9 +27685,9 @@ var _FretboardFlipper2 = _interopRequireDefault(_FretboardFlipper);
 
 var _creators = __webpack_require__(24);
 
-__webpack_require__(129);
+var _ComputerKeyboard = __webpack_require__(133);
 
-__webpack_require__(131);
+var _ComputerKeyboard2 = _interopRequireDefault(_ComputerKeyboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27731,6 +27731,15 @@ var App = function App(_ref) {
 							{ to: '/piano' },
 							'Piano'
 						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouterDom.Link,
+							{ to: '/keyboard' },
+							'Keyboard'
+						)
 					)
 				)
 			)
@@ -27752,6 +27761,13 @@ var App = function App(_ref) {
 					'div',
 					null,
 					_react2.default.createElement(_Piano2.default, { octaves: state.octaves })
+				);
+			} }),
+		_react2.default.createElement(_reactRouterDom.Route, { path: '/keyboard', render: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(_ComputerKeyboard2.default, { notes: state.notes, rootNote: state.rootNote })
 				);
 			} })
 	);
@@ -28041,6 +28057,8 @@ var _PianoKey = __webpack_require__(125);
 
 var _PianoKey2 = _interopRequireDefault(_PianoKey);
 
+__webpack_require__(129);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Piano = function Piano(_ref) {
@@ -28059,7 +28077,7 @@ var Piano = function Piano(_ref) {
 
 	return _react2.default.createElement(
 		'div',
-		{ className: 'keyboard' },
+		{ className: 'piano' },
 		octs
 	);
 };
@@ -28117,6 +28135,8 @@ var _react2 = _interopRequireDefault(_react);
 var _Fret = __webpack_require__(127);
 
 var _Fret2 = _interopRequireDefault(_Fret);
+
+__webpack_require__(131);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28333,7 +28353,7 @@ exports = module.exports = __webpack_require__(25)(undefined);
 
 
 // module
-exports.push([module.i, ".db::after {\n  content: 'Db';\n}\n.d::after {\n  content: 'D';\n}\n.eb::after {\n  content: 'Eb';\n}\n.e::after {\n  content: 'E';\n}\n.f::after {\n  content: 'F';\n}\n.gb::after {\n  content: 'Gb';\n}\n.g::after {\n  content: 'G';\n}\n.ab::after {\n  content: 'Ab';\n}\n.a::after {\n  content: 'A';\n}\n.bb::after {\n  content: 'Bb';\n}\n.b::after {\n  content: 'B';\n}\n.c::after {\n  content: 'C';\n}\n.keyboard {\n  display: grid;\n  grid-template-columns: repeat(3, 420px);\n}\n.octave {\n  display: grid;\n  grid-template-columns: 60px 40px 60px 40px 60px 60px 40px 60px 40px 60px 40px 60px;\n}\n.key {\n  -webkit-border-bottom-right-radius: 3px;\n  -webkit-border-bottom-left-radius: 3px;\n  -moz-border-radius-bottomright: 3px;\n  -moz-border-radius-bottomleft: 3px;\n  border-bottom-right-radius: 3px;\n  border-bottom-left-radius: 3px;\n  box-shadow: 4px 0px 10px #000 ;\n  position: relative;\n}\n.white-key {\n  background: #f1f2f3;\n  border-bottom: 14px solid #c9c9c9;\n  height: 250px;\n  width: 60px;\n}\n.black-key {\n  width: 40px;\n  background: #222;\n  border-bottom: 20px solid #000;\n  height: 180px;\n  z-index: 1;\n}\n.db {\n  margin-left: -20px;\n}\n.d {\n  margin-left: -40px;\n}\n.eb {\n  margin-left: -60px;\n}\n.e {\n  margin-left: -80px;\n}\n.f {\n  margin-left: -80px;\n}\n.gb {\n  margin-left: -100px;\n}\n.g {\n  margin-left: -120px;\n}\n.ab {\n  margin-left: -140px;\n}\n.a {\n  margin-left: -160px;\n}\n.bb {\n  margin-left: -180px;\n}\n.b {\n  margin-left: -200px;\n}\n.key::after {\n  content: '';\n  font-family: sans-serif;\n  font-size: 11px;\n  font-weight: bold;\n}\n.white-key::after {\n  color: #f1f2f3;\n}\n.black-key::after {\n  color: #222;\n}\n.octave .highlight::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  -webkit-border-radius: 15px;\n  background: #f26c4e;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n  color: black;\n}\n.octave .rootNote::after {\n  background: #3db878;\n}\n", ""]);
+exports.push([module.i, ".piano .db::after {\n  content: 'Db';\n}\n.piano .d::after {\n  content: 'D';\n}\n.piano .eb::after {\n  content: 'Eb';\n}\n.piano .e::after {\n  content: 'E';\n}\n.piano .f::after {\n  content: 'F';\n}\n.piano .gb::after {\n  content: 'Gb';\n}\n.piano .g::after {\n  content: 'G';\n}\n.piano .ab::after {\n  content: 'Ab';\n}\n.piano .a::after {\n  content: 'A';\n}\n.piano .bb::after {\n  content: 'Bb';\n}\n.piano .b::after {\n  content: 'B';\n}\n.piano .c::after {\n  content: 'C';\n}\n.piano {\n  display: grid;\n  grid-template-columns: repeat(3, 420px);\n}\n.octave {\n  display: grid;\n  grid-template-columns: 60px 40px 60px 40px 60px 60px 40px 60px 40px 60px 40px 60px;\n}\n.piano .key {\n  -webkit-border-bottom-right-radius: 3px;\n  -webkit-border-bottom-left-radius: 3px;\n  -moz-border-radius-bottomright: 3px;\n  -moz-border-radius-bottomleft: 3px;\n  border-bottom-right-radius: 3px;\n  border-bottom-left-radius: 3px;\n  box-shadow: 4px 0px 10px #000 ;\n  position: relative;\n}\n.white-key {\n  background: #f1f2f3;\n  border-bottom: 14px solid #c9c9c9;\n  height: 250px;\n  width: 60px;\n}\n.black-key {\n  width: 40px;\n  background: #222;\n  border-bottom: 20px solid #000;\n  height: 180px;\n  z-index: 1;\n}\n.db {\n  margin-left: -20px;\n}\n.d {\n  margin-left: -40px;\n}\n.eb {\n  margin-left: -60px;\n}\n.e {\n  margin-left: -80px;\n}\n.f {\n  margin-left: -80px;\n}\n.gb {\n  margin-left: -100px;\n}\n.g {\n  margin-left: -120px;\n}\n.ab {\n  margin-left: -140px;\n}\n.a {\n  margin-left: -160px;\n}\n.bb {\n  margin-left: -180px;\n}\n.b {\n  margin-left: -200px;\n}\n.piano .key::after {\n  content: '';\n  font-family: sans-serif;\n  font-size: 11px;\n  font-weight: bold;\n}\n.piano .white-key::after {\n  color: #f1f2f3;\n}\n.piano .black-key::after {\n  color: #222;\n}\n.octave .highlight::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  -webkit-border-radius: 15px;\n  background: #f26c4e;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n  color: black;\n}\n.octave .rootNote::after {\n  background: #3db878;\n}\n", ""]);
 
 // exports
 
@@ -28378,10 +28398,276 @@ exports = module.exports = __webpack_require__(25)(undefined);
 
 
 // module
-exports.push([module.i, ".db::after {\n  content: 'Db';\n}\n.d::after {\n  content: 'D';\n}\n.eb::after {\n  content: 'Eb';\n}\n.e::after {\n  content: 'E';\n}\n.f::after {\n  content: 'F';\n}\n.gb::after {\n  content: 'Gb';\n}\n.g::after {\n  content: 'G';\n}\n.ab::after {\n  content: 'Ab';\n}\n.a::after {\n  content: 'A';\n}\n.bb::after {\n  content: 'Bb';\n}\n.b::after {\n  content: 'B';\n}\n.c::after {\n  content: 'C';\n}\n.guitar {\n  font-family: sans-serif;\n}\n.str {\n  display: grid;\n  grid-template-columns: 25px repeat(24, 50px);\n}\n.fret {\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n  height: 25px;\n  position: relative;\n}\n.fret::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  content: '';\n  bottom: 2px;\n  color: black;\n  position: absolute;\n  left: 50%;\n  margin-left: -8px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  -webkit-border-radius: 8px;\n}\n.str .highlight::after {\n  background: #f26c4e;\n  box-shadow: 0 0 2px #333;\n}\n.str .rootNote::after {\n  background: #3db878;\n}\n.e4:first-child,\n.b3:first-child,\n.g3:first-child,\n.d3:first-child,\n.a2:first-child,\n.e2:first-child {\n  border: none;\n  border-right: 3px solid #333;\n  font-size: 10px;\n}\n.e4:first-child::after {\n  content: 'E';\n}\n.b3:first-child::after {\n  content: 'B';\n}\n.g3:first-child::after {\n  content: 'G';\n}\n.d3:first-child::after {\n  content: 'D';\n}\n.a2:first-child::after {\n  content: 'A';\n}\n.e2:first-child::after {\n  content: 'E';\n}\n.str:nth-child(4) .fret:nth-child(6),\n.str:nth-child(4) .fret:nth-child(8),\n.str:nth-child(4) .fret:nth-child(10),\n.str:nth-child(3) .fret:nth-child(13),\n.str:nth-child(5) .fret:nth-child(13),\n.str:nth-child(4) .fret:nth-child(16) {\n  border: none;\n  border-top: 3px solid #333;\n}\nbutton {\n  margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, ".piano .db::after {\n  content: 'Db';\n}\n.piano .d::after {\n  content: 'D';\n}\n.piano .eb::after {\n  content: 'Eb';\n}\n.piano .e::after {\n  content: 'E';\n}\n.piano .f::after {\n  content: 'F';\n}\n.piano .gb::after {\n  content: 'Gb';\n}\n.piano .g::after {\n  content: 'G';\n}\n.piano .ab::after {\n  content: 'Ab';\n}\n.piano .a::after {\n  content: 'A';\n}\n.piano .bb::after {\n  content: 'Bb';\n}\n.piano .b::after {\n  content: 'B';\n}\n.piano .c::after {\n  content: 'C';\n}\n.guitar {\n  font-family: sans-serif;\n}\n.str {\n  display: grid;\n  grid-template-columns: 25px repeat(24, 50px);\n}\n.fret {\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n  height: 25px;\n  position: relative;\n}\n.fret::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  content: '';\n  bottom: 2px;\n  color: black;\n  position: absolute;\n  left: 50%;\n  margin-left: -8px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  -webkit-border-radius: 8px;\n}\n.str .highlight::after {\n  background: #f26c4e;\n  box-shadow: 0 0 2px #333;\n}\n.str .rootNote::after {\n  background: #3db878;\n}\n.e4:first-child,\n.b3:first-child,\n.g3:first-child,\n.d3:first-child,\n.a2:first-child,\n.e2:first-child {\n  border: none;\n  border-right: 3px solid #333;\n  font-size: 10px;\n}\n.e4:first-child::after {\n  content: 'E';\n}\n.b3:first-child::after {\n  content: 'B';\n}\n.g3:first-child::after {\n  content: 'G';\n}\n.d3:first-child::after {\n  content: 'D';\n}\n.a2:first-child::after {\n  content: 'A';\n}\n.e2:first-child::after {\n  content: 'E';\n}\n.str:nth-child(4) .fret:nth-child(6),\n.str:nth-child(4) .fret:nth-child(8),\n.str:nth-child(4) .fret:nth-child(10),\n.str:nth-child(3) .fret:nth-child(13),\n.str:nth-child(5) .fret:nth-child(13),\n.str:nth-child(4) .fret:nth-child(16) {\n  border: none;\n  border-top: 3px solid #333;\n}\nbutton {\n  margin-top: 10px;\n}\n", ""]);
 
 // exports
 
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(134);
+
+var _ComputerKey = __webpack_require__(136);
+
+var _ComputerKey2 = _interopRequireDefault(_ComputerKey);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ComputerKeyboard = function ComputerKeyboard(_ref) {
+	var notes = _ref.notes,
+	    rootNote = _ref.rootNote;
+
+	return _react2.default.createElement(
+		'div',
+		{ className: 'computer-keyboard' },
+		_react2.default.createElement(
+			'div',
+			{ className: 'computer-keys' },
+			_react2.default.createElement(
+				'div',
+				{ className: 'fn-key' },
+				'tab'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'Q'
+			),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'W', color: 'black', rootNote: 'db' === rootNote, highlight: notes.indexOf('db2') > -1, note: 'db', key: 'db' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'E', color: 'black', rootNote: 'eb' === rootNote, highlight: notes.indexOf('eb2') > -1, note: 'eb', key: 'eb' }),
+			_react2.default.createElement(
+				'div',
+				null,
+				'R'
+			),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'Y', color: 'black', rootNote: 'ab' === rootNote, highlight: notes.indexOf('ab2') > -1, note: 'ab', key: 'ab' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'U', color: 'black', rootNote: 'bb' === rootNote, highlight: notes.indexOf('bb2') > -1, note: 'bb', key: 'bb' }),
+			_react2.default.createElement(
+				'div',
+				null,
+				'I'
+			),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'O', color: 'black', rootNote: 'db' === rootNote, highlight: notes.indexOf('db3') > -1, note: 'db', key: 'db2' }),
+			_react2.default.createElement(
+				'div',
+				null,
+				'P'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'{'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'}'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'|'
+			)
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'computer-keys' },
+			_react2.default.createElement(
+				'div',
+				{ className: 'fn-key caps' },
+				'caps lock'
+			),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'A', color: 'white', rootNote: 'c' === rootNote, highlight: notes.indexOf('c2') > -1, note: 'c', key: 'c2' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'S', color: 'white', rootNote: 'd' === rootNote, highlight: notes.indexOf('d2') > -1, note: 'd', key: 'd2' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'D', color: 'white', rootNote: 'e' === rootNote, highlight: notes.indexOf('e2') > -1, note: 'e', key: 'e2' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'F', color: 'white', rootNote: 'f' === rootNote, highlight: notes.indexOf('f2') > -1, note: 'f', key: 'f2' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'G', color: 'white', rootNote: 'g' === rootNote, highlight: notes.indexOf('g2') > -1, note: 'g', key: 'g2' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'H', color: 'white', rootNote: 'a' === rootNote, highlight: notes.indexOf('a2') > -1, note: 'a', key: 'a2' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'J', color: 'white', rootNote: 'b' === rootNote, highlight: notes.indexOf('b2') > -1, note: 'b', key: 'b2' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'K', color: 'white', rootNote: 'c' === rootNote, highlight: notes.indexOf('c3') > -1, note: 'c', key: 'c3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'L', color: 'white', rootNote: 'd' === rootNote, highlight: notes.indexOf('d3') > -1, note: 'd', key: 'd3' }),
+			_react2.default.createElement(
+				'div',
+				null,
+				':'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'"'
+			),
+			_react2.default.createElement(
+				'div',
+				{ className: 'fn-key' },
+				'return'
+			)
+		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'computer-keys' },
+			_react2.default.createElement(
+				'div',
+				{ className: 'fn-key shift' },
+				'shift'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'Z'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'X'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'C'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'V'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'B'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'N'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'M'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'<'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'>'
+			),
+			_react2.default.createElement(
+				'div',
+				null,
+				'?'
+			),
+			_react2.default.createElement(
+				'div',
+				{ className: 'fn-key' },
+				'shift'
+			)
+		)
+	);
+};
+
+exports.default = ComputerKeyboard;
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(135);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(26)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/less-loader/dist/cjs.js!./ComputerKeyboard.less", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/less-loader/dist/cjs.js!./ComputerKeyboard.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(25)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".piano .db::after {\n  content: 'Db';\n}\n.piano .d::after {\n  content: 'D';\n}\n.piano .eb::after {\n  content: 'Eb';\n}\n.piano .e::after {\n  content: 'E';\n}\n.piano .f::after {\n  content: 'F';\n}\n.piano .gb::after {\n  content: 'Gb';\n}\n.piano .g::after {\n  content: 'G';\n}\n.piano .ab::after {\n  content: 'Ab';\n}\n.piano .a::after {\n  content: 'A';\n}\n.piano .bb::after {\n  content: 'Bb';\n}\n.piano .b::after {\n  content: 'B';\n}\n.piano .c::after {\n  content: 'C';\n}\n.computer-keys {\n  display: flex;\n}\n.computer-keys div {\n  margin: 2px;\n  padding: 10px;\n  border-radius: 3px;\n  background: #ccc;\n  color: #333;\n  box-shadow: 0 0 1px #000;\n}\n.fn-key {\n  font-size: 10px;\n}\n.caps {\n  padding-right: 5px !important;\n}\n.shift {\n  padding-right: 50px !important;\n}\n.computer-keys .white {\n  background: white;\n}\n.computer-keys .black {\n  background: #333;\n  color: white;\n}\n.computer-keys .highlight {\n  background: #f26c4e;\n}\n.computer-keys .rootNote {\n  background: #3db878;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ComputerKey = function ComputerKey(_ref) {
+	var label = _ref.label,
+	    color = _ref.color,
+	    rootNote = _ref.rootNote,
+	    highlight = _ref.highlight,
+	    note = _ref.note;
+
+	var className = color + ' ' + note;
+	if (highlight) {
+		className += ' highlight';
+	}
+	if (rootNote) {
+		className += ' rootNote';
+	}
+	return _react2.default.createElement(
+		'div',
+		{ className: className },
+		label
+	);
+};
+
+exports.default = ComputerKey;
 
 /***/ })
 /******/ ]);

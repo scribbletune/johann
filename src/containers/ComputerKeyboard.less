@@ -1,0 +1,41 @@
+@import "./common";
+
+.computer-keys {
+	display: flex;
+}
+
+.computer-keys div {
+	margin: 2px;
+	padding: 10px;
+	border-radius: 3px;
+	background: #ccc;
+	color: #333;
+	box-shadow: 0 0 1px #000
+}
+
+.fn-key {
+	font-size: 10px;
+}
+.caps {
+	padding-right: 5px !important;
+}
+.shift {
+	padding-right: 50px !important;
+}
+
+.computer-keys .white {
+	background: white;
+}
+
+.computer-keys .black {
+	background: #333;
+	color: white;
+}
+
+.computer-keys .highlight {
+	background: @highlightNote;
+}
+
+.computer-keys .rootNote {
+	background: @highlightRootNote;
+}

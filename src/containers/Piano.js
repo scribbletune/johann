@@ -1,5 +1,6 @@
 import React from 'react';
 import PianoKey from '../components/PianoKey.js';
+import './Piano.less';
 
 const Piano = ({ octaves }) => {
 	const octs = octaves.map((oct, idx) => {
@@ -10,7 +11,7 @@ const Piano = ({ octaves }) => {
 	});
 
 	return (
-		<div className="keyboard">{octs}</div>
+		<div className="piano">{octs}</div>
 	);
 };
 
