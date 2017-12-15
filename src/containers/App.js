@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import Controls from './Controls.js';
 import Piano from './Piano.js';
 import Guitar from './Guitar.js';
@@ -18,9 +19,21 @@ const App = ({ store }) => {
 				type={state.type}
 				dispatch={store.dispatch}
 			/>
-			<Piano octaves={state.octaves} />
-			<Guitar notes={state.notes} rootNote={state.rootNote} fretboardIsFlipped={state.fretboardIsFlipped} />
-			<FretboardFlipper onFretboardFlip={flipFretboard.bind(null, store.dispatch)} />
+			<Route path="/guitar" render={
+				() => <div>
+						<Guitar 
+							notes={state.notes} 
+							rootNote={state.rootNote} 
+							fretboardIsFlipped={state.fretboardIsFlipped} 
+						/>
+						<FretboardFlipper onFretboardFlip={flipFretboard.bind(null, store.dispatch)} />
+					</div>
+			} />
+			<Route path="/piano" render={
+				() => <div>
+					<Piano octaves={state.octaves} />
+				</div>
+			} />
 		</div>
 	);
 };
