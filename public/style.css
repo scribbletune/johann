@@ -19,10 +19,6 @@ a {
 	width: 1260px;
 }
 
-.hide {
-	display: none;
-}
-
 .menu, nav ul {
 	display: flex;
 	align-items: center;

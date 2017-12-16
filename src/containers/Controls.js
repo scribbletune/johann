@@ -11,8 +11,21 @@ const Controls = ({ pitches, scales, chords, type, dispatch }) => {
 		name: 'chord',
 		label: 'Chord'
 	}];
-	let scalesDDClass = type === 'scale' ? '' : 'hide';
-	let chordsDDClass = type === 'chord' ? '' : 'hide';
+
+	const getChordScaleDropdown = () => {
+		var ddData = scales, ddType = 'scale';
+		if (type === 'chord') {
+			ddData = chords;
+			ddType = 'chord'
+		}
+
+		return <Dropdown 
+			data={ddData} 
+			controlType={ddType}
+			onChangeEventHandler={controlChanged.bind(null, dispatch)} 
+		/>
+	}
+
 	return (
 		<ul className="controls">
 			<li>
@@ -22,20 +35,7 @@ const Controls = ({ pitches, scales, chords, type, dispatch }) => {
 					onChangeEventHandler={controlChanged.bind(null, dispatch)} 
 				/>
 			</li>
-			<li className={scalesDDClass}>
-				<Dropdown 
-					data={scales} 
-					controlType="scale" 
-					onChangeEventHandler={controlChanged.bind(null, dispatch)} 
-				/>
-			</li>
-			<li className={chordsDDClass}>
-				<Dropdown 
-					data={chords} 
-					controlType="chord" 
-					onChangeEventHandler={controlChanged.bind(null, dispatch)} 
-				/>
-			</li>
+			<li>{getChordScaleDropdown()}</li>
 			<li>
 				<Dropdown 
 					data={types} 
