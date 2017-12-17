@@ -28454,6 +28454,7 @@ var ComputerKeyboard = function ComputerKeyboard(_ref) {
 				null,
 				'R'
 			),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'T', color: 'black', rootNote: 'gb' === rootNote, highlight: notes.indexOf('gb2') > -1, note: 'gb', key: 'gb' }),
 			_react2.default.createElement(_ComputerKey2.default, { label: 'Y', color: 'black', rootNote: 'ab' === rootNote, highlight: notes.indexOf('ab2') > -1, note: 'ab', key: 'ab' }),
 			_react2.default.createElement(_ComputerKey2.default, { label: 'U', color: 'black', rootNote: 'bb' === rootNote, highlight: notes.indexOf('bb2') > -1, note: 'bb', key: 'bb' }),
 			_react2.default.createElement(

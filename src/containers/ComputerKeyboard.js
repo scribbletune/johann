@@ -11,6 +11,7 @@ const ComputerKeyboard = ({ notes, rootNote }) => {
 				<ComputerKey label="W" color="black" rootNote={'db' === rootNote} highlight={notes.indexOf('db2') > -1} note='db' key='db' />
 				<ComputerKey label="E" color="black" rootNote={'eb' === rootNote} highlight={notes.indexOf('eb2') > -1} note='eb' key='eb' />
 				<div>R</div>
+				<ComputerKey label="T" color="black" rootNote={'gb' === rootNote} highlight={notes.indexOf('gb2') > -1} note='gb' key='gb' />
 				<ComputerKey label="Y" color="black" rootNote={'ab' === rootNote} highlight={notes.indexOf('ab2') > -1} note='ab' key='ab' />
 				<ComputerKey label="U" color="black" rootNote={'bb' === rootNote} highlight={notes.indexOf('bb2') > -1} note='bb' key='bb' />
 				<div>I</div>
