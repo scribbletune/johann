@@ -28447,22 +28447,22 @@ var ComputerKeyboard = function ComputerKeyboard(_ref) {
 				null,
 				'Q'
 			),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'W', color: 'black', rootNote: 'db' === rootNote, highlight: notes.indexOf('db2') > -1, note: 'db', key: 'db' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'E', color: 'black', rootNote: 'eb' === rootNote, highlight: notes.indexOf('eb2') > -1, note: 'eb', key: 'eb' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'W', color: 'black', rootNote: 'db' === rootNote, highlight: notes.indexOf('db3') > -1, note: 'db', key: 'db3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'E', color: 'black', rootNote: 'eb' === rootNote, highlight: notes.indexOf('eb3') > -1, note: 'eb', key: 'eb3' }),
 			_react2.default.createElement(
 				'div',
 				null,
 				'R'
 			),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'T', color: 'black', rootNote: 'gb' === rootNote, highlight: notes.indexOf('gb2') > -1, note: 'gb', key: 'gb' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'Y', color: 'black', rootNote: 'ab' === rootNote, highlight: notes.indexOf('ab2') > -1, note: 'ab', key: 'ab' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'U', color: 'black', rootNote: 'bb' === rootNote, highlight: notes.indexOf('bb2') > -1, note: 'bb', key: 'bb' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'T', color: 'black', rootNote: 'gb' === rootNote, highlight: notes.indexOf('gb3') > -1, note: 'gb', key: 'gb3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'Y', color: 'black', rootNote: 'ab' === rootNote, highlight: notes.indexOf('ab3') > -1, note: 'ab', key: 'ab3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'U', color: 'black', rootNote: 'bb' === rootNote, highlight: notes.indexOf('bb3') > -1, note: 'bb', key: 'bb3' }),
 			_react2.default.createElement(
 				'div',
 				null,
 				'I'
 			),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'O', color: 'black', rootNote: 'db' === rootNote, highlight: notes.indexOf('db3') > -1, note: 'db', key: 'db2' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'O', color: 'black', rootNote: 'db' === rootNote, highlight: notes.indexOf('db4') > -1, note: 'db', key: 'db4' }),
 			_react2.default.createElement(
 				'div',
 				null,
@@ -28492,15 +28492,15 @@ var ComputerKeyboard = function ComputerKeyboard(_ref) {
 				{ className: 'fn-key caps' },
 				'caps lock'
 			),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'A', color: 'white', rootNote: 'c' === rootNote, highlight: notes.indexOf('c2') > -1, note: 'c', key: 'c2' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'S', color: 'white', rootNote: 'd' === rootNote, highlight: notes.indexOf('d2') > -1, note: 'd', key: 'd2' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'D', color: 'white', rootNote: 'e' === rootNote, highlight: notes.indexOf('e2') > -1, note: 'e', key: 'e2' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'F', color: 'white', rootNote: 'f' === rootNote, highlight: notes.indexOf('f2') > -1, note: 'f', key: 'f2' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'G', color: 'white', rootNote: 'g' === rootNote, highlight: notes.indexOf('g2') > -1, note: 'g', key: 'g2' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'H', color: 'white', rootNote: 'a' === rootNote, highlight: notes.indexOf('a2') > -1, note: 'a', key: 'a2' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'J', color: 'white', rootNote: 'b' === rootNote, highlight: notes.indexOf('b2') > -1, note: 'b', key: 'b2' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'K', color: 'white', rootNote: 'c' === rootNote, highlight: notes.indexOf('c3') > -1, note: 'c', key: 'c3' }),
-			_react2.default.createElement(_ComputerKey2.default, { label: 'L', color: 'white', rootNote: 'd' === rootNote, highlight: notes.indexOf('d3') > -1, note: 'd', key: 'd3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'A', color: 'white', rootNote: 'c' === rootNote, highlight: notes.indexOf('c3') > -1, note: 'c', key: 'c3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'S', color: 'white', rootNote: 'd' === rootNote, highlight: notes.indexOf('d3') > -1, note: 'd', key: 'd3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'D', color: 'white', rootNote: 'e' === rootNote, highlight: notes.indexOf('e3') > -1, note: 'e', key: 'e3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'F', color: 'white', rootNote: 'f' === rootNote, highlight: notes.indexOf('f3') > -1, note: 'f', key: 'f3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'G', color: 'white', rootNote: 'g' === rootNote, highlight: notes.indexOf('g3') > -1, note: 'g', key: 'g3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'H', color: 'white', rootNote: 'a' === rootNote, highlight: notes.indexOf('a3') > -1, note: 'a', key: 'a3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'J', color: 'white', rootNote: 'b' === rootNote, highlight: notes.indexOf('b3') > -1, note: 'b', key: 'b3' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'K', color: 'white', rootNote: 'c' === rootNote, highlight: notes.indexOf('c4') > -1, note: 'c', key: 'c4' }),
+			_react2.default.createElement(_ComputerKey2.default, { label: 'L', color: 'white', rootNote: 'd' === rootNote, highlight: notes.indexOf('d4') > -1, note: 'd', key: 'd4' }),
 			_react2.default.createElement(
 				'div',
 				null,
