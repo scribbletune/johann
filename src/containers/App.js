@@ -28,7 +28,7 @@ const App = ({ store }) => {
 				</nav>
 			</div>
 			<Route path="/guitar" render={
-				() => <div>
+				() => <div className="instrument">
 						<Guitar 
 							notes={state.notes} 
 							rootNote={state.rootNote} 
@@ -38,12 +38,12 @@ const App = ({ store }) => {
 					</div>
 			} />
 			<Route path="/piano" render={
-				() => <div>
+				() => <div className="instrument">
 					<Piano octaves={state.octaves} />
 				</div>
 			} />
 			<Route path="/keyboard" render={
-				() => <div>
+				() => <div className="instrument">
 					<ComputerKeyboard notes={state.notes} rootNote={state.rootNote} />
 				</div>
 			} />

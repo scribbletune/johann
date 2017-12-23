@@ -42,23 +42,25 @@
 	z-index: 1;
 }
 
-.db { margin-left: -@blackKeyHalfWidth * 1; }
-.d { margin-left: -@blackKeyHalfWidth * 2; }
-.eb { margin-left: -@blackKeyHalfWidth * 3; }
-.e { margin-left: -@blackKeyHalfWidth * 4; }
-.f { margin-left: -@blackKeyHalfWidth * 4; }
-.gb { margin-left: -@blackKeyHalfWidth * 5; }
-.g { margin-left: -@blackKeyHalfWidth * 6; }
-.ab { margin-left: -@blackKeyHalfWidth * 7; }
-.a { margin-left: -@blackKeyHalfWidth * 8; }
-.bb { margin-left: -@blackKeyHalfWidth * 9; }
-.b { margin-left: -@blackKeyHalfWidth * 10; }
+.piano {
+	.db { margin-left: -@blackKeyHalfWidth * 1; }
+	.d { margin-left: -@blackKeyHalfWidth * 2; }
+	.eb { margin-left: -@blackKeyHalfWidth * 3; }
+	.e { margin-left: -@blackKeyHalfWidth * 4; }
+	.f { margin-left: -@blackKeyHalfWidth * 4; }
+	.gb { margin-left: -@blackKeyHalfWidth * 5; }
+	.g { margin-left: -@blackKeyHalfWidth * 6; }
+	.ab { margin-left: -@blackKeyHalfWidth * 7; }
+	.a { margin-left: -@blackKeyHalfWidth * 8; }
+	.bb { margin-left: -@blackKeyHalfWidth * 9; }
+	.b { margin-left: -@blackKeyHalfWidth * 10; }
+}
 
 .piano .key::after { 
 	content: '';
 	font-family: sans-serif;
-	font-size: 11px;
 	font-weight: bold;
+	font-size: 10px;
 }
 
 .piano .white-key::after { color: @whiteKeyColor; }

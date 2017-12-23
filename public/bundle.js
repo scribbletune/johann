@@ -27747,7 +27747,7 @@ var App = function App(_ref) {
 		_react2.default.createElement(_reactRouterDom.Route, { path: '/guitar', render: function render() {
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'instrument' },
 					_react2.default.createElement(_Guitar2.default, {
 						notes: state.notes,
 						rootNote: state.rootNote,
@@ -27759,14 +27759,14 @@ var App = function App(_ref) {
 		_react2.default.createElement(_reactRouterDom.Route, { path: '/piano', render: function render() {
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'instrument' },
 					_react2.default.createElement(_Piano2.default, { octaves: state.octaves })
 				);
 			} }),
 		_react2.default.createElement(_reactRouterDom.Route, { path: '/keyboard', render: function render() {
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'instrument' },
 					_react2.default.createElement(_ComputerKeyboard2.default, { notes: state.notes, rootNote: state.rootNote })
 				);
 			} })
@@ -28158,7 +28158,7 @@ exports = module.exports = __webpack_require__(15)(undefined);
 
 
 // module
-exports.push([module.i, ".piano .db::after {\n  content: 'Db';\n}\n.piano .d::after {\n  content: 'D';\n}\n.piano .eb::after {\n  content: 'Eb';\n}\n.piano .e::after {\n  content: 'E';\n}\n.piano .f::after {\n  content: 'F';\n}\n.piano .gb::after {\n  content: 'Gb';\n}\n.piano .g::after {\n  content: 'G';\n}\n.piano .ab::after {\n  content: 'Ab';\n}\n.piano .a::after {\n  content: 'A';\n}\n.piano .bb::after {\n  content: 'Bb';\n}\n.piano .b::after {\n  content: 'B';\n}\n.piano .c::after {\n  content: 'C';\n}\n.piano {\n  display: grid;\n  grid-template-columns: repeat(3, 420px);\n}\n.octave {\n  display: grid;\n  grid-template-columns: 60px 40px 60px 40px 60px 60px 40px 60px 40px 60px 40px 60px;\n}\n.piano .key {\n  -webkit-border-bottom-right-radius: 3px;\n  -webkit-border-bottom-left-radius: 3px;\n  -moz-border-radius-bottomright: 3px;\n  -moz-border-radius-bottomleft: 3px;\n  border-bottom-right-radius: 3px;\n  border-bottom-left-radius: 3px;\n  box-shadow: 4px 0px 10px #000 ;\n  position: relative;\n}\n.white-key {\n  background: #f1f2f3;\n  border-bottom: 14px solid #c9c9c9;\n  height: 250px;\n  width: 60px;\n}\n.black-key {\n  width: 40px;\n  background: #222;\n  border-bottom: 20px solid #000;\n  height: 180px;\n  z-index: 1;\n}\n.db {\n  margin-left: -20px;\n}\n.d {\n  margin-left: -40px;\n}\n.eb {\n  margin-left: -60px;\n}\n.e {\n  margin-left: -80px;\n}\n.f {\n  margin-left: -80px;\n}\n.gb {\n  margin-left: -100px;\n}\n.g {\n  margin-left: -120px;\n}\n.ab {\n  margin-left: -140px;\n}\n.a {\n  margin-left: -160px;\n}\n.bb {\n  margin-left: -180px;\n}\n.b {\n  margin-left: -200px;\n}\n.piano .key::after {\n  content: '';\n  font-family: sans-serif;\n  font-size: 11px;\n  font-weight: bold;\n}\n.piano .white-key::after {\n  color: #f1f2f3;\n}\n.piano .black-key::after {\n  color: #222;\n}\n.octave .highlight::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  -webkit-border-radius: 15px;\n  background: #f26c4e;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n  color: black;\n}\n.octave .rootNote::after {\n  background: #3db878;\n}\n", ""]);
+exports.push([module.i, ".instrument .db::after {\n  content: 'Db';\n}\n.instrument .d::after {\n  content: 'D';\n}\n.instrument .eb::after {\n  content: 'Eb';\n}\n.instrument .e::after {\n  content: 'E';\n}\n.instrument .f::after {\n  content: 'F';\n}\n.instrument .gb::after {\n  content: 'Gb';\n}\n.instrument .g::after {\n  content: 'G';\n}\n.instrument .ab::after {\n  content: 'Ab';\n}\n.instrument .a::after {\n  content: 'A';\n}\n.instrument .bb::after {\n  content: 'Bb';\n}\n.instrument .b::after {\n  content: 'B';\n}\n.instrument .c::after {\n  content: 'C';\n}\n.piano {\n  display: grid;\n  grid-template-columns: repeat(3, 420px);\n}\n.octave {\n  display: grid;\n  grid-template-columns: 60px 40px 60px 40px 60px 60px 40px 60px 40px 60px 40px 60px;\n}\n.piano .key {\n  -webkit-border-bottom-right-radius: 3px;\n  -webkit-border-bottom-left-radius: 3px;\n  -moz-border-radius-bottomright: 3px;\n  -moz-border-radius-bottomleft: 3px;\n  border-bottom-right-radius: 3px;\n  border-bottom-left-radius: 3px;\n  box-shadow: 4px 0px 10px #000 ;\n  position: relative;\n}\n.white-key {\n  background: #f1f2f3;\n  border-bottom: 14px solid #c9c9c9;\n  height: 250px;\n  width: 60px;\n}\n.black-key {\n  width: 40px;\n  background: #222;\n  border-bottom: 20px solid #000;\n  height: 180px;\n  z-index: 1;\n}\n.piano .db {\n  margin-left: -20px;\n}\n.piano .d {\n  margin-left: -40px;\n}\n.piano .eb {\n  margin-left: -60px;\n}\n.piano .e {\n  margin-left: -80px;\n}\n.piano .f {\n  margin-left: -80px;\n}\n.piano .gb {\n  margin-left: -100px;\n}\n.piano .g {\n  margin-left: -120px;\n}\n.piano .ab {\n  margin-left: -140px;\n}\n.piano .a {\n  margin-left: -160px;\n}\n.piano .bb {\n  margin-left: -180px;\n}\n.piano .b {\n  margin-left: -200px;\n}\n.piano .key::after {\n  content: '';\n  font-family: sans-serif;\n  font-weight: bold;\n  font-size: 10px;\n}\n.piano .white-key::after {\n  color: #f1f2f3;\n}\n.piano .black-key::after {\n  color: #222;\n}\n.octave .highlight::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 30px;\n  height: 30px;\n  border-radius: 15px;\n  -webkit-border-radius: 15px;\n  background: #f26c4e;\n  position: absolute;\n  left: 50%;\n  margin-left: -15px;\n  bottom: 8px;\n  box-shadow: 0 0 5px #333;\n  color: black;\n}\n.octave .rootNote::after {\n  background: #3db878;\n}\n", ""]);
 
 // exports
 
@@ -28318,7 +28318,7 @@ var Fret = function Fret(_ref) {
 	    highlight = _ref.highlight,
 	    note = _ref.note;
 
-	var className = 'fret ' + note;
+	var className = 'fret ' + note.replace(/\d/g, '') + ' ' + note;
 	if (highlight) {
 		className += ' highlight';
 	}
@@ -28370,7 +28370,7 @@ exports = module.exports = __webpack_require__(15)(undefined);
 
 
 // module
-exports.push([module.i, ".piano .db::after {\n  content: 'Db';\n}\n.piano .d::after {\n  content: 'D';\n}\n.piano .eb::after {\n  content: 'Eb';\n}\n.piano .e::after {\n  content: 'E';\n}\n.piano .f::after {\n  content: 'F';\n}\n.piano .gb::after {\n  content: 'Gb';\n}\n.piano .g::after {\n  content: 'G';\n}\n.piano .ab::after {\n  content: 'Ab';\n}\n.piano .a::after {\n  content: 'A';\n}\n.piano .bb::after {\n  content: 'Bb';\n}\n.piano .b::after {\n  content: 'B';\n}\n.piano .c::after {\n  content: 'C';\n}\n.guitar {\n  font-family: sans-serif;\n}\n.str {\n  display: grid;\n  grid-template-columns: 25px repeat(24, 50px);\n}\n.fret {\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n  height: 25px;\n  position: relative;\n}\n.fret::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  content: '';\n  bottom: 2px;\n  color: black;\n  position: absolute;\n  left: 50%;\n  margin-left: -8px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  -webkit-border-radius: 8px;\n}\n.str .highlight::after {\n  background: #f26c4e;\n  box-shadow: 0 0 2px #333;\n}\n.str .rootNote::after {\n  background: #3db878;\n}\n.e4:first-child,\n.b3:first-child,\n.g3:first-child,\n.d3:first-child,\n.a2:first-child,\n.e2:first-child {\n  border: none;\n  border-right: 3px solid #333;\n  font-size: 10px;\n}\n.e4:first-child::after {\n  content: 'E';\n}\n.b3:first-child::after {\n  content: 'B';\n}\n.g3:first-child::after {\n  content: 'G';\n}\n.d3:first-child::after {\n  content: 'D';\n}\n.a2:first-child::after {\n  content: 'A';\n}\n.e2:first-child::after {\n  content: 'E';\n}\n.str:nth-child(4) .fret:nth-child(6),\n.str:nth-child(4) .fret:nth-child(8),\n.str:nth-child(4) .fret:nth-child(10),\n.str:nth-child(3) .fret:nth-child(13),\n.str:nth-child(5) .fret:nth-child(13),\n.str:nth-child(4) .fret:nth-child(16) {\n  border: none;\n  border-top: 3px solid #333;\n}\nbutton {\n  margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, ".instrument .db::after {\n  content: 'Db';\n}\n.instrument .d::after {\n  content: 'D';\n}\n.instrument .eb::after {\n  content: 'Eb';\n}\n.instrument .e::after {\n  content: 'E';\n}\n.instrument .f::after {\n  content: 'F';\n}\n.instrument .gb::after {\n  content: 'Gb';\n}\n.instrument .g::after {\n  content: 'G';\n}\n.instrument .ab::after {\n  content: 'Ab';\n}\n.instrument .a::after {\n  content: 'A';\n}\n.instrument .bb::after {\n  content: 'Bb';\n}\n.instrument .b::after {\n  content: 'B';\n}\n.instrument .c::after {\n  content: 'C';\n}\n.guitar {\n  font-family: sans-serif;\n}\n.guitar .str {\n  display: grid;\n  grid-template-columns: 25px repeat(24, 50px);\n}\n.guitar .fret {\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n  height: 25px;\n  position: relative;\n}\n.guitar .fret::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  content: '';\n  bottom: 2px;\n  color: black;\n  position: absolute;\n  left: 50%;\n  margin-left: -8px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  -webkit-border-radius: 8px;\n  color: white;\n  font-size: 10px;\n}\n.guitar .str .highlight::after {\n  background: #f26c4e;\n  box-shadow: 0 0 2px #333;\n}\n.guitar .str .rootNote::after {\n  background: #3db878;\n}\n.guitar .e4:first-child,\n.guitar .b3:first-child,\n.guitar .g3:first-child,\n.guitar .d3:first-child,\n.guitar .a2:first-child,\n.guitar .e2:first-child {\n  border: none;\n  border-right: 3px solid #333;\n}\n.guitar .e4:first-child::after {\n  content: 'E';\n}\n.guitar .b3:first-child::after {\n  content: 'B';\n}\n.guitar .g3:first-child::after {\n  content: 'G';\n}\n.guitar .d3:first-child::after {\n  content: 'D';\n}\n.guitar .a2:first-child::after {\n  content: 'A';\n}\n.guitar .e2:first-child::after {\n  content: 'E';\n}\n.guitar .str:nth-child(4) .fret:nth-child(6),\n.guitar .str:nth-child(4) .fret:nth-child(8),\n.guitar .str:nth-child(4) .fret:nth-child(10),\n.guitar .str:nth-child(3) .fret:nth-child(13),\n.guitar .str:nth-child(5) .fret:nth-child(13),\n.guitar .str:nth-child(4) .fret:nth-child(16) {\n  border: none;\n  border-top: 3px solid #333;\n}\nbutton {\n  margin-top: 10px;\n}\n", ""]);
 
 // exports
 
@@ -28626,7 +28626,7 @@ exports = module.exports = __webpack_require__(15)(undefined);
 
 
 // module
-exports.push([module.i, ".piano .db::after {\n  content: 'Db';\n}\n.piano .d::after {\n  content: 'D';\n}\n.piano .eb::after {\n  content: 'Eb';\n}\n.piano .e::after {\n  content: 'E';\n}\n.piano .f::after {\n  content: 'F';\n}\n.piano .gb::after {\n  content: 'Gb';\n}\n.piano .g::after {\n  content: 'G';\n}\n.piano .ab::after {\n  content: 'Ab';\n}\n.piano .a::after {\n  content: 'A';\n}\n.piano .bb::after {\n  content: 'Bb';\n}\n.piano .b::after {\n  content: 'B';\n}\n.piano .c::after {\n  content: 'C';\n}\n.computer-keys {\n  display: flex;\n}\n.computer-keys div {\n  margin: 2px;\n  padding: 10px;\n  border-radius: 3px;\n  background: #ccc;\n  color: #333;\n  box-shadow: 0 0 1px #000;\n}\n.fn-key {\n  font-size: 10px;\n}\n.caps {\n  padding-right: 5px !important;\n}\n.shift {\n  padding-right: 50px !important;\n}\n/*.computer-keys .white {\n\tbackground: white;\n}\n\n.computer-keys .black {\n\tbackground: #333;\n\tcolor: white;\n}*/\n.computer-keys .highlight {\n  background: #f26c4e;\n}\n.computer-keys .rootNote {\n  background: #3db878;\n}\n", ""]);
+exports.push([module.i, ".instrument .db::after {\n  content: 'Db';\n}\n.instrument .d::after {\n  content: 'D';\n}\n.instrument .eb::after {\n  content: 'Eb';\n}\n.instrument .e::after {\n  content: 'E';\n}\n.instrument .f::after {\n  content: 'F';\n}\n.instrument .gb::after {\n  content: 'Gb';\n}\n.instrument .g::after {\n  content: 'G';\n}\n.instrument .ab::after {\n  content: 'Ab';\n}\n.instrument .a::after {\n  content: 'A';\n}\n.instrument .bb::after {\n  content: 'Bb';\n}\n.instrument .b::after {\n  content: 'B';\n}\n.instrument .c::after {\n  content: 'C';\n}\n.computer-keys {\n  display: flex;\n}\n.computer-keys div {\n  margin: 2px;\n  padding: 10px;\n  border-radius: 3px;\n  background: #ccc;\n  color: #333;\n  box-shadow: 0 0 1px #000;\n}\n.fn-key {\n  font-size: 10px;\n}\n.caps {\n  padding-right: 5px !important;\n}\n.shift {\n  padding-right: 50px !important;\n}\n/*.computer-keys .white {\n\tbackground: white;\n}\n\n.computer-keys .black {\n\tbackground: #333;\n\tcolor: white;\n}*/\n.computer-keys .highlight {\n  background: #f26c4e;\n}\n.computer-keys .rootNote {\n  background: #3db878;\n}\n.computer-key {\n  position: relative;\n}\n.computer-key::after {\n  font-size: 9px;\n  font-weight: bold;\n  color: white;\n  position: absolute;\n  right: 2px;\n  top: 1px;\n}\n", ""]);
 
 // exports
 
@@ -28655,7 +28655,7 @@ var ComputerKey = function ComputerKey(_ref) {
 	    highlight = _ref.highlight,
 	    note = _ref.note;
 
-	var className = color + ' ' + note;
+	var className = color + ' computer-key ' + note;
 	if (highlight) {
 		className += ' highlight';
 	}

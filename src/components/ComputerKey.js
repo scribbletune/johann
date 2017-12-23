@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ComputerKey = ({ label, color, rootNote, highlight, note }) => {
-	var className = color + ' ' + note;
+	var className = color + ' computer-key ' + note;
 	if (highlight) {
 		className += ' highlight';
 	}

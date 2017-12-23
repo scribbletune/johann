@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Fret = ({ rootNote, highlight, note }) => {	
-	var className = 'fret ' + note;
+	var className = 'fret ' + (note.replace(/\d/g, '')) + ' ' + note;
 	if (highlight) {
 		className += ' highlight';
 	}
