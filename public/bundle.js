@@ -5028,7 +5028,7 @@ var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var store = (0, _redux.createStore)(_root.rootReducer);
+var store = (0, _redux.createStore)(_root.rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 var render = function render() {
 	_reactDom2.default.render(_react2.default.createElement(
