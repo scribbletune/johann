@@ -4,7 +4,8 @@ import Controls from './Controls.js';
 import Piano from './Piano.js';
 import Guitar from './Guitar.js';
 import FretboardFlipper from '../components/FretboardFlipper.js';
-import { flipFretboard } from '../actions/creators.js';
+import Dropdown from '../components/Dropdown.js';
+import { flipFretboard, changeTuning } from '../actions/creators.js';
 import ComputerKeyboard from './ComputerKeyboard.js';
 
 const App = ({ store }) => {
@@ -32,9 +33,19 @@ const App = ({ store }) => {
 						<Guitar 
 							notes={state.notes} 
 							rootNote={state.rootNote} 
-							fretboardIsFlipped={state.fretboardIsFlipped} 
+							fretboardIsFlipped={state.fretboardIsFlipped}
+							strings={state.tunings[state.selectedTuningIdx].strings}
 						/>
-						<FretboardFlipper onFretboardFlip={flipFretboard.bind(null, store.dispatch)} />
+						<div className="guitar-controls">
+							<FretboardFlipper onFretboardFlip={flipFretboard.bind(null, store.dispatch)} />
+							Tuning: 
+							<Dropdown 
+								data={state.tunings} 
+								controlType = 'tuning'
+								onChangeEventHandler={changeTuning.bind(null, store.dispatch)} 
+							/>
+							<strong>{state.tunings[state.selectedTuningIdx].display}</strong>
+						</div>
 					</div>
 			} />
 			<Route path="/piano" render={

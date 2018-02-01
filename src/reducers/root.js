@@ -11,7 +11,15 @@ var initialState = {
 	type: 'scale',
 	rootNote: 'c',
 	notes: [],
-	fretboardIsFlipped: false
+	fretboardIsFlipped: false,
+	tunings: [
+		{label: 'Regular', 'display': 'EBGDAE', strings: ['e4', 'b3', 'g3', 'd3', 'a2', 'e2'], name: 0},	// name is value
+		{label: 'Dropped D', 'display': 'EBGDAD', strings: ['e4', 'b3', 'g3', 'd3', 'a2', 'd2'], name: 1},
+		{label: 'Double dropped D', display: 'DADGBD', strings: ['d4', 'a3', 'd3', 'g3', 'b2', 'd2'], name: 2},
+		{label: 'Drop C', 'display': 'DAFCGC', strings: ['d4', 'a3', 'f3', 'c3', 'g2', 'c2'], name: 3},
+		{label: 'Open G', 'display': 'DGDGBD', strings: ['d4', 'g3', 'd3', 'g3', 'b2', 'd2'], name: 4}
+	],
+	selectedTuningIdx: 0
 };
 
 export const rootReducer = (state = initialState, action = {}) => {
@@ -33,6 +41,9 @@ export const rootReducer = (state = initialState, action = {}) => {
 
 		case constants.FLIP_FRETBOARD:
 			return Object.assign({}, state, {fretboardIsFlipped: !state.fretboardIsFlipped});
+
+		case constants.CHANGE_TUNING:
+			return Object.assign({}, state, {selectedTuningIdx: action.data});
 
 		default:
 			return state;

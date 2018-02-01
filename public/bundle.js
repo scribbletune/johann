@@ -2576,7 +2576,7 @@ module.exports = {setMiddleC, transposeNote, transposeOctave, defaultMiddleC};
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.flipFretboard = exports.controlChanged = exports.initApp = undefined;
+exports.changeTuning = exports.flipFretboard = exports.controlChanged = exports.initApp = undefined;
 
 var _constants = __webpack_require__(47);
 
@@ -2603,9 +2603,17 @@ var flipFretboard = function flipFretboard(dispatch) {
 	});
 };
 
+var changeTuning = function changeTuning(dispatch, e) {
+	dispatch({
+		type: _constants2.default.CHANGE_TUNING,
+		data: e.target.value
+	});
+};
+
 exports.initApp = initApp;
 exports.controlChanged = controlChanged;
 exports.flipFretboard = flipFretboard;
+exports.changeTuning = changeTuning;
 
 /***/ }),
 /* 27 */
@@ -3943,7 +3951,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {
 	LOAD_NOTES: 'LOAD_NOTES',
-	FLIP_FRETBOARD: 'FLIP_FRETBOARD'
+	FLIP_FRETBOARD: 'FLIP_FRETBOARD',
+	CHANGE_TUNING: 'CHANGE_TUNING'
 };
 
 /***/ }),
@@ -26593,7 +26602,10 @@ var initialState = {
 	type: 'scale',
 	rootNote: 'c',
 	notes: [],
-	fretboardIsFlipped: false
+	fretboardIsFlipped: false,
+	tunings: [{ label: 'Regular', 'display': 'EBGDAE', strings: ['e4', 'b3', 'g3', 'd3', 'a2', 'e2'], name: 0 }, // name is value
+	{ label: 'Dropped D', 'display': 'EBGDAD', strings: ['e4', 'b3', 'g3', 'd3', 'a2', 'd2'], name: 1 }, { label: 'Double dropped D', display: 'DADGBD', strings: ['d4', 'a3', 'd3', 'g3', 'b2', 'd2'], name: 2 }, { label: 'Drop C', 'display': 'DAFCGC', strings: ['d4', 'a3', 'f3', 'c3', 'g2', 'c2'], name: 3 }, { label: 'Open G', 'display': 'DGDGBD', strings: ['d4', 'g3', 'd3', 'g3', 'b2', 'd2'], name: 4 }],
+	selectedTuningIdx: 0
 };
 
 var rootReducer = exports.rootReducer = function rootReducer() {
@@ -26618,6 +26630,9 @@ var rootReducer = exports.rootReducer = function rootReducer() {
 
 		case _constants2.default.FLIP_FRETBOARD:
 			return Object.assign({}, state, { fretboardIsFlipped: !state.fretboardIsFlipped });
+
+		case _constants2.default.CHANGE_TUNING:
+			return Object.assign({}, state, { selectedTuningIdx: action.data });
 
 		default:
 			return state;
@@ -26657,12 +26672,14 @@ var getChordNames = function getChordNames() {
 };
 
 var getScale = function getScale(rootNote, mode) {
-	// concatenate scales from octave range 2 to 5
+	// concatenate scales from octave range 1 to 6
+	var o1 = (0, _scribbletune.scale)(rootNote, mode, 1, false);
 	var o2 = (0, _scribbletune.scale)(rootNote, mode, 2, false);
 	var o3 = (0, _scribbletune.scale)(rootNote, mode, 3, false);
 	var o4 = (0, _scribbletune.scale)(rootNote, mode, 4, false);
 	var o5 = (0, _scribbletune.scale)(rootNote, mode, 5, false);
-	return o2.concat(o3, o4, o5);
+	var o6 = (0, _scribbletune.scale)(rootNote, mode, 6, false);
+	return o2.concat(o3, o4, o5, o6);
 };
 
 var getChord = function getChord(chordName) {
@@ -27683,6 +27700,10 @@ var _FretboardFlipper = __webpack_require__(132);
 
 var _FretboardFlipper2 = _interopRequireDefault(_FretboardFlipper);
 
+var _Dropdown = __webpack_require__(120);
+
+var _Dropdown2 = _interopRequireDefault(_Dropdown);
+
 var _creators = __webpack_require__(26);
 
 var _ComputerKeyboard = __webpack_require__(133);
@@ -27751,9 +27772,25 @@ var App = function App(_ref) {
 					_react2.default.createElement(_Guitar2.default, {
 						notes: state.notes,
 						rootNote: state.rootNote,
-						fretboardIsFlipped: state.fretboardIsFlipped
+						fretboardIsFlipped: state.fretboardIsFlipped,
+						strings: state.tunings[state.selectedTuningIdx].strings
 					}),
-					_react2.default.createElement(_FretboardFlipper2.default, { onFretboardFlip: _creators.flipFretboard.bind(null, store.dispatch) })
+					_react2.default.createElement(
+						'div',
+						{ className: 'guitar-controls' },
+						_react2.default.createElement(_FretboardFlipper2.default, { onFretboardFlip: _creators.flipFretboard.bind(null, store.dispatch) }),
+						'Tuning:',
+						_react2.default.createElement(_Dropdown2.default, {
+							data: state.tunings,
+							controlType: 'tuning',
+							onChangeEventHandler: _creators.changeTuning.bind(null, store.dispatch)
+						}),
+						_react2.default.createElement(
+							'strong',
+							null,
+							state.tunings[state.selectedTuningIdx].display
+						)
+					)
 				);
 			} }),
 		_react2.default.createElement(_reactRouterDom.Route, { path: '/piano', render: function render() {
@@ -28186,34 +28223,47 @@ __webpack_require__(130);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var chromaticNotes = ['c2', 'db2', 'd2', 'eb2', 'e2', 'f2', 'gb2', 'g2', 'ab2', 'a2', 'bb2', 'b2', 'c3', 'db3', 'd3', 'eb3', 'e3', 'f3', 'gb3', 'g3', 'ab3', 'a3', 'bb3', 'b3', 'c4', 'db4', 'd4', 'eb4', 'e4', 'f4', 'gb4', 'g4', 'ab4', 'a4', 'bb4', 'b4', 'c5', 'db5', 'd5', 'eb5', 'e5', 'f5', 'gb5', 'g5', 'ab5', 'a5', 'bb5', 'b5', 'c6', 'db6', 'd6', 'eb6', 'e6', 'f6', 'gb6', 'g6', 'ab6', 'a6', 'bb6', 'b6'];
+
+/**
+ * Given the name of a string, say 'E', return 24 notes that can come on this `E` string
+ * @param  {String} s [description]
+ * @return {Object} An array of notes of the given string
+ */
+var getStringNotes = function getStringNotes(s) {
+	var idx = chromaticNotes.indexOf(s);
+	return chromaticNotes.slice(idx, idx + 25);
+};
+
 var Guitar = function Guitar(_ref) {
 	var notes = _ref.notes,
 	    rootNote = _ref.rootNote,
-	    fretboardIsFlipped = _ref.fretboardIsFlipped;
+	    fretboardIsFlipped = _ref.fretboardIsFlipped,
+	    strings = _ref.strings;
 
-	var strEHi = 'e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5 ab5 a5 bb5 b5 c6 db6 d6 eb6 e6';
-	var strB = 'b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5 ab5 a5 bb5 b5';
-	var strG = 'g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5';
-	var strD = 'd3 eb3 e3 f3 gb3 g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5';
-	var strA = 'a2 bb2 b2 c3 db3 d3 eb3 e3 f3 gb3 g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4';
-	var strELo = 'e2 f2 gb2 g2 ab2 a2 bb2 b2 c3 db3 d3 eb3 e3 f3 gb3 g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4';
+	var str1 = getStringNotes(strings[0]);
+	var str2 = getStringNotes(strings[1]);
+	var str3 = getStringNotes(strings[2]);
+	var str4 = getStringNotes(strings[3]);
+	var str5 = getStringNotes(strings[4]);
+	var str6 = getStringNotes(strings[5]);
 
-	var eHiFrets = strEHi.split(' ').map(function (note) {
+	var str1Frets = str1.map(function (note) {
 		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
 	});
-	var bFrets = strB.split(' ').map(function (note) {
+	var str2Frets = str2.map(function (note) {
 		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
 	});
-	var gFrets = strG.split(' ').map(function (note) {
+	var str3Frets = str3.map(function (note) {
 		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
 	});
-	var dFrets = strD.split(' ').map(function (note) {
+	var str4Frets = str4.map(function (note) {
 		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
 	});
-	var aFrets = strA.split(' ').map(function (note) {
+	var str5Frets = str5.map(function (note) {
 		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
 	});
-	var eLoFrets = strELo.split(' ').map(function (note) {
+	var str6Frets = str6.map(function (note) {
 		return _react2.default.createElement(_Fret2.default, { rootNote: note.replace(/\d+/g, '') === rootNote, highlight: notes.indexOf(note) > -1, key: note, note: note });
 	});
 
@@ -28222,33 +28272,33 @@ var Guitar = function Guitar(_ref) {
 		{ className: 'guitar' },
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strEHi' },
-			eHiFrets
+			{ className: 'str' },
+			str1Frets
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strB' },
-			bFrets
+			{ className: 'str' },
+			str2Frets
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strG' },
-			gFrets
+			{ className: 'str' },
+			str3Frets
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strD' },
-			dFrets
+			{ className: 'str' },
+			str4Frets
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strA' },
-			aFrets
+			{ className: 'str' },
+			str5Frets
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strELo' },
-			eLoFrets
+			{ className: 'str' },
+			str6Frets
 		)
 	);
 
@@ -28257,33 +28307,33 @@ var Guitar = function Guitar(_ref) {
 		{ className: 'guitar' },
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strELo' },
-			eLoFrets
+			{ className: 'str' },
+			str6Frets
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strA' },
-			aFrets
+			{ className: 'str' },
+			str5Frets
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strD' },
-			dFrets
+			{ className: 'str' },
+			str4Frets
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strG' },
-			gFrets
+			{ className: 'str' },
+			str3Frets
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strB' },
-			bFrets
+			{ className: 'str' },
+			str2Frets
 		),
 		_react2.default.createElement(
 			'div',
-			{ className: 'str strEHi' },
-			eHiFrets
+			{ className: 'str' },
+			str1Frets
 		)
 	);
 
@@ -28370,7 +28420,7 @@ exports = module.exports = __webpack_require__(15)(undefined);
 
 
 // module
-exports.push([module.i, ".instrument .db::after {\n  content: 'Db';\n}\n.instrument .d::after {\n  content: 'D';\n}\n.instrument .eb::after {\n  content: 'Eb';\n}\n.instrument .e::after {\n  content: 'E';\n}\n.instrument .f::after {\n  content: 'F';\n}\n.instrument .gb::after {\n  content: 'Gb';\n}\n.instrument .g::after {\n  content: 'G';\n}\n.instrument .ab::after {\n  content: 'Ab';\n}\n.instrument .a::after {\n  content: 'A';\n}\n.instrument .bb::after {\n  content: 'Bb';\n}\n.instrument .b::after {\n  content: 'B';\n}\n.instrument .c::after {\n  content: 'C';\n}\n.guitar {\n  font-family: sans-serif;\n}\n.guitar .str {\n  display: grid;\n  grid-template-columns: 25px repeat(24, 50px);\n}\n.guitar .fret {\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n  height: 25px;\n  position: relative;\n}\n.guitar .fret::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  content: '';\n  bottom: 2px;\n  color: black;\n  position: absolute;\n  left: 50%;\n  margin-left: -8px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  -webkit-border-radius: 8px;\n  color: white;\n  font-size: 10px;\n}\n.guitar .str .highlight::after {\n  background: #f26c4e;\n  box-shadow: 0 0 2px #333;\n}\n.guitar .str .rootNote::after {\n  background: #3db878;\n}\n.guitar .e4:first-child,\n.guitar .b3:first-child,\n.guitar .g3:first-child,\n.guitar .d3:first-child,\n.guitar .a2:first-child,\n.guitar .e2:first-child {\n  border: none;\n  border-right: 3px solid #333;\n}\n.guitar .e4:first-child::after {\n  content: 'E';\n}\n.guitar .b3:first-child::after {\n  content: 'B';\n}\n.guitar .g3:first-child::after {\n  content: 'G';\n}\n.guitar .d3:first-child::after {\n  content: 'D';\n}\n.guitar .a2:first-child::after {\n  content: 'A';\n}\n.guitar .e2:first-child::after {\n  content: 'E';\n}\n.guitar .str:nth-child(4) .fret:nth-child(6),\n.guitar .str:nth-child(4) .fret:nth-child(8),\n.guitar .str:nth-child(4) .fret:nth-child(10),\n.guitar .str:nth-child(3) .fret:nth-child(13),\n.guitar .str:nth-child(5) .fret:nth-child(13),\n.guitar .str:nth-child(4) .fret:nth-child(16) {\n  border: none;\n  border-top: 3px solid #333;\n}\nbutton {\n  margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, ".instrument .db::after {\n  content: 'Db';\n}\n.instrument .d::after {\n  content: 'D';\n}\n.instrument .eb::after {\n  content: 'Eb';\n}\n.instrument .e::after {\n  content: 'E';\n}\n.instrument .f::after {\n  content: 'F';\n}\n.instrument .gb::after {\n  content: 'Gb';\n}\n.instrument .g::after {\n  content: 'G';\n}\n.instrument .ab::after {\n  content: 'Ab';\n}\n.instrument .a::after {\n  content: 'A';\n}\n.instrument .bb::after {\n  content: 'Bb';\n}\n.instrument .b::after {\n  content: 'B';\n}\n.instrument .c::after {\n  content: 'C';\n}\n.guitar {\n  font-family: sans-serif;\n}\n.guitar .str {\n  display: grid;\n  grid-template-columns: 25px repeat(24, 50px);\n}\n.guitar .fret {\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n  height: 25px;\n  position: relative;\n}\n.guitar .fret::after {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  content: '';\n  bottom: 2px;\n  color: black;\n  position: absolute;\n  left: 50%;\n  margin-left: -8px;\n  width: 16px;\n  height: 16px;\n  border-radius: 8px;\n  -webkit-border-radius: 8px;\n  color: white;\n  font-size: 10px;\n}\n.guitar .str .highlight::after {\n  background: #f26c4e;\n  box-shadow: 0 0 2px #333;\n}\n.guitar .str .rootNote::after {\n  background: #3db878;\n}\n.guitar .e4:first-child,\n.guitar .d4:first-child,\n.guitar .b3:first-child,\n.guitar .c3:first-child,\n.guitar .g3:first-child,\n.guitar .d3:first-child,\n.guitar .a2:first-child,\n.guitar .a3:first-child,\n.guitar .f3:first-child,\n.guitar .e2:first-child,\n.guitar .b2:first-child,\n.guitar .c2:first-child,\n.guitar .g2:first-child,\n.guitar .d2:first-child {\n  border: none;\n  border-right: 3px solid #333;\n}\n.guitar .e4:first-child::after {\n  content: 'E';\n}\n.guitar .b3:first-child::after {\n  content: 'B';\n}\n.guitar .g3:first-child::after {\n  content: 'G';\n}\n.guitar .d3:first-child::after {\n  content: 'D';\n}\n.guitar .a2:first-child::after {\n  content: 'A';\n}\n.guitar .e2:first-child::after {\n  content: 'E';\n}\n.guitar .str:nth-child(4) .fret:nth-child(6),\n.guitar .str:nth-child(4) .fret:nth-child(8),\n.guitar .str:nth-child(4) .fret:nth-child(10),\n.guitar .str:nth-child(3) .fret:nth-child(13),\n.guitar .str:nth-child(5) .fret:nth-child(13),\n.guitar .str:nth-child(4) .fret:nth-child(16) {\n  border: none;\n  border-top: 3px solid #333;\n}\n.guitar-controls {\n  font-size: 14px;\n}\n.guitar-controls button,\n.guitar-controls select {\n  margin: 10px;\n}\n", ""]);
 
 // exports
 

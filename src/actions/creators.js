@@ -17,4 +17,11 @@ const flipFretboard = (dispatch) => {
 	});
 };
 
-export { initApp,  controlChanged, flipFretboard };
+const changeTuning = (dispatch, e) => {
+	dispatch({
+		type: constants.CHANGE_TUNING,
+		data: e.target.value
+	});
+};
+
+export { initApp,  controlChanged, flipFretboard, changeTuning };

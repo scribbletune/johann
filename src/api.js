@@ -11,12 +11,14 @@ const getChordNames = () => (listChords().map(chord => ({
 })));
 
 const getScale = (rootNote, mode) => {
-	// concatenate scales from octave range 2 to 5
+	// concatenate scales from octave range 1 to 6
+	var o1 = scale(rootNote, mode, 1, false);
 	var o2 = scale(rootNote, mode, 2, false);
 	var o3 = scale(rootNote, mode, 3, false);
 	var o4 = scale(rootNote, mode, 4, false);
 	var o5 = scale(rootNote, mode, 5, false);
-	return o2.concat(o3, o4, o5);
+	var o6 = scale(rootNote, mode, 6, false);
+	return o2.concat(o3, o4, o5, o6);
 };
 
 const getChord = (chordName) => {

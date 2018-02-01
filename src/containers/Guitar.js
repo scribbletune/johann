@@ -2,40 +2,58 @@ import React from 'react';
 import Fret from '../components/Fret.js';
 import './Guitar.less';
 
-const Guitar = ({ notes, rootNote, fretboardIsFlipped }) => {
-	const strEHi = 'e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5 ab5 a5 bb5 b5 c6 db6 d6 eb6 e6';
-	const strB = 'b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5 ab5 a5 bb5 b5';
-	const strG = 'g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5 eb5 e5 f5 gb5 g5';
-	const strD = 'd3 eb3 e3 f3 gb3 g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4 bb4 b4 c5 db5 d5';
-	const strA = 'a2 bb2 b2 c3 db3 d3 eb3 e3 f3 gb3 g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4 f4 gb4 g4 ab4 a4';
-	const strELo = 'e2 f2 gb2 g2 ab2 a2 bb2 b2 c3 db3 d3 eb3 e3 f3 gb3 g3 ab3 a3 bb3 b3 c4 db4 d4 eb4 e4';
+const chromaticNotes = [
+	'c2', 'db2', 'd2', 'eb2', 'e2', 'f2', 'gb2', 'g2', 'ab2', 'a2', 'bb2', 'b2',
+	'c3', 'db3', 'd3', 'eb3', 'e3', 'f3', 'gb3', 'g3', 'ab3', 'a3', 'bb3', 'b3',
+	'c4', 'db4', 'd4', 'eb4', 'e4', 'f4', 'gb4', 'g4', 'ab4', 'a4', 'bb4', 'b4',
+	'c5', 'db5', 'd5', 'eb5', 'e5', 'f5', 'gb5', 'g5', 'ab5', 'a5', 'bb5', 'b5',
+	'c6', 'db6', 'd6', 'eb6', 'e6', 'f6', 'gb6', 'g6', 'ab6', 'a6', 'bb6', 'b6'
+];
+
+/**
+ * Given the name of a string, say 'E', return 24 notes that can come on this `E` string
+ * @param  {String} s [description]
+ * @return {Object} An array of notes of the given string
+ */
+const getStringNotes = s => {
+	let idx = chromaticNotes.indexOf(s);
+	return chromaticNotes.slice(idx, idx + 25);
+}
+
+const Guitar = ({ notes, rootNote, fretboardIsFlipped, strings }) => {
+	const str1 = getStringNotes(strings[0]);
+	const str2 = getStringNotes(strings[1]);
+	const str3 = getStringNotes(strings[2]);
+	const str4 = getStringNotes(strings[3]);
+	const str5 = getStringNotes(strings[4]);
+	const str6 = getStringNotes(strings[5]);
 	
-	const eHiFrets = strEHi.split(' ').map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const bFrets = strB.split(' ').map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const gFrets = strG.split(' ').map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const dFrets = strD.split(' ').map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const aFrets = strA.split(' ').map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const eLoFrets = strELo.split(' ').map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
+	const str1Frets = str1.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
+	const str2Frets = str2.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
+	const str3Frets = str3.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
+	const str4Frets = str4.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
+	const str5Frets = str5.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
+	const str6Frets = str6.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
 
 	const regularFretboard = (
 		<div className="guitar">
-			<div className="str strEHi">{eHiFrets}</div>
-			<div className="str strB">{bFrets}</div>
-			<div className="str strG">{gFrets}</div>
-			<div className="str strD">{dFrets}</div>
-			<div className="str strA">{aFrets}</div>
-			<div className="str strELo">{eLoFrets}</div>
+			<div className="str">{str1Frets}</div>
+			<div className="str">{str2Frets}</div>
+			<div className="str">{str3Frets}</div>
+			<div className="str">{str4Frets}</div>
+			<div className="str">{str5Frets}</div>
+			<div className="str">{str6Frets}</div>
 		</div>
 	);
 
 	const flippedFretboard = (
 		<div className="guitar">
-			<div className="str strELo">{eLoFrets}</div>
-			<div className="str strA">{aFrets}</div>
-			<div className="str strD">{dFrets}</div>
-			<div className="str strG">{gFrets}</div>
-			<div className="str strB">{bFrets}</div>
-			<div className="str strEHi">{eHiFrets}</div>
+			<div className="str">{str6Frets}</div>
+			<div className="str">{str5Frets}</div>
+			<div className="str">{str4Frets}</div>
+			<div className="str">{str3Frets}</div>
+			<div className="str">{str2Frets}</div>
+			<div className="str">{str1Frets}</div>
 		</div>
 	);
 
