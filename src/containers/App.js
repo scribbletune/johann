@@ -13,10 +13,10 @@ const App = ({ store }) => {
 	return (
 		<div>
 			<div className="menu">
-				<Controls 
-					pitches={state.pitches} 
-					scales={state.scales} 
-					chords={state.chords} 
+				<Controls
+					pitches={state.pitches}
+					scales={state.scales}
+					chords={state.chords}
 					type={state.type}
 					dispatch={store.dispatch}
 				/>
@@ -30,19 +30,20 @@ const App = ({ store }) => {
 			</div>
 			<Route path="/guitar" render={
 				() => <div className="instrument">
-						<Guitar 
-							notes={state.notes} 
-							rootNote={state.rootNote} 
+						<Guitar
+							notes={state.notes}
+							rootNote={state.rootNote}
 							fretboardIsFlipped={state.fretboardIsFlipped}
 							strings={state.tunings[state.selectedTuningIdx].strings}
 						/>
 						<div className="guitar-controls">
 							<FretboardFlipper onFretboardFlip={flipFretboard.bind(null, store.dispatch)} />
-							Tuning: 
-							<Dropdown 
-								data={state.tunings} 
+							Tuning:
+							<Dropdown
+								data={state.tunings}
 								controlType = 'tuning'
-								onChangeEventHandler={changeTuning.bind(null, store.dispatch)} 
+								onChangeEventHandler={changeTuning.bind(null, store.dispatch)}
+								selectedValue={state.tunings[state.selectedTuningIdx].name}
 							/>
 							<strong>{state.tunings[state.selectedTuningIdx].display}</strong>
 						</div>

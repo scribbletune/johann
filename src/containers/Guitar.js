@@ -27,7 +27,7 @@ const Guitar = ({ notes, rootNote, fretboardIsFlipped, strings }) => {
 	const str4 = getStringNotes(strings[3]);
 	const str5 = getStringNotes(strings[4]);
 	const str6 = getStringNotes(strings[5]);
-	
+
 	const str1Frets = str1.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
 	const str2Frets = str2.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
 	const str3Frets = str3.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
@@ -62,7 +62,7 @@ const Guitar = ({ notes, rootNote, fretboardIsFlipped, strings }) => {
 	} else {
 		return regularFretboard;
 	}
-	
+
 };
 
 export default Guitar;
