@@ -1,19 +1,47 @@
 @import "./common";
 
-@fretWidth: 50px;
-@fretHeight: 25px;
-@highlightSide: 16px;
-@highlightBorderRadius: 8px;
+@fretWidth: 40px;
+@fretHeight: 40px;
+@highlightSide: 26px;
+@noteMarginTop: 13px;
+@noteMarginLeft: -6px;
+@highlightBorderRadius: 13px;
+@fretBorderColor: black;
+
+.guitarContainer {
+	position: relative;
+
+	.fretDots {
+		position: absolute;
+		left: 230px;
+		top: 96px;
+	}
+
+	.fretDot {
+		width: 10px;
+		height: 10px;
+		border-radius: 5px;
+		background: black;
+		display: inline-block;
+	}
+
+	.seventhFret { margin-left: 70px; }
+	.ninthFret { margin-left: 70px; }
+	.twelthFret { margin-left: 110px; }
+	.fifteenthFret { margin-left: 110px; }
+
+}
 
 .guitar {
+	margin: 15px;
 	font-family: sans-serif;
-		.str {
+	.str {
 		display: grid;
-		grid-template-columns: 25px repeat(24, @fretWidth);
+		grid-template-columns:  repeat(25, @fretWidth);
 	}
 
 	.fret {
-		border: 1px solid #ccc;
+		border: 1px solid @fretBorderColor;
 		box-sizing: border-box;
 		height: @fretHeight;
 		position: relative;
@@ -24,32 +52,35 @@
 		align-items: center;
 		justify-content: center;
 		content: '';
-		bottom: 2px;
 		color: black;
+		top: -@noteMarginTop;
 		position: absolute;
-		left: 50%;
-		margin-left: -@highlightBorderRadius;
+		left: -@noteMarginLeft;
 		width: @highlightSide;
 		height: @highlightSide;
 		border-radius: @highlightBorderRadius;
 		-webkit-border-radius: @highlightBorderRadius;
 		color: white;
 		font-size: 10px;
+		opacity: 0;
 	}
 
-	.str .highlight::after { 
+	.str .highlight::after {
 		background: @highlightNote;
 		box-shadow: 0 0 2px #333;
+		opacity: 1;
 	}
 
 	.str .rootNote::after { background: @highlightRootNote;}
+	.str:last-child .fret { border-color: white; }
+	/*.str:last-child .fret:first-child::after { margin-left: -25px; }*/
 
 	.e4:first-child,
 	.d4:first-child,
-	.b3:first-child, 
-	.c3:first-child, 
-	.g3:first-child, 
-	.d3:first-child, 
+	.b3:first-child,
+	.c3:first-child,
+	.g3:first-child,
+	.d3:first-child,
 	.a2:first-child,
 	.a3:first-child,
 	.f3:first-child,
@@ -58,8 +89,8 @@
 	.c2:first-child,
 	.g2:first-child,
 	.d2:first-child, {
-		border: none;
-		border-right: 3px solid #333;
+		border-color: white;
+		border-right: 10px solid #333;
 	}
 
 	.e4:first-child::after { content: 'E'; }
@@ -69,21 +100,20 @@
 	.a2:first-child::after { content: 'A'; }
 	.e2:first-child::after { content: 'E'; }
 
-	.str:nth-child(4) .fret:nth-child(6), 
-	.str:nth-child(4) .fret:nth-child(8), 
-	.str:nth-child(4) .fret:nth-child(10), 
+/*
+	.str:nth-child(4) .fret:nth-child(6),
+	.str:nth-child(4) .fret:nth-child(8),
+	.str:nth-child(4) .fret:nth-child(10),
 	.str:nth-child(3) .fret:nth-child(13),
 	.str:nth-child(5) .fret:nth-child(13),
 	.str:nth-child(4) .fret:nth-child(16) {
 		border: none;
 		border-top: 3px solid #333;
 	}
+*/
+
 }
 
 .guitar-controls {
 	font-size: 14px;
-}
-.guitar-controls button,
-.guitar-controls select {
-	margin: 10px;
 }

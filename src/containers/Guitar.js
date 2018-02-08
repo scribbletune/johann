@@ -35,6 +35,16 @@ const Guitar = ({ notes, rootNote, fretboardIsFlipped, strings }) => {
 	const str5Frets = str5.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
 	const str6Frets = str6.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
 
+	const fretDots = (
+		<div className="fretDots">
+			<div className="fretDot fifthFret"></div>
+			<div className="fretDot seventhFret"></div>
+			<div className="fretDot ninthFret"></div>
+			<div className="fretDot twelthFret"></div>
+			<div className="fretDot fifteenthFret"></div>
+		</div>
+	);
+
 	const regularFretboard = (
 		<div className="guitar">
 			<div className="str">{str1Frets}</div>
@@ -57,11 +67,13 @@ const Guitar = ({ notes, rootNote, fretboardIsFlipped, strings }) => {
 		</div>
 	);
 
-	if (fretboardIsFlipped) {
-		return flippedFretboard;
-	} else {
-		return regularFretboard;
-	}
+
+	return (
+		<div className="guitarContainer">
+			{fretboardIsFlipped ? flippedFretboard : regularFretboard}
+			{fretDots}
+		</div>
+	);
 
 };
 
