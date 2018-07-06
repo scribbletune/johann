@@ -1,9 +1,8 @@
 import React from 'react';
 import Dropdown from '../components/Dropdown.js';
-import { controlChanged } from '../actions/creators.js';
 import './Controls.less';
 
-const Controls = ({ pitches, scales, chords, type, dispatch }) => {
+const Controls = ({ pitches, scales, chords, type, controlChangedHandler }) => {
 	const types = [{
 		name: 'scale',
 		label: 'Scale'
@@ -22,7 +21,7 @@ const Controls = ({ pitches, scales, chords, type, dispatch }) => {
 		return <Dropdown 
 			data={ddData} 
 			controlType={ddType}
-			onChangeEventHandler={controlChanged.bind(null, dispatch)} 
+			onChangeEventHandler={controlChangedHandler} 
 		/>
 	}
 
@@ -32,7 +31,7 @@ const Controls = ({ pitches, scales, chords, type, dispatch }) => {
 				<Dropdown 
 					data={pitches} 
 					controlType="rootNote" 
-					onChangeEventHandler={controlChanged.bind(null, dispatch)} 
+					onChangeEventHandler={controlChangedHandler} 
 				/>
 			</li>
 			<li>{getChordScaleDropdown()}</li>
@@ -40,7 +39,7 @@ const Controls = ({ pitches, scales, chords, type, dispatch }) => {
 				<Dropdown 
 					data={types} 
 					controlType="type" 
-					onChangeEventHandler={controlChanged.bind(null, dispatch)} 
+					onChangeEventHandler={controlChangedHandler} 
 				/>
 			</li>
 		</ul>

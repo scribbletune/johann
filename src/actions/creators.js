@@ -2,7 +2,7 @@ import constants from './constants';
 
 const initApp = (dispatch) => (dispatch({ type: constants.LOAD_NOTES }));
 
-const controlChanged = (dispatch, e, controlType) => {
+const controlChanged = (dispatch, e) => {
 	let data = {};
 	data[e.target.dataset.controlType] = e.target.value;
 	dispatch({
