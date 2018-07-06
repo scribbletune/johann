@@ -1,16 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Route, Link, withRouter } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Controls from './Controls.js';
 import Piano from './Piano.js';
 import Guitar from './Guitar.js';
-import FretboardFlipper from '../components/FretboardFlipper.js';
-import Dropdown from '../components/Dropdown.js';
+import GuitarControls from './GuitarControls.js';
 import ComputerKeyboard from './ComputerKeyboard.js';
 
-const App = ({ tunings, selectedTuningIdx  }) => {
+const App = () => {
 	return (
-		<div>
+		<section>
 			<div className="menu">
 				<Controls />
 				<nav>
@@ -21,35 +19,18 @@ const App = ({ tunings, selectedTuningIdx  }) => {
 					</ul>
 				</nav>
 			</div>
-			<Route path="/guitar" render={
-				() => <div className="instrument">
-						<Guitar />
-						<div className="guitar-controls">
-							<FretboardFlipper />
-							Tuning:
-							<Dropdown
-								data={tunings}
-								controlType = 'tuning'
-								selectedValue={tunings[selectedTuningIdx].name}
-							/>
-							<strong>{tunings[selectedTuningIdx].display}</strong>
+			<div className="instrument">
+				<Route path="/guitar" render={
+					() => <div>
+							<Guitar />
+							<GuitarControls />
 						</div>
-					</div>
-			} />
-			<Route path="/piano" render={
-				() => <div className="instrument">
-					<Piano />
-				</div>
-			} />
-			<Route path="/keyboard" render={
-				() => <div className="instrument">
-					<ComputerKeyboard />
-				</div>
-			} />
-		</div>
+				} />
+				<Route path="/piano" render={() => <Piano />} />
+				<Route path="/keyboard" render={() => <ComputerKeyboard />} />
+			</div>
+		</section>
 	);
 };
 
-const mapStateToProps = state => state;
-
-export default withRouter(connect(mapStateToProps)(App));
+export default App;
