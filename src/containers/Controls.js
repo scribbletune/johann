@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Dropdown from '../components/Dropdown.js';
 import './Controls.less';
 
@@ -46,4 +47,10 @@ const Controls = ({ pitches, scales, chords, type, controlChangedHandler }) => {
 	);
 };
 
-export default Controls;
+const mapStateToProps = state => ({
+	pitches: state.pitches, 
+	scales: state.scales, 
+	chords: state.chords, 
+	type: state.type
+})
+export default connect(mapStateToProps)(Controls);

@@ -1,5 +1,6 @@
 import React from 'react';
 import './ComputerKeyboard.less';
+import { connect } from 'react-redux';
 import ComputerKey from '../components/ComputerKey.js';
 
 const ComputerKeyboard = ({ notes, rootNote }) => {
@@ -54,4 +55,9 @@ const ComputerKeyboard = ({ notes, rootNote }) => {
 	);
 };
 
-export default ComputerKeyboard;
+const mapStateToProps = state => ({
+	notes: state.notes, 
+	rootNote: state.rootNote
+})
+
+export default connect(mapStateToProps)(ComputerKeyboard);
