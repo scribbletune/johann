@@ -26,8 +26,8 @@ const App = () => {
 							<GuitarControls />
 						</div>
 				} />
-				<Route path="/piano" render={() => <Piano />} />
-				<Route path="/keyboard" render={() => <ComputerKeyboard />} />
+				<Route path="/piano" component={Piano} />
+				<Route path="/keyboard" component={ComputerKeyboard} />
 			</div>
 		</section>
 	);

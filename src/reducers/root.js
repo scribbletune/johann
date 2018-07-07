@@ -43,7 +43,7 @@ export const rootReducer = (state = initialState, action = {}) => {
 			return Object.assign({}, state, {fretboardIsFlipped: !state.fretboardIsFlipped});
 
 		case constants.CHANGE_TUNING:
-			return Object.assign({}, state, {selectedTuningIdx: action.data});
+			return Object.assign({}, state, action.data);
 
 		default:
 			return state;

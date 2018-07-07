@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { controlChanged } from '../actions/creators';
 import Dropdown from '../components/Dropdown.js';
 import './Controls.less';
 
-const Controls = ({ pitches, scales, chords, type, controlChangedHandler }) => {
+const Controls = ({ pitches, scales, chords, type, rootNote }) => {
 	const types = [{
 		name: 'scale',
 		label: 'Scale'
@@ -22,7 +23,8 @@ const Controls = ({ pitches, scales, chords, type, controlChangedHandler }) => {
 		return <Dropdown 
 			data={ddData} 
 			controlType={ddType}
-			onChangeEventHandler={controlChangedHandler} 
+			onChangeEventHandler={controlChanged} 
+			selectedValue={ddType}
 		/>
 	}
 
@@ -32,7 +34,8 @@ const Controls = ({ pitches, scales, chords, type, controlChangedHandler }) => {
 				<Dropdown 
 					data={pitches} 
 					controlType="rootNote" 
-					onChangeEventHandler={controlChangedHandler} 
+					onChangeEventHandler={controlChanged} 
+					selectedValue={rootNote}
 				/>
 			</li>
 			<li>{getChordScaleDropdown()}</li>
@@ -40,7 +43,8 @@ const Controls = ({ pitches, scales, chords, type, controlChangedHandler }) => {
 				<Dropdown 
 					data={types} 
 					controlType="type" 
-					onChangeEventHandler={controlChangedHandler} 
+					onChangeEventHandler={controlChanged} 
+					selectedValue={type}
 				/>
 			</li>
 		</ul>
@@ -51,6 +55,9 @@ const mapStateToProps = state => ({
 	pitches: state.pitches, 
 	scales: state.scales, 
 	chords: state.chords, 
-	type: state.type
-})
+	type: state.type,
+	rootNote: state.rootNote
+});
+
+
 export default connect(mapStateToProps)(Controls);

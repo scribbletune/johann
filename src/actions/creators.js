@@ -2,25 +2,23 @@ import constants from './constants';
 
 const initApp = (dispatch) => (dispatch({ type: constants.LOAD_NOTES }));
 
-const controlChanged = (dispatch, e) => {
-	let data = {};
-	data[e.target.dataset.controlType] = e.target.value;
+const controlChanged = (dispatch, data) => {
 	dispatch({
 		type: constants.LOAD_NOTES,
-		data: data
+		data
 	});
 };
 
-const flipFretboard = (dispatch) => {
+const flipFretboard = dispatch => {
 	dispatch({
 		type: constants.FLIP_FRETBOARD
 	});
 };
 
-const changeTuning = (dispatch, e) => {
+const changeTuning = (dispatch, data) => {
 	dispatch({
 		type: constants.CHANGE_TUNING,
-		data: e.target.value
+		data
 	});
 };
 
