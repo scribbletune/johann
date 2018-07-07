@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getTuningsForGuitar } from '../../api';
 import Fret from './Fret.js';
 import './Guitar.less';
 
@@ -21,7 +22,8 @@ const getStringNotes = s => {
 	return chromaticNotes.slice(idx, idx + 25);
 }
 
-const Guitar = ({ notes, rootNote, fretboardIsFlipped, tunings, selectedTuningIdx }) => {
+const Guitar = ({ notes, rootNote, fretboardIsFlipped, selectedTuningIdx }) => {
+	const tunings = getTuningsForGuitar();
 	const strings = tunings[selectedTuningIdx].strings;
 
 	const str1 = getStringNotes(strings[0]);
@@ -84,8 +86,6 @@ const mapStateToProps = state => ({
 	notes: state.notes, 
 	rootNote: state.rootNote,
 	fretboardIsFlipped: state.fretboardIsFlipped,
-	strings: state.strings,
-	tunings: state.tunings,
 	selectedTuningIdx: state.selectedTuningIdx
 })
 

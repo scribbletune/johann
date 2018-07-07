@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { controlChanged } from '../../actions/creators';
+import { getScaleNames, getChordNames, getPitches } from '../../api';
 import Dropdown from '../Dropdown';
 import './NotesSetter.less';
 
-const NotesSetter = ({ pitches, scales, chords, currentScale, currentChord, type, rootNote }) => {
-	const types = [{
+const NotesSetter = ({ currentScale, currentChord, notesType, rootNote }) => {
+	const notesTypeOptions = [{
 		name: 'scale',
 		label: 'Scale'
 	}, {
@@ -14,16 +15,17 @@ const NotesSetter = ({ pitches, scales, chords, currentScale, currentChord, type
 	}];
 
 	const getChordScaleDropdown = () => {
-		var ddData = scales, ddType = 'scale';
+		var notesTypeData = getScaleNames(), ddType = 'scale';
 		var selectedValue = currentScale;
-		if (type === 'chord') {
-			ddData = chords;
+		console.log('here now', notesType);
+		if (notesType === 'chord') {
+			notesTypeData = getChordNames();
 			ddType = 'chord';
 			selectedValue = currentChord;
 		}
 
 		return <Dropdown 
-			data={ddData} 
+			data={notesTypeData} 
 			controlType={ddType}
 			onChangeEventHandler={controlChanged} 
 			selectedValue={selectedValue}
@@ -34,7 +36,7 @@ const NotesSetter = ({ pitches, scales, chords, currentScale, currentChord, type
 		<ul className="notesSetter">
 			<li>
 				<Dropdown 
-					data={pitches} 
+					data={getPitches()} 
 					controlType="rootNote" 
 					onChangeEventHandler={controlChanged} 
 					selectedValue={rootNote}
@@ -43,10 +45,10 @@ const NotesSetter = ({ pitches, scales, chords, currentScale, currentChord, type
 			<li>{getChordScaleDropdown()}</li>
 			<li>
 				<Dropdown 
-					data={types} 
-					controlType="type" 
+					data={notesTypeOptions} 
+					controlType="notesType" 
 					onChangeEventHandler={controlChanged} 
-					selectedValue={type}
+					selectedValue={notesType}
 				/>
 			</li>
 		</ul>
@@ -54,10 +56,9 @@ const NotesSetter = ({ pitches, scales, chords, currentScale, currentChord, type
 };
 
 const mapStateToProps = state => ({
-	pitches: state.pitches, 
 	scales: state.scales, 
 	chords: state.chords, 
-	type: state.type,
+	notesType: state.notesType,
 	rootNote: state.rootNote,
 	currentScale: state.scale,
 	currentChord: state.chord

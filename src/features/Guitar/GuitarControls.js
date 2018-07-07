@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { changeTuning } from '../../actions/creators';
+import { getTuningsForGuitar } from '../../api';
 import FretboardFlipper from './FretboardFlipper.js';
 import Dropdown from '../../components/Dropdown';
 
-const GuitarControls = ({ tunings, selectedTuningIdx }) => {
+const GuitarControls = ({ selectedTuningIdx }) => {
+	const tunings = getTuningsForGuitar();
 	return (
 		<div className="guitar-controls">
 			<FretboardFlipper />
@@ -13,7 +15,7 @@ const GuitarControls = ({ tunings, selectedTuningIdx }) => {
 				data={tunings}
 				controlType = 'selectedTuningIdx'
 				onChangeEventHandler={changeTuning}
-				selectedValue={tunings[selectedTuningIdx].name}
+				selectedValue={tunings[selectedTuningIdx].tuningIdx}
 			/>
 			<strong>{tunings[selectedTuningIdx].display}</strong>
 		</div>
@@ -21,7 +23,6 @@ const GuitarControls = ({ tunings, selectedTuningIdx }) => {
 };
 
 const mapStateToProps = state => ({
-	tunings: state.tunings,
 	selectedTuningIdx: state.selectedTuningIdx
 });
 

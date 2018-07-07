@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PianoKey from './PianoKey.js';
 import './Piano.less';
 
-const Piano = ({ octaves }) => {
-	const octs = octaves.map((oct, idx) => {
+const Piano = ({ octavesOfPianoNotes }) => {
+	const octs = octavesOfPianoNotes.map((oct, idx) => {
 		var keys = oct.map(
 			k => <PianoKey keyObj={k} key={k.note} />
 		);
@@ -17,7 +17,7 @@ const Piano = ({ octaves }) => {
 };
 
 const mapStateToProps = state => ({
-	octaves: state.octaves
+	octavesOfPianoNotes: state.octavesOfPianoNotes
 })
 
 export default connect(mapStateToProps)(Piano);

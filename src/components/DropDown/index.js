@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 /**
- * 
  * @param {Array} data A list of (object) items that have the name and value of the option to be displayed
  * @param {Function} onChangeEventHandler A function that will be triggered for the onChange event of the dropdown
  * @param {String} controlType A string that signifies what sort of control this dropdown is (e.g. scale, chord, notesType etc)

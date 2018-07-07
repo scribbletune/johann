@@ -1,16 +1,16 @@
 import {modes, scale, chord, listChords} from 'scribbletune';
 
-const getScaleNames = () => (modes.map(mode => ({
+export const getScaleNames = () => (modes.map(mode => ({
 	name: mode,
 	label: mode[0].toUpperCase() + mode.slice(1)
 })));
 
-const getChordNames = () => (listChords().map(chord => ({
+export const getChordNames = () => (listChords().map(chord => ({
 	name: chord,
 	label: chord
 })));
 
-const getScale = (rootNote, mode) => {
+export const getScale = (rootNote, mode) => {
 	// concatenate scales from octave range 1 to 6
 	var o1 = scale(rootNote, mode, 1, false);
 	var o2 = scale(rootNote, mode, 2, false);
@@ -21,7 +21,7 @@ const getScale = (rootNote, mode) => {
 	return o2.concat(o3, o4, o5, o6);
 };
 
-const getChord = (chordName) => {
+export const getChord = (chordName) => {
 	// concatenate chords from octave range 2 to 5
 	var o2 = chord(chordName + '-2');
 	var o3 = chord(chordName + '-3');
@@ -30,7 +30,7 @@ const getChord = (chordName) => {
 	return o2.concat(o3, o4, o5);
 };
 
-const getPitches = () => ([
+export const getPitches = () => ([
 	{label: 'C', name: 'c', color: 'white'},
 	{label: 'Db', name: 'db', color: 'black'},
 	{label: 'D', name: 'd', color: 'white'},
@@ -49,7 +49,7 @@ const getPitches = () => ([
  * Get a range of octaves with pitches
  * @return {Array} Array of pitch arrays
  */
-const getOctaves = () => {
+export const getOctavesOfPianoNotes = () => {
 	let pitches = getPitches();
 	let octaves = [2, 3, 4, 5].map(oct => (pitches.map(pitch => (Object.assign({}, pitch, {
 		note: pitch.name + oct
@@ -58,4 +58,10 @@ const getOctaves = () => {
 	return octaves;
 };
 
-export { getScaleNames, getChordNames, getScale, getChord, getPitches, getOctaves };
+export const getTuningsForGuitar = () => ([
+	{label: 'Regular', 'display': 'EBGDAE', strings: ['e4', 'b3', 'g3', 'd3', 'a2', 'e2'], tuningIdx: 0, name: 0},
+	{label: 'Dropped D', 'display': 'EBGDAD', strings: ['e4', 'b3', 'g3', 'd3', 'a2', 'd2'], tuningIdx: 1, name: 1},
+	{label: 'Double dropped D', display: 'DADGBD', strings: ['d4', 'a3', 'd3', 'g3', 'b2', 'd2'], tuningIdx: 2, name: 2},
+	{label: 'Drop C', 'display': 'DAFCGC', strings: ['d4', 'a3', 'f3', 'c3', 'g2', 'c2'], tuningIdx: 3, name: 3},
+	{label: 'Open G', 'display': 'DGDGBD', strings: ['d4', 'g3', 'd3', 'g3', 'b2', 'd2'], tuningIdx: 4, name: 4}
+]);
