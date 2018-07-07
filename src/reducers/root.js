@@ -8,7 +8,7 @@ var initialState = {
 	octaves: api.getOctaves(),
 	scale: 'ionian',
 	chord: 'maj',
-	type: 'scale',
+	notesType: 'scale',
 	rootNote: 'c',
 	notes: [],
 	fretboardIsFlipped: false,
@@ -26,7 +26,7 @@ export const rootReducer = (state = initialState, action = {}) => {
 	switch (action.type) {
 		case constants.LOAD_NOTES:
 			let newState = Object.assign({}, state, action.data);
-			if (newState.type === 'chord') {
+			if (newState.notesType === 'chord') {
 				newState.notes = api.getChord(newState.rootNote + newState.chord);
 			} else {
 				newState.notes = api.getScale(newState.rootNote, newState.scale);
