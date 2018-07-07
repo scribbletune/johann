@@ -4,7 +4,7 @@ import { controlChanged } from '../actions/creators';
 import Dropdown from '../components/Dropdown.js';
 import './Controls.less';
 
-const Controls = ({ pitches, scales, chords, type, rootNote }) => {
+const Controls = ({ pitches, scales, chords, currentScale, currentChord, type, rootNote }) => {
 	const types = [{
 		name: 'scale',
 		label: 'Scale'
@@ -15,16 +15,18 @@ const Controls = ({ pitches, scales, chords, type, rootNote }) => {
 
 	const getChordScaleDropdown = () => {
 		var ddData = scales, ddType = 'scale';
+		var selectedValue = currentScale;
 		if (type === 'chord') {
 			ddData = chords;
-			ddType = 'chord'
+			ddType = 'chord';
+			selectedValue = currentChord;
 		}
 
 		return <Dropdown 
 			data={ddData} 
 			controlType={ddType}
 			onChangeEventHandler={controlChanged} 
-			selectedValue={ddType}
+			selectedValue={selectedValue}
 		/>
 	}
 
@@ -56,7 +58,9 @@ const mapStateToProps = state => ({
 	scales: state.scales, 
 	chords: state.chords, 
 	type: state.type,
-	rootNote: state.rootNote
+	rootNote: state.rootNote,
+	currentScale: state.scale,
+	currentChord: state.chord
 });
 
 

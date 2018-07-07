@@ -12,7 +12,7 @@ const Dropdown = ({data, onChangeEventHandler, controlType, selectedValue, dispa
 		onChangeEventHandler(dispatch, dataObj);
 	};
 	return (
-		<select onChange={localOnChangeHandler.bind(this)} data-control-type={controlType} defaultValue={selectedValue}>
+		<select onChange={localOnChangeHandler.bind(this)} data-control-type={controlType} value={selectedValue}>
 			{list}
 		</select>
 	);
@@ -20,4 +20,3 @@ const Dropdown = ({data, onChangeEventHandler, controlType, selectedValue, dispa
 
 // Use the default mapDispatchToProps by not passing it which is basically the same as passing dispatch => ({ dispatch })
 export default connect()(Dropdown);
-
