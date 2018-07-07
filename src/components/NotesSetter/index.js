@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { controlChanged } from '../../actions/creators';
 import Dropdown from '../Dropdown';
-import './Controls.less';
+import './NotesSetter.less';
 
-const Controls = ({ pitches, scales, chords, currentScale, currentChord, type, rootNote }) => {
+const NotesSetter = ({ pitches, scales, chords, currentScale, currentChord, type, rootNote }) => {
 	const types = [{
 		name: 'scale',
 		label: 'Scale'
@@ -31,7 +31,7 @@ const Controls = ({ pitches, scales, chords, currentScale, currentChord, type, r
 	}
 
 	return (
-		<ul className="controls">
+		<ul className="notesSetter">
 			<li>
 				<Dropdown 
 					data={pitches} 
@@ -64,4 +64,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps)(Controls);
+export default connect(mapStateToProps)(NotesSetter);

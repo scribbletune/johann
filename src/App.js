@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Controls from './components/Controls/index.js';
+import NotesSetter from './components/NotesSetter/index.js';
 import Piano from './features/Piano/index.js';
 import Guitar from './features/Guitar/index.js';
 import GuitarControls from './features/Guitar/GuitarControls.js';
@@ -10,7 +10,7 @@ const App = () => {
 	return (
 		<section>
 			<div className="menu">
-				<Controls />
+				<NotesSetter />
 				<nav>
 					<ul>
 						<li><Link to="/guitar">Guitar</Link></li>
