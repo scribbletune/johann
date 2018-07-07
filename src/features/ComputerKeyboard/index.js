@@ -1,7 +1,7 @@
 import React from 'react';
 import './ComputerKeyboard.less';
 import { connect } from 'react-redux';
-import ComputerKey from '../components/ComputerKey.js';
+import ComputerKey from './ComputerKey.js';
 
 const ComputerKeyboard = ({ notes, rootNote }) => {
 	return (

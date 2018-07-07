@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Fret from '../components/Fret.js';
+import Fret from './Fret.js';
 import './Guitar.less';
 
 const chromaticNotes = [

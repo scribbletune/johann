@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeTuning } from '../actions/creators';
-import FretboardFlipper from '../components/FretboardFlipper.js';
-import Dropdown from '../components/Dropdown.js';
+import { changeTuning } from '../../actions/creators';
+import FretboardFlipper from './FretboardFlipper.js';
+import Dropdown from '../../components/Dropdown';
 
 const GuitarControls = ({ tunings, selectedTuningIdx }) => {
 	return (

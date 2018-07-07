@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { flipFretboard } from '../actions/creators.js';
+import { flipFretboard } from '../../actions/creators.js';
 
 const FretboardFlipper = ({ dispatch }) => {	
 	const localFlipFretboard = e => {

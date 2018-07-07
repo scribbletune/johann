@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Controls from './Controls.js';
-import Piano from './Piano.js';
-import Guitar from './Guitar.js';
-import GuitarControls from './GuitarControls.js';
-import ComputerKeyboard from './ComputerKeyboard.js';
+import Controls from './components/Controls/index.js';
+import Piano from './features/Piano/index.js';
+import Guitar from './features/Guitar/index.js';
+import GuitarControls from './features/Guitar/GuitarControls.js';
+import ComputerKeyboard from './features/ComputerKeyboard/index.js';
 
 const App = () => {
 	return (

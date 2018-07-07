@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { controlChanged } from '../actions/creators';
-import Dropdown from '../components/Dropdown.js';
+import { controlChanged } from '../../actions/creators';
+import Dropdown from '../Dropdown';
 import './Controls.less';
 
 const Controls = ({ pitches, scales, chords, currentScale, currentChord, type, rootNote }) => {

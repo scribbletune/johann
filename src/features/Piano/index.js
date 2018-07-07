@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PianoKey from '../components/PianoKey.js';
+import PianoKey from './PianoKey.js';
 import './Piano.less';
 
 const Piano = ({ octaves }) => {
