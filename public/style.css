@@ -14,9 +14,23 @@ a {
 	font-weight: bold;
 }
 
+select, button {
+	margin-right: 10px;
+}
+
 .container {
 	margin: 0 auto;
 	width: 1260px;
+}
+
+.logo {
+	background: url(logo.png);
+	background-size: 150px;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 150px;
+	height: 165px;
 }
 
 .menu, nav ul {
