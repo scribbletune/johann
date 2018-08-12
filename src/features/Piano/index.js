@@ -13,7 +13,7 @@ const Piano = ({ octavesOfPianoNotes }) => {
 	});
 
 	return (
-		<div>
+		<div className="instrument">
 			<NotesSetter />
 			<div className="piano">{octs}</div>
 		</div>

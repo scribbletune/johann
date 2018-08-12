@@ -6,14 +6,20 @@ import Guitar from './features/Guitar';
 import ComputerKeyboard from './features/ComputerKeyboard';
 
 const App = () => {
+	// Simple hack to get the current route
+	let mainClass = 'page';
+	if (location.hash === '#/') {
+		mainClass = 'home';
+	}
 	return (
-		<section>
+		<section className={mainClass}>
+			<a href="/johann">
+				<h1 className="logo">Johann</h1>
+			</a>
 			<Menu />
-			<div className="instrument">
-				<Route path="/guitar" component={Guitar} />
-				<Route path="/piano" component={Piano} />
-				<Route path="/keyboard" component={ComputerKeyboard} />
-			</div>
+			<Route path="/guitar" component={Guitar} />
+			<Route path="/piano" component={Piano} />
+			<Route path="/keyboard" component={ComputerKeyboard} />
 		</section>
 	);
 };

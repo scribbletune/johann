@@ -76,7 +76,7 @@ const Guitar = ({ notes, rootNote, fretboardIsFlipped, selectedTuningIdx }) => {
 
 
 	return (
-		<div>
+		<div className="instrument">
 			<NotesSetter />
 			<div className="guitarContainer">
 				{fretboardIsFlipped ? flippedFretboard : regularFretboard}

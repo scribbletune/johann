@@ -6,7 +6,7 @@ import ComputerKey from './ComputerKey.js';
 
 const ComputerKeyboard = ({ notes, rootNote }) => {
 	return (
-		<div>
+		<div className="instrument">
 			<NotesSetter />
 			<div className="computer-keyboard">
 				<div className="computer-keys">
