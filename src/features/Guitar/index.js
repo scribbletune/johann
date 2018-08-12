@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getTuningsForGuitar } from '../../api';
+import NotesSetter from '../../components/NotesSetter/index.js';
 import Fret from './Fret.js';
+import GuitarControls from './GuitarControls.js';
 import './Guitar.less';
 
 const chromaticNotes = [
@@ -74,9 +76,13 @@ const Guitar = ({ notes, rootNote, fretboardIsFlipped, selectedTuningIdx }) => {
 
 
 	return (
-		<div className="guitarContainer">
-			{fretboardIsFlipped ? flippedFretboard : regularFretboard}
-			{fretDots}
+		<div>
+			<NotesSetter />
+			<div className="guitarContainer">
+				{fretboardIsFlipped ? flippedFretboard : regularFretboard}
+				{fretDots}
+			</div>
+			<GuitarControls />
 		</div>
 	);
 

@@ -26,5 +26,4 @@ const mapStateToProps = state => ({
 	selectedTuningIdx: state.selectedTuningIdx
 });
 
-
 export default connect(mapStateToProps)(GuitarControls);
