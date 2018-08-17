@@ -51,10 +51,14 @@ export const getPitches = () => ([
  */
 export const getOctavesOfPianoNotes = () => {
 	let pitches = getPitches();
-	let octaves = [2, 3, 4, 5].map(oct => (pitches.map(pitch => (Object.assign({}, pitch, {
-		note: pitch.name + oct
-	})))));
-	octaves.shift();
+	let octaves = [[], [], []];
+	// Add notes for 3rd 4th and 5th octave in one loop
+	pitches.forEach(pitch => {
+		octaves[0].push(Object.assign({}, pitch, {note: pitch.name + 3}));
+		octaves[1].push(Object.assign({}, pitch, {note: pitch.name + 4}));
+		octaves[2].push(Object.assign({}, pitch, {note: pitch.name + 5}));
+	});
+
 	return octaves;
 };
 
