@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Menu from './components/Menu';
 import Piano from './features/Piano';
 import Guitar from './features/Guitar';
@@ -13,9 +13,9 @@ const App = () => {
 	}
 	return (
 		<section className={mainClass}>
-			<a href="/johann">
+			<Link to="/">
 				<h1 className="logo">Johann</h1>
-			</a>
+			</Link>
 			<Menu />
 			<Route path="/guitar" component={Guitar} />
 			<Route path="/piano" component={Piano} />
