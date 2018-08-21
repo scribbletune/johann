@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NotesSetter from '../NotesSetter/index.js';
 import './Menu.less';
 
 const Menu = () => {
@@ -18,6 +19,7 @@ const Menu = () => {
 					<li className={keyboardSelected}><Link to="/keyboard">Keyboard</Link></li>
 				</ul>
 			</nav>
+			<NotesSetter />
 		</div>
 	);
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import NotesSetter from '../../components/NotesSetter/index.js';
 import PianoKey from './PianoKey.js';
 import './Piano.less';
 
@@ -14,7 +13,6 @@ const Piano = ({ octavesOfPianoNotes }) => {
 
 	return (
 		<div className="instrument">
-			<NotesSetter />
 			<div className="piano">{octs}</div>
 		</div>
 	);

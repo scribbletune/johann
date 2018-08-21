@@ -83,4 +83,10 @@ select, button {
 	.instrument {
 		margin-top: 40px;
 	}
+
+	.page .logo {
+		background-size: 120px;
+		width: 120px;
+		height: 20px;
+	}
 }

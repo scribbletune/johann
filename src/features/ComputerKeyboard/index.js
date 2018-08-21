@@ -1,5 +1,4 @@
 import React from 'react';
-import NotesSetter from '../../components/NotesSetter/index.js';
 import './ComputerKeyboard.less';
 import { connect } from 'react-redux';
 import ComputerKey from './ComputerKey.js';
@@ -7,7 +6,6 @@ import ComputerKey from './ComputerKey.js';
 const ComputerKeyboard = ({ notes, rootNote }) => {
 	return (
 		<div className="instrument">
-			<NotesSetter />
 			<div className="computer-keyboard">
 				<div className="computer-keys">
 					<div className="fn-key">tab</div>
