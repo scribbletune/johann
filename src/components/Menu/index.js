@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Menu.less';
 
 const Menu = () => {
 	const currentSelection = location.hash.replace('#/', '');
-	const menuClassName = 'menu menu-' + (currentSelection ? 'page' : 'home');
 	const guitarSelected = currentSelection === 'guitar' ? 'selected' : '';
 	const pianoSelected = currentSelection === 'piano' ? 'selected' : '';
 	const keyboardSelected = currentSelection === 'keyboard' ? 'selected' : '';
 
 	return (
-		<div className={menuClassName}>
+		<div className="menu">
 			<p>Generate chord &amp; scale charts to practice</p>
 			<nav>
 				<ul>

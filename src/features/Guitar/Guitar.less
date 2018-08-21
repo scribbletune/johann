@@ -118,3 +118,15 @@
 .guitar-controls {
 	font-size: 14px;
 }
+
+/*:nth-child(n+11)*/
+
+@media(max-width: @mobileWidth) {
+	.guitar .str {
+		grid-template-columns: repeat(15, 40px);
+	}
+
+	.fret:nth-child(n+15) {
+		display: none;
+	}
+}

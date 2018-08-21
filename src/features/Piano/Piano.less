@@ -86,3 +86,14 @@
 .octave .rootNote::after {
 	background: @highlightRootNote;
 }
+
+
+@media(max-width: @mobileWidth) {
+	.piano {
+		grid-template-columns: repeat(1, 420px);
+	}
+
+	.octave:not(:first-child) {
+		display: none;
+	}
+}

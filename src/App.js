@@ -11,6 +11,8 @@ const App = () => {
 	if (location.hash === '#/') {
 		mainClass = 'home';
 	}
+
+	mainClass += ' app';
 	return (
 		<section className={mainClass}>
 			<Link to="/">
