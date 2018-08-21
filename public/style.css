@@ -58,6 +58,7 @@ select, button {
 .menu {
 	display: flex;
 	flex-direction: column;
+	text-align: center;
 }
 
 .menu, nav ul {

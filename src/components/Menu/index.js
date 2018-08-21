@@ -10,7 +10,7 @@ const Menu = () => {
 
 	return (
 		<div className={menuClassName}>
-			<p>Generate chord and scale charts to practice</p>
+			<p>Generate chord &amp; scale charts to practice</p>
 			<nav>
 				<ul>
 					<li className={guitarSelected}><Link to="/guitar">Guitar</Link></li>
