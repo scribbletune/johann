@@ -1,5 +1,5 @@
 # Johann
-Learn you a scale or chord for greater good. BETA: http://scribbletune.com/johann/
+[Generate chords & scales to practice on your guitar, piano or computer keyboard!](http://johann.scribbletune.com)
 
 ---
 
@@ -20,4 +20,4 @@ The same can be done for guitars...
 and computer keyboards too!
 ![johann-keyboard.png](./johann-keyboard.png)
 
-Demo: http://scribbletune.com/johann/
+http://scribbletune.com/johann/
