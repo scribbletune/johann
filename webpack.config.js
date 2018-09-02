@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+	mode: 'production',
 	entry: './src/index.js',
 	output: {
 		// Use `docs` for the output for Github pages
@@ -9,7 +10,7 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	module: {
-		loaders: [{
+		rules: [{
 			test: /\.js$/,
 			exclude: /node_modules/,
 			loader: 'babel-loader'
