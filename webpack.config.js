@@ -4,7 +4,8 @@ const webpack = require('webpack');
 module.exports = {
 	entry: './src/index.js',
 	output: {
-		path: path.join(__dirname, 'public'),
+		// Use `docs` for the output for Github pages
+		path: path.join(__dirname, 'docs'),
 		filename: 'bundle.js'
 	},
 	module: {
