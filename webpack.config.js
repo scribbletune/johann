@@ -20,6 +20,12 @@ module.exports = {
 			loader: 'style-loader!css-loader!less-loader'
 		}]
 	},
+	"resolve": {
+		"alias": {
+			"react": "preact-compat",
+			"react-dom": "preact-compat"
+		}
+	},
 	node: {
 		fs: 'empty'
 	}
