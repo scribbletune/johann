@@ -1,3 +1,6 @@
+html, body {
+	height: 100%;
+}
 body {
 	font-family: -apple-system, BlinkMacSystemFont,
 		"Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
@@ -5,11 +8,12 @@ body {
 		sans-serif;
 }
 
-body, .app {
+.app {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
+	height: 100%;
 }
 
 select, button {
@@ -23,7 +27,7 @@ select, button {
 	white-space: nowrap;
 	overflow: hidden;
 	width: 250px;
-	height: 275px;
+	height: 276px;
 }
 
 .page .logo {
@@ -66,7 +70,7 @@ select, button {
 }*/
 
 /* Enforce landscape mode for mobile https://css-tricks.com/snippets/css/orientation-lock/ */
-@media (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
+/*@media (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
 	.page {
 		transform: rotate(-90deg);
 		transform-origin: left top;
@@ -77,7 +81,7 @@ select, button {
 		left: 0;
 	}
 }
-
+*/
 
 @media (min-width: 320px) and (max-width: 767px) {
 	.instrument {
