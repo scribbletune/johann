@@ -27,17 +27,18 @@ select, button {
 	white-space: nowrap;
 	overflow: hidden;
 	width: 250px;
-	height: 276px;
+	height: 277px;
 }
 
 .page .logo {
-	background: url(johann-small.png);
+	background: url(logo.png);
 	background-size: 150px;
+	background-position: bottom; 
 	text-indent: 100%;
 	white-space: nowrap;
 	overflow: hidden;
 	width: 150px;
-	height: 25px;
+	height: 26px;
 	position: fixed;
 	left: 20px;
 	top: 20px;
