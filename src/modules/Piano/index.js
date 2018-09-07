@@ -22,5 +22,7 @@ const mapStateToProps = state => ({
 	octavesOfPianoNotes: state.octavesOfPianoNotes
 })
 
-export default connect(mapStateToProps)(Piano);
+// export default connect(mapStateToProps)(Piano);
+export const Component = connect(mapStateToProps)(Piano);
+export default {Component};
 

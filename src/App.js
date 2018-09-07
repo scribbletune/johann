@@ -1,9 +1,11 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import Menu from './components/Menu';
-import Piano from './features/Piano';
-import Guitar from './features/Guitar';
-import ComputerKeyboard from './features/ComputerKeyboard';
+import AsyncComponent from './AsyncComponent';
+
+const piano = () => import(/* webpackChunkName: "piano" */ './modules/Piano');
+const guitar = () => import(/* webpackChunkName: "guitar" */ './modules/Guitar');
+const computerKeyboard = () => import(/* webpackChunkName: "computerKeyboard" */ './modules/ComputerKeyboard');
 
 const App = () => {
 	// Simple hack to get the current route
@@ -19,9 +21,9 @@ const App = () => {
 				<h1 className="logo">Johann</h1>
 			</Link>
 			<Menu />
-			<Route path="/guitar" component={Guitar} />
-			<Route path="/piano" component={Piano} />
-			<Route path="/keyboard" component={ComputerKeyboard} />
+			<Route path='/guitar' exact={true} component={() => <AsyncComponent moduleProvider={guitar} />} />
+			<Route path='/piano' exact={true} component={() => <AsyncComponent moduleProvider={piano} />} />
+			<Route path='/keyboard' exact={true} component={() => <AsyncComponent moduleProvider={computerKeyboard} />} />
 		</section>
 	);
 };

@@ -93,4 +93,6 @@ const mapStateToProps = state => ({
 	selectedTuningIdx: state.selectedTuningIdx
 })
 
-export default connect(mapStateToProps)(Guitar);
+// export default connect(mapStateToProps)(Guitar);
+export const Component = connect(mapStateToProps)(Guitar);
+export default {Component};

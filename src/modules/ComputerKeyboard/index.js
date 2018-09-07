@@ -62,4 +62,6 @@ const mapStateToProps = state => ({
 	rootNote: state.rootNote
 })
 
-export default connect(mapStateToProps)(ComputerKeyboard);
+// export default connect(mapStateToProps)(ComputerKeyboard);
+export const Component = connect(mapStateToProps)(ComputerKeyboard);
+export default {Component};
