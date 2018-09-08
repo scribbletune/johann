@@ -53,13 +53,13 @@ select, button {
 	color: orange;
 }
 
-/*footer {
+footer {
 	font-size: 12px;
 	position: static;
 	margin-top:30px;
 	text-align: center;
 	width: 100%;
-}*/
+}
 
 /* Make the footer sticky for desktop */
 /*@media(min-height:520px) {
