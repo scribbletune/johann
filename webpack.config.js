@@ -3,11 +3,13 @@ const webpack = require('webpack');
 
 module.exports = {
 	mode: 'production',
-	entry: './src/index.js',
+	entry: {
+		bundle: './src/index.js'
+	},
 	output: {
 		// Use `docs` for the output for Github pages
 		path: path.join(__dirname, 'docs'),
-		filename: 'bundle.js'
+		filename: '[name].js'
 	},
 	module: {
 		rules: [{
