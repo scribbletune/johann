@@ -9,7 +9,20 @@ module.exports = {
 	output: {
 		// Use `docs` for the output for Github pages
 		path: path.join(__dirname, 'docs'),
-		filename: '[name].js'
+		filename: '[name].js',
+		chunkFilename: '[name].js'
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendor',
+					enforce: true,
+					chunks: 'initial'
+				}
+			}
+		}
 	},
 	module: {
 		rules: [{
@@ -22,10 +35,10 @@ module.exports = {
 			loader: 'style-loader!css-loader!less-loader'
 		}]
 	},
-	"resolve": {
-		"alias": {
-			"react": "preact-compat",
-			"react-dom": "preact-compat"
+	resolve: {
+		alias: {
+			'react': 'preact-compat',
+			'react-dom': 'preact-compat'
 		}
 	},
 	node: {
