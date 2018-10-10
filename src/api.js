@@ -1,23 +1,40 @@
-import {modes, scale, chord, listChords} from 'scribbletune';
+import {scales, scale, chord, chords} from 'scribbletune';
 
-export const getScaleNames = () => (modes.map(mode => ({
-	name: mode,
-	label: mode[0].toUpperCase() + mode.slice(1)
+export const getScaleNames = () => (scales().map(scale => ({
+	name: scale,
+	label: scale[0].toUpperCase() + scale.slice(1)
 })));
 
-export const getChordNames = () => (listChords().map(chord => ({
+export const getChordNames = () => (chords().map(chord => ({
 	name: chord,
 	label: chord
 })));
 
-export const getScale = (rootNote, mode) => {
+export const sharpsToFlats = note => {
+	if (!note.includes('#')) {
+		return note;
+	}
+
+	let noteName = note.replace(/\d/, '');
+	const sharpsToFlatsMap = {
+		'C#': 'Db',
+		'D#': 'Eb',
+		'F#': 'Gb',
+		'G#': 'Ab',
+		'A#': 'Bb'
+	};
+
+	return note.replace(noteName, sharpsToFlatsMap[noteName]);
+};
+
+export const getScale = (rootNote, scaleName) => {
 	// concatenate scales from octave range 1 to 6
-	var o1 = scale(rootNote, mode, 1, false);
-	var o2 = scale(rootNote, mode, 2, false);
-	var o3 = scale(rootNote, mode, 3, false);
-	var o4 = scale(rootNote, mode, 4, false);
-	var o5 = scale(rootNote, mode, 5, false);
-	var o6 = scale(rootNote, mode, 6, false);
+	var o1 = scale(rootNote + 1 + ' ' + scaleName).map(sharpsToFlats);
+	var o2 = scale(rootNote + 2 + ' ' + scaleName).map(sharpsToFlats);
+	var o3 = scale(rootNote + 3 + ' ' + scaleName).map(sharpsToFlats);
+	var o4 = scale(rootNote + 4 + ' ' + scaleName).map(sharpsToFlats);
+	var o5 = scale(rootNote + 5 + ' ' + scaleName).map(sharpsToFlats);
+	var o6 = scale(rootNote + 6 + ' ' + scaleName).map(sharpsToFlats);
 	return o2.concat(o3, o4, o5, o6);
 };
 
@@ -31,18 +48,18 @@ export const getChord = (chordName) => {
 };
 
 export const getPitches = () => ([
-	{label: 'C', name: 'c', color: 'white'},
-	{label: 'Db', name: 'db', color: 'black'},
-	{label: 'D', name: 'd', color: 'white'},
-	{label: 'Eb', name: 'eb', color: 'black'},
-	{label: 'E', name: 'e', color: 'white'},
-	{label: 'F', name: 'f', color: 'white'},
-	{label: 'Gb', name: 'gb', color: 'black'},
-	{label: 'G', name: 'g', color: 'white'},
-	{label: 'Ab', name: 'ab', color: 'black'},
-	{label: 'A', name: 'a', color: 'white'},
-	{label: 'Bb', name: 'bb', color: 'black'},
-	{label: 'B', name: 'b', color: 'white'}
+	{label: 'C', name: 'C', color: 'white'},
+	{label: 'Db', name: 'Db', color: 'black'},
+	{label: 'D', name: 'D', color: 'white'},
+	{label: 'Eb', name: 'Eb', color: 'black'},
+	{label: 'E', name: 'E', color: 'white'},
+	{label: 'F', name: 'F', color: 'white'},
+	{label: 'Gb', name: 'Gb', color: 'black'},
+	{label: 'G', name: 'G', color: 'white'},
+	{label: 'Ab', name: 'Ab', color: 'black'},
+	{label: 'A', name: 'A', color: 'white'},
+	{label: 'Bb', name: 'Bb', color: 'black'},
+	{label: 'B', name: 'B', color: 'white'}
 ]);
 
 /**
@@ -54,18 +71,18 @@ export const getOctavesOfPianoNotes = () => {
 	let octaves = [[], [], []];
 	// Add notes for 3rd 4th and 5th octave in one loop
 	pitches.forEach(pitch => {
-		octaves[0].push(Object.assign({}, pitch, {note: pitch.name + 3}));
-		octaves[1].push(Object.assign({}, pitch, {note: pitch.name + 4}));
-		octaves[2].push(Object.assign({}, pitch, {note: pitch.name + 5}));
+		octaves[0].push(Object.assign({}, pitch, {note: pitch.label + 3}));
+		octaves[1].push(Object.assign({}, pitch, {note: pitch.label + 4}));
+		octaves[2].push(Object.assign({}, pitch, {note: pitch.label + 5}));
 	});
 
 	return octaves;
 };
 
 export const getTuningsForGuitar = () => ([
-	{label: 'Regular', 'display': 'EBGDAE', strings: ['e4', 'b3', 'g3', 'd3', 'a2', 'e2'], tuningIdx: 0, name: 0},
-	{label: 'Dropped D', 'display': 'EBGDAD', strings: ['e4', 'b3', 'g3', 'd3', 'a2', 'd2'], tuningIdx: 1, name: 1},
-	{label: 'Double dropped D', display: 'DADGBD', strings: ['d4', 'a3', 'd3', 'g3', 'b2', 'd2'], tuningIdx: 2, name: 2},
-	{label: 'Drop C', 'display': 'DAFCGC', strings: ['d4', 'a3', 'f3', 'c3', 'g2', 'c2'], tuningIdx: 3, name: 3},
-	{label: 'Open G', 'display': 'DGDGBD', strings: ['d4', 'g3', 'd3', 'g3', 'b2', 'd2'], tuningIdx: 4, name: 4}
+	{label: 'Regular', 'display': 'EBGDAE', strings: ['E4', 'B3', 'G3', 'D3', 'A2', 'E2'], tuningIdx: 0, name: 0},
+	{label: 'Dropped D', 'display': 'EBGDAD', strings: ['E4', 'B3', 'G3', 'D3', 'A2', 'D2'], tuningIdx: 1, name: 1},
+	{label: 'Double dropped D', display: 'DADGBD', strings: ['D4', 'A3', 'D3', 'G3', 'B2', 'D2'], tuningIdx: 2, name: 2},
+	{label: 'Drop C', 'display': 'DAFCGC', strings: ['D4', 'A3', 'F3', 'C3', 'G2', 'C2'], tuningIdx: 3, name: 3},
+	{label: 'Open G', 'display': 'DGDGBD', strings: ['D4', 'G3', 'D3', 'G3', 'B2', 'D2'], tuningIdx: 4, name: 4}
 ]);

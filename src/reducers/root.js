@@ -3,10 +3,10 @@ import { getOctavesOfPianoNotes, getChord, getScale } from '../api';
 
 var initialState = {
 	octavesOfPianoNotes: getOctavesOfPianoNotes(),
-	scale: 'ionian',
-	chord: 'maj',
+	scale: 'major',
+	chord: 'M',
 	notesType: 'scale',
-	rootNote: 'c',
+	rootNote: 'C',
 	notes: [],
 	fretboardIsFlipped: false,
 	selectedTuningIdx: 0

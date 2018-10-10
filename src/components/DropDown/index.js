@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
  */
 const Dropdown = ({data, onChangeEventHandler, controlType, selectedValue, dispatch}) => {
 	const list = data.map(
-		item => <option value={item.name} key={item.name}>{item.label}</option>
+		item => <option value={item.label} key={item.label}>{item.label}</option>
 	);
 
 	const localOnChangeHandler = e => {
