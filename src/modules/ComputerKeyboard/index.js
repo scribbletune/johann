@@ -10,14 +10,14 @@ const ComputerKeyboard = ({ notes, rootNote }) => {
 				<div className="computer-keys">
 					<div className="fn-key">tab</div>
 					<div>Q</div>
-					<ComputerKey label="W" color="black" rootNote={'db' === rootNote} highlight={notes.indexOf('db3') > -1} note='db' key='db3' />
-					<ComputerKey label="E" color="black" rootNote={'eb' === rootNote} highlight={notes.indexOf('eb3') > -1} note='eb' key='eb3' />
+					<ComputerKey label="W" color="black" rootNote={'Db' === rootNote} highlight={notes.indexOf('Db3') > -1} note='Db' key='Db3' />
+					<ComputerKey label="E" color="black" rootNote={'Eb' === rootNote} highlight={notes.indexOf('Eb3') > -1} note='Eb' key='Eb3' />
 					<div>R</div>
-					<ComputerKey label="T" color="black" rootNote={'gb' === rootNote} highlight={notes.indexOf('gb3') > -1} note='gb' key='gb3' />
-					<ComputerKey label="Y" color="black" rootNote={'ab' === rootNote} highlight={notes.indexOf('ab3') > -1} note='ab' key='ab3' />
-					<ComputerKey label="U" color="black" rootNote={'bb' === rootNote} highlight={notes.indexOf('bb3') > -1} note='bb' key='bb3' />
+					<ComputerKey label="T" color="black" rootNote={'Gb' === rootNote} highlight={notes.indexOf('Gb3') > -1} note='Gb' key='Gb3' />
+					<ComputerKey label="Y" color="black" rootNote={'Ab' === rootNote} highlight={notes.indexOf('Ab3') > -1} note='Ab' key='Ab3' />
+					<ComputerKey label="U" color="black" rootNote={'Bb' === rootNote} highlight={notes.indexOf('Bb3') > -1} note='Bb' key='Bb3' />
 					<div>I</div>
-					<ComputerKey label="O" color="black" rootNote={'db' === rootNote} highlight={notes.indexOf('db4') > -1} note='db' key='db4' />
+					<ComputerKey label="O" color="black" rootNote={'Db' === rootNote} highlight={notes.indexOf('Db4') > -1} note='Db' key='Db4' />
 					<div>P</div>
 					<div>{'{'}</div>
 					<div>{'}'}</div>
@@ -25,15 +25,15 @@ const ComputerKeyboard = ({ notes, rootNote }) => {
 				</div>
 				<div className="computer-keys">
 					<div className="fn-key caps">caps lock</div>
-					<ComputerKey label="A" color="white" rootNote={'c' === rootNote} highlight={notes.indexOf('c3') > -1} note='c' key='c3' />
-					<ComputerKey label="S" color="white" rootNote={'d' === rootNote} highlight={notes.indexOf('d3') > -1} note='d' key='d3' />
-					<ComputerKey label="D" color="white" rootNote={'e' === rootNote} highlight={notes.indexOf('e3') > -1} note='e' key='e3' />
-					<ComputerKey label="F" color="white" rootNote={'f' === rootNote} highlight={notes.indexOf('f3') > -1} note='f' key='f3' />
-					<ComputerKey label="G" color="white" rootNote={'g' === rootNote} highlight={notes.indexOf('g3') > -1} note='g' key='g3' />
-					<ComputerKey label="H" color="white" rootNote={'a' === rootNote} highlight={notes.indexOf('a3') > -1} note='a' key='a3' />
-					<ComputerKey label="J" color="white" rootNote={'b' === rootNote} highlight={notes.indexOf('b3') > -1} note='b' key='b3' />
-					<ComputerKey label="K" color="white" rootNote={'c' === rootNote} highlight={notes.indexOf('c4') > -1} note='c' key='c4' />
-					<ComputerKey label="L" color="white" rootNote={'d' === rootNote} highlight={notes.indexOf('d4') > -1} note='d' key='d4' />
+					<ComputerKey label="A" color="white" rootNote={'C' === rootNote} highlight={notes.indexOf('C3') > -1} note='C' key='C3' />
+					<ComputerKey label="S" color="white" rootNote={'D' === rootNote} highlight={notes.indexOf('D3') > -1} note='D' key='D3' />
+					<ComputerKey label="D" color="white" rootNote={'E' === rootNote} highlight={notes.indexOf('E3') > -1} note='E' key='E3' />
+					<ComputerKey label="F" color="white" rootNote={'F' === rootNote} highlight={notes.indexOf('F3') > -1} note='F' key='F3' />
+					<ComputerKey label="G" color="white" rootNote={'G' === rootNote} highlight={notes.indexOf('G3') > -1} note='G' key='G3' />
+					<ComputerKey label="H" color="white" rootNote={'A' === rootNote} highlight={notes.indexOf('A3') > -1} note='A' key='A3' />
+					<ComputerKey label="J" color="white" rootNote={'B' === rootNote} highlight={notes.indexOf('B3') > -1} note='B' key='B3' />
+					<ComputerKey label="K" color="white" rootNote={'C' === rootNote} highlight={notes.indexOf('C4') > -1} note='C' key='C4' />
+					<ComputerKey label="L" color="white" rootNote={'D' === rootNote} highlight={notes.indexOf('D4') > -1} note='D' key='D4' />
 					<div>:</div>
 					<div>"</div>
 					<div className="fn-key">return</div>
