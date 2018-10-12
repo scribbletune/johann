@@ -8,10 +8,10 @@ import './NotesSetter.less';
 const NotesSetter = ({ currentScale, currentChord, notesType, rootNote }) => {
 	const notesTypeOptions = [{
 		name: 'scale',
-		label: 'Scale'
+		label: 'scale'
 	}, {
 		name: 'chord',
-		label: 'Chord'
+		label: 'chord'
 	}];
 
 	const getChordScaleDropdown = () => {

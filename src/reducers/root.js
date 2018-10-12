@@ -3,7 +3,7 @@ import { getOctavesOfPianoNotes, getChord, getScale } from '../api';
 
 var initialState = {
 	octavesOfPianoNotes: getOctavesOfPianoNotes(),
-	scale: 'major',
+	scale: 'Major',
 	chord: 'M',
 	notesType: 'scale',
 	rootNote: 'C',

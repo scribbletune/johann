@@ -11,6 +11,7 @@ export const getChordNames = () => (chords().map(chord => ({
 })));
 
 export const sharpsToFlats = note => {
+	console.log(note);
 	if (!note.includes('#')) {
 		return note;
 	}
@@ -29,12 +30,12 @@ export const sharpsToFlats = note => {
 
 export const getScale = (rootNote, scaleName) => {
 	// concatenate scales from octave range 1 to 6
-	var o1 = scale(rootNote + 1 + ' ' + scaleName).map(sharpsToFlats);
-	var o2 = scale(rootNote + 2 + ' ' + scaleName).map(sharpsToFlats);
-	var o3 = scale(rootNote + 3 + ' ' + scaleName).map(sharpsToFlats);
-	var o4 = scale(rootNote + 4 + ' ' + scaleName).map(sharpsToFlats);
-	var o5 = scale(rootNote + 5 + ' ' + scaleName).map(sharpsToFlats);
-	var o6 = scale(rootNote + 6 + ' ' + scaleName).map(sharpsToFlats);
+	var o1 = scale(rootNote + 1 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
+	var o2 = scale(rootNote + 2 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
+	var o3 = scale(rootNote + 3 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
+	var o4 = scale(rootNote + 4 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
+	var o5 = scale(rootNote + 5 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
+	var o6 = scale(rootNote + 6 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
 	return o2.concat(o3, o4, o5, o6);
 };
 
