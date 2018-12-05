@@ -1,7 +1,7 @@
-import constants from '../actions/constants.js';
+import constants from '../actions/constants';
 import { getOctavesOfPianoNotes, getChord, getScale } from '../api';
 
-var initialState = {
+const initialState = {
 	octavesOfPianoNotes: getOctavesOfPianoNotes(),
 	scale: 'Major',
 	chord: 'M',
@@ -12,7 +12,11 @@ var initialState = {
 	selectedTuningIdx: 0
 };
 
-export const rootReducer = (state = initialState, action = {}) => {
+interface ActionType {
+  type: string; data: object;
+}
+
+export const rootReducer = (state = initialState, action:ActionType) => {
 	switch (action.type) {
 		case constants.LOAD_NOTES:
 			let newState = Object.assign({}, state, action.data);

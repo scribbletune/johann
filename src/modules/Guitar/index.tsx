@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getTuningsForGuitar } from '../../api';
-import Fret from './Fret.js';
-import GuitarControls from './GuitarControls.js';
+import Fret from './Fret';
+import GuitarControls from './GuitarControls';
 import './Guitar.less';
 
 const chromaticNotes = [
@@ -93,6 +93,4 @@ const mapStateToProps = state => ({
 	selectedTuningIdx: state.selectedTuningIdx
 })
 
-// export default connect(mapStateToProps)(Guitar);
-export const Component = connect(mapStateToProps)(Guitar);
-export default {Component};
+export default connect(mapStateToProps)(Guitar);

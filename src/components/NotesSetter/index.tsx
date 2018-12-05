@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { controlChanged } from '../../actions/creators';
 import { getScaleNames, getChordNames, getPitches } from '../../api';
-import Dropdown from '../Dropdown';
+import Dropdown from '../Dropdown/index';
 import './NotesSetter.less';
 
 const NotesSetter = ({ currentScale, currentChord, notesType, rootNote }) => {

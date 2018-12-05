@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PianoKey from './PianoKey.js';
+import PianoKey from './PianoKey';
 import './Piano.less';
 
 const Piano = ({ octavesOfPianoNotes }) => {
@@ -22,7 +22,5 @@ const mapStateToProps = state => ({
 	octavesOfPianoNotes: state.octavesOfPianoNotes
 })
 
-// export default connect(mapStateToProps)(Piano);
-export const Component = connect(mapStateToProps)(Piano);
-export default {Component};
+export default connect(mapStateToProps)(Piano);
 

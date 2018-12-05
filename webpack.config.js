@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
 	mode: 'production',
 	entry: {
-		bundle: './src/index.js'
+		bundle: './src/index.tsx'
 	},
 	output: {
 		// Use `docs` for the output for Github pages
@@ -24,18 +24,17 @@ module.exports = {
 			}
 		}
 	},
+	devtool: 'source-map',
 	module: {
-		rules: [{
-			test: /\.js$/,
-			exclude: /node_modules/,
-			loader: 'babel-loader'
-		},
-		{
-			test: /\.less$/, 
-			loader: 'style-loader!css-loader!less-loader'
-		}]
+		rules: [
+			{ test: /\.tsx?$/, loader: 'ts-loader', exclude: /node_modules/ },
+			{ test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
+			// { enforce: 'pre', test: /\.js?$/, loader: 'source-map-loader' }
+		]
 	},
 	resolve: {
+		// Add '.ts' and '.tsx' as resolvable extensions.
+		extensions: ['.ts', '.tsx', '.js', '.json'],
 		alias: {
 			'react': 'preact-compat',
 			'react-dom': 'preact-compat'

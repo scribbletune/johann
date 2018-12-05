@@ -11,7 +11,6 @@ export const getChordNames = () => (chords().map(chord => ({
 })));
 
 export const sharpsToFlats = note => {
-	console.log(note);
 	if (!note.includes('#')) {
 		return note;
 	}

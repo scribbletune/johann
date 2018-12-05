@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NotesSetter from '../NotesSetter/index.js';
+import NotesSetter from '../NotesSetter/index.tsx';
 import './Menu.less';
 
 const Menu = () => {
