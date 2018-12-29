@@ -4,17 +4,17 @@ import Loadable from "react-loadable";
 import Menu from './components/Menu/index';
 
 export const LoadablePiano = Loadable({
-	loader: () => import(/* chunkFilename: "piano" */ './modules/Piano'),
+	loader: () => import(/* webpackChunkName: "piano" */ './modules/Piano'),
 	loading: () => <div>loading ...</div>
 });
 
 export const LoadableGuitar = Loadable({
-	loader: () => import(/* chunkFilename: "guitar" */ './modules/Guitar'),
+	loader: () => import(/* webpackChunkName: "guitar" */ './modules/Guitar'),
 	loading: () => <div>loading ...</div>
 });
 
 export const LoadableComputerKeyboard = Loadable({
-	loader: () => import(/* chunkFilename: "ComputerKeyboard" */ './modules/ComputerKeyboard'),
+	loader: () => import(/* webpackChunkName: "computerKeyboard" */ './modules/ComputerKeyboard'),
 	loading: () => <div>loading ...</div>
 });
 
