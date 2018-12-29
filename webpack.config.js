@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 
 module.exports = {
 	mode: 'production',
@@ -12,6 +14,11 @@ module.exports = {
 		filename: '[name].js',
 		chunkFilename: '[name].js'
 	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: 'src/template.html'
+		})
+	],
 	optimization: {
 		splitChunks: {
 			cacheGroups: {
