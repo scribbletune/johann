@@ -46,7 +46,11 @@ module.exports = {
 			'react': 'preact-compat',
 			'react-dom': 'preact-compat'
 		}
-	},
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'docs'),
+    compress: true
+  },
 	node: {
 		fs: 'empty'
 	}

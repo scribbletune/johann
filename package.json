@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npx webpack -d --watch",
     "build": "npx webpack --config webpack.config.js",
-    "nuke": "rm -rf node_modules && rm package-lock.json"
+    "nuke": "rm -rf node_modules && rm package-lock.json",
+    "start:dev": "npx webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -31,8 +32,9 @@
     "style-loader": "^0.23.0",
     "ts-loader": "^5.3.1",
     "typescript": "^3.2.1",
-    "webpack": "^4.17.1",
-    "webpack-cli": "^3.1.0"
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
     "preact": "^8.3.1",
