@@ -15,8 +15,9 @@ const NotesSetter = ({ currentScale, currentChord, notesType, rootNote }) => {
 	}];
 
 	const getChordScaleDropdown = () => {
-		var notesTypeData = getScaleNames(), ddType = 'scale';
-		var selectedValue = currentScale;
+		let notesTypeData = getScaleNames();
+		let ddType = 'scale';
+		let selectedValue = currentScale;
 
 		if (notesType === 'chord') {
 			notesTypeData = getChordNames();

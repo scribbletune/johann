@@ -15,7 +15,7 @@ const GuitarControls = ({ selectedTuningIdx }) => {
 				data={tunings}
 				controlType = 'selectedTuningIdx'
 				onChangeEventHandler={changeTuning}
-				selectedValue={tunings[selectedTuningIdx].tuningIdx}
+				selectedValue={tunings[selectedTuningIdx].label}
 			/>
 			<strong>{tunings[selectedTuningIdx].display}</strong>
 		</div>
