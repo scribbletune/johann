@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeGuitarTuning } from '../../actions/creators';
-import { getTuningsForGuitar } from '../../api';
-import FretboardFlipper from './FretboardFlipper';
+import { changeUkuleleTuning } from '../../actions/creators';
+import { getTuningsForUkulele } from '../../api';
+import FretboardFlipper from '../Guitar/FretboardFlipper';
 import Dropdown from '../../components/Dropdown';
 
-const GuitarControls = ({ selectedTuningIdx }) => {
-	const tunings = getTuningsForGuitar();
+const UkuleleControls = ({ selectedTuningIdx }) => {
+	const tunings = getTuningsForUkulele();
 	return (
-		<div className="guitar-controls">
+		<div className="ukulele-controls">
 			<FretboardFlipper />
 			Tuning:
 			<Dropdown
 				data={tunings}
 				controlType = 'selectedTuningIdx'
-				onChangeEventHandler={changeGuitarTuning}
+				onChangeEventHandler={changeUkuleleTuning}
 				selectedValue={tunings[selectedTuningIdx].label}
 			/>
 			<strong>{tunings[selectedTuningIdx].display}</strong>
@@ -26,4 +26,4 @@ const mapStateToProps = state => ({
 	selectedTuningIdx: state.selectedTuningIdx
 });
 
-export default connect(mapStateToProps)(GuitarControls);
+export default connect(mapStateToProps)(UkuleleControls);

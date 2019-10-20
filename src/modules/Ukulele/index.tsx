@@ -1,35 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTuningsForGuitar, getStringNotes } from '../../api';
-import Fret from './Fret';
-import GuitarControls from './GuitarControls';
-import './Guitar.less';
+import { getTuningsForUkulele, getStringNotes } from '../../api';
+import Fret from '../Guitar/Fret';
+import UkuleleControls from './UkuleleControls';
+import './Ukulele.less';
 
-const chromaticNotes = [
-	'C2', 'Db2', 'D2', 'Eb2', 'E2', 'F2', 'Gb2', 'G2', 'Ab2', 'A2', 'Bb2', 'B2',
-	'C3', 'Db3', 'D3', 'Eb3', 'E3', 'F3', 'Gb3', 'G3', 'Ab3', 'A3', 'Bb3', 'B3',
-	'C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4',
-	'C5', 'Db5', 'D5', 'Eb5', 'E5', 'F5', 'Gb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5',
-	'C6', 'Db6', 'D6', 'Eb6', 'E6', 'F6', 'Gb6', 'G6', 'Ab6', 'A6', 'Bb6', 'B6'
-];
-
-const Guitar = ({ notes, rootNote, fretboardIsFlipped, selectedTuningIdx }) => {
-	const tunings = getTuningsForGuitar();
+const Ukulele = ({ notes, rootNote, fretboardIsFlipped, selectedTuningIdx }) => {
+	const tunings = getTuningsForUkulele();
 	const strings = tunings[selectedTuningIdx].strings;
 	
-	const str1 = getStringNotes(strings[0], 24);
-	const str2 = getStringNotes(strings[1], 24);
-	const str3 = getStringNotes(strings[2], 24);
-	const str4 = getStringNotes(strings[3], 24);
-	const str5 = getStringNotes(strings[4], 24);
-	const str6 = getStringNotes(strings[5], 24);
+	const str1 = getStringNotes(strings[0], 15);
+	const str2 = getStringNotes(strings[1], 15);
+	const str3 = getStringNotes(strings[2], 15);
+	const str4 = getStringNotes(strings[3], 15);
 
 	const str1Frets = str1.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
 	const str2Frets = str2.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
 	const str3Frets = str3.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
 	const str4Frets = str4.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const str5Frets = str5.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const str6Frets = str6.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
 
 	const fretDots = (
 		<div className="fretDots">
@@ -42,20 +30,16 @@ const Guitar = ({ notes, rootNote, fretboardIsFlipped, selectedTuningIdx }) => {
 	);
 
 	const regularFretboard = (
-		<div className="guitar">
+		<div className="ukulele">
 			<div className="str">{str1Frets}</div>
 			<div className="str">{str2Frets}</div>
 			<div className="str">{str3Frets}</div>
 			<div className="str">{str4Frets}</div>
-			<div className="str">{str5Frets}</div>
-			<div className="str">{str6Frets}</div>
 		</div>
 	);
 
 	const flippedFretboard = (
-		<div className="guitar">
-			<div className="str">{str6Frets}</div>
-			<div className="str">{str5Frets}</div>
+		<div className="ukulele">
 			<div className="str">{str4Frets}</div>
 			<div className="str">{str3Frets}</div>
 			<div className="str">{str2Frets}</div>
@@ -66,11 +50,11 @@ const Guitar = ({ notes, rootNote, fretboardIsFlipped, selectedTuningIdx }) => {
 
 	return (
 		<div className="instrument">
-			<div className="guitarContainer">
+			<div className="ukuleleContainer">
 				{fretboardIsFlipped ? flippedFretboard : regularFretboard}
 				{fretDots}
 			</div>
-			<GuitarControls />
+			<UkuleleControls />
 		</div>
 	);
 
@@ -83,4 +67,4 @@ const mapStateToProps = state => ({
 	selectedTuningIdx: state.selectedTuningIdx
 })
 
-export default connect(mapStateToProps)(Guitar);
+export default connect(mapStateToProps)(Ukulele);

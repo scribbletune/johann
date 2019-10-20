@@ -1,5 +1,6 @@
 import constants from './constants';
 import { getTuningsForGuitar } from '../api';
+import { getTuningsForUkulele } from '../api';
 
 const initApp = (dispatch) => (dispatch({ type: constants.LOAD_NOTES }));
 
@@ -16,14 +17,18 @@ const flipFretboard = dispatch => {
 	});
 };
 
-const changeTuning = (dispatch, data) => {
+const changeTuning = tuningMethod => (dispatch, data) => {
 	// selectedTuningIdx comes in as a string, for eg "Drop C"
 	// (hack) convert it to a integer explicitly till DropDown is reimplemented
-	const tuning = getTuningsForGuitar().find(el => el.label === data.selectedTuningIdx);
+	const tuning = tuningMethod().find(el => el.label === data.selectedTuningIdx);
 	dispatch({
 		type: constants.CHANGE_TUNING,
 		data: {selectedTuningIdx: tuning.tuningIdx}
 	});
 };
 
-export { initApp,  controlChanged, flipFretboard, changeTuning };
+const changeUkuleleTuning = changeTuning(getTuningsForUkulele);
+const changeGuitarTuning = changeTuning(getTuningsForGuitar);
+
+
+export { initApp,  controlChanged, flipFretboard, changeTuning, changeUkuleleTuning, changeGuitarTuning };
