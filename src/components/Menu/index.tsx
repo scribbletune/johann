@@ -15,8 +15,7 @@ const Menu = () => {
 			<p>Generate chord &amp; scale charts to practice</p>
 			<nav>
 				<ul>
-				<li className={guitarSelected}><Link to="/guitar">Guitar</Link></li>
-				<li className={ukuleleSelected}><Link to="/ukulele">Ukulele</Link></li>
+					<li className={guitarSelected}><Link to="/guitar">Guitar</Link></li>
 					<li className={pianoSelected}><Link to="/piano">Piano</Link></li>
 					<li className={keyboardSelected}><Link to="/keyboard">Keyboard</Link></li>
 				</ul>
