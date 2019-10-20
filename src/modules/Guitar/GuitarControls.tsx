@@ -1,20 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeGuitarTuning } from '../../actions/creators';
-import { getTuningsForGuitar } from '../../api';
+import { changeGuitarTuning, changeInstrument, changeTuning } from '../../actions/creators';
+import { getTuningsForGuitar, getStringInstruments } from '../../api';
 import FretboardFlipper from './FretboardFlipper';
 import Dropdown from '../../components/Dropdown';
 
-const GuitarControls = ({ selectedTuningIdx }) => {
-	const tunings = getTuningsForGuitar();
+const GuitarControls = ({ selectedTuningIdx, selectedInstrumentIdx }) => {
+	const instruments = getStringInstruments();
+	const tunings = instruments[selectedInstrumentIdx].getTunings()
 	return (
 		<div className="guitar-controls">
 			<FretboardFlipper />
+			Instrument:
+			<Dropdown
+				data={instruments}
+				controlType='selectedInstrumentIdx'
+				onChangeEventHandler={changeInstrument}
+				selectedValue={instruments[selectedInstrumentIdx].label}
+			/>
 			Tuning:
 			<Dropdown
 				data={tunings}
 				controlType = 'selectedTuningIdx'
-				onChangeEventHandler={changeGuitarTuning}
+				onChangeEventHandler={changeTuning(instruments[selectedInstrumentIdx].getTunings())}
 				selectedValue={tunings[selectedTuningIdx].label}
 			/>
 			<strong>{tunings[selectedTuningIdx].display}</strong>
@@ -23,7 +31,8 @@ const GuitarControls = ({ selectedTuningIdx }) => {
 };
 
 const mapStateToProps = state => ({
-	selectedTuningIdx: state.selectedTuningIdx
+	selectedTuningIdx: state.selectedTuningIdx,
+	selectedInstrumentIdx: state.selectedInstrumentIdx
 });
 
 export default connect(mapStateToProps)(GuitarControls);

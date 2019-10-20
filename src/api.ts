@@ -111,3 +111,8 @@ export const getStringNotes = (s : string, notes : number) => {
 	let idx = getChromaticNotes().indexOf(s);
 	return getChromaticNotes().slice(idx, idx + notes + 1);
 }
+
+export const getStringInstruments = () => ([
+	{ label: 'Guitar', strings: 6, frets: 24, getTunings: getTuningsForGuitar, instrumentIdx: 0, name: 0 },
+	{ label: 'Ukulele', strings: 4, frets: 15, getTunings: getTuningsForUkulele, instrumentIdx: 1, name: 1 }
+])

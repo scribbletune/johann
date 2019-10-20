@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTuningsForGuitar, getStringNotes } from '../../api';
+import { getTuningsForGuitar, getStringNotes, getStringInstruments } from '../../api';
 import Fret from './Fret';
 import GuitarControls from './GuitarControls';
 import './Guitar.less';
@@ -13,26 +13,22 @@ const chromaticNotes = [
 	'C6', 'Db6', 'D6', 'Eb6', 'E6', 'F6', 'Gb6', 'G6', 'Ab6', 'A6', 'Bb6', 'B6'
 ];
 
-const Guitar = ({ notes, rootNote, fretboardIsFlipped, selectedTuningIdx }) => {
-	const tunings = getTuningsForGuitar();
+const Guitar = ({ notes, rootNote, fretboardIsFlipped, selectedInstrumentIdx, selectedTuningIdx }) => {
+	const instruments = getStringInstruments();
+	console.log(selectedInstrumentIdx)
+	selectedInstrumentIdx = selectedInstrumentIdx ? selectedInstrumentIdx : 0;
+	const instrument = instruments[selectedInstrumentIdx];
+	const tunings = instrument.getTunings();
 	const strings = tunings[selectedTuningIdx].strings;
-	
-	const str1 = getStringNotes(strings[0], 24);
-	const str2 = getStringNotes(strings[1], 24);
-	const str3 = getStringNotes(strings[2], 24);
-	const str4 = getStringNotes(strings[3], 24);
-	const str5 = getStringNotes(strings[4], 24);
-	const str6 = getStringNotes(strings[5], 24);
 
-	const str1Frets = str1.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const str2Frets = str2.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const str3Frets = str3.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const str4Frets = str4.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const str5Frets = str5.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
-	const str6Frets = str6.map(note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />);
+	let strNotes = [];
+	const noteMapper = note => <Fret rootNote={note.replace(/\d+/g, '') === rootNote} highlight={notes.indexOf(note) > -1} key={note} note={note} />
+	for (let i = 0; i < instrument.strings; ++i) {
+		strNotes.push(getStringNotes(strings[i], instrument.frets).map(noteMapper));
+	}
 
 	const fretDots = (
-		<div className="fretDots">
+		<div className={`fretDots${instrument.strings}`}>
 			<div className="fretDot fifthFret"></div>
 			<div className="fretDot seventhFret"></div>
 			<div className="fretDot ninthFret"></div>
@@ -43,23 +39,13 @@ const Guitar = ({ notes, rootNote, fretboardIsFlipped, selectedTuningIdx }) => {
 
 	const regularFretboard = (
 		<div className="guitar">
-			<div className="str">{str1Frets}</div>
-			<div className="str">{str2Frets}</div>
-			<div className="str">{str3Frets}</div>
-			<div className="str">{str4Frets}</div>
-			<div className="str">{str5Frets}</div>
-			<div className="str">{str6Frets}</div>
+			{strNotes.map(u => <div className="str">{u}</div>)}
 		</div>
 	);
 
 	const flippedFretboard = (
 		<div className="guitar">
-			<div className="str">{str6Frets}</div>
-			<div className="str">{str5Frets}</div>
-			<div className="str">{str4Frets}</div>
-			<div className="str">{str3Frets}</div>
-			<div className="str">{str2Frets}</div>
-			<div className="str">{str1Frets}</div>
+			{strNotes.reverse().map(u => <div className="str">{u}</div>)}
 		</div>
 	);
 
@@ -80,7 +66,8 @@ const mapStateToProps = state => ({
 	notes: state.notes, 
 	rootNote: state.rootNote,
 	fretboardIsFlipped: state.fretboardIsFlipped,
-	selectedTuningIdx: state.selectedTuningIdx
+	selectedTuningIdx: state.selectedTuningIdx,
+	selectedInstrumentIdx: state.selectedInstrumentIdx
 })
 
 export default connect(mapStateToProps)(Guitar);

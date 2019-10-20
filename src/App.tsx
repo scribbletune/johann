@@ -13,11 +13,6 @@ export const LoadableGuitar = Loadable({
 	loading: () => <div>loading ...</div>
 });
 
-export const LoadableUkulele = Loadable({
-	loader: () => import(/* webpackChunkName: "ukulele" */ './modules/Ukulele'),
-	loading: () => <div>loading ...</div>
-});
-
 export const LoadableComputerKeyboard = Loadable({
 	loader: () => import(/* webpackChunkName: "computerKeyboard" */ './modules/ComputerKeyboard'),
 	loading: () => <div>loading ...</div>
@@ -39,7 +34,6 @@ const App = () => {
 			<Menu />
 			<Route path='/piano' exact={true} component={LoadablePiano} />
 			<Route path='/guitar' exact={true} component={LoadableGuitar} />
-			<Route path='/ukulele' exact={true} component={LoadableUkulele} />
 			<Route path='/keyboard' exact={true} component={LoadableComputerKeyboard} />
 		</section>
 	);
