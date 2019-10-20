@@ -6,7 +6,6 @@ import './Menu.less';
 const Menu = () => {
 	const currentSelection = location.hash.replace('#/', '');
 	const guitarSelected = currentSelection === 'guitar' ? 'selected' : '';
-	const ukuleleSelected = currentSelection === 'ukulele' ? 'selected' : '';
 	const pianoSelected = currentSelection === 'piano' ? 'selected' : '';
 	const keyboardSelected = currentSelection === 'keyboard' ? 'selected' : '';
 
