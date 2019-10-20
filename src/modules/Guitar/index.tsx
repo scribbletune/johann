@@ -15,8 +15,6 @@ const chromaticNotes = [
 
 const Guitar = ({ notes, rootNote, fretboardIsFlipped, selectedInstrumentIdx, selectedTuningIdx }) => {
 	const instruments = getStringInstruments();
-	console.log(selectedInstrumentIdx)
-	selectedInstrumentIdx = selectedInstrumentIdx ? selectedInstrumentIdx : 0;
 	const instrument = instruments[selectedInstrumentIdx];
 	const tunings = instrument.getTunings();
 	const strings = tunings[selectedTuningIdx].strings;
