@@ -9,7 +9,8 @@ const initialState = {
 	rootNote: 'C',
 	notes: [],
 	fretboardIsFlipped: false,
-	selectedTuningIdx: 0
+	selectedTuningIdx: 0,
+	selectedInstrumentIdx: 0
 };
 
 interface ActionType {
@@ -38,6 +39,9 @@ export const rootReducer = (state = initialState, action:ActionType) => {
 
 		case constants.CHANGE_TUNING:
 			return Object.assign({}, state, action.data);
+
+		case constants.CHANGE_INSTRUMENT:
+			return Object.assign({}, state, action.data)
 
 		default:
 			return state;
