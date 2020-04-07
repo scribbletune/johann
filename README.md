@@ -20,4 +20,4 @@ The same can be done for guitars...
 and computer keyboards too!
 ![johann-keyboard.png](./johann-keyboard.png)
 
-http://scribbletune.com/johann/
+Demo: https://scribbletune.github.io/johann/#/
