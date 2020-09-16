@@ -1,6 +1,6 @@
 {
   "name": "johann",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "This is a new project that is aimed at helping personal guitar, musical keyboard or computer keyboard music practice. It originates from a personal requirement for being able to put together a chart of notes to practice. This could be for a scale/mode or a chord across the instrument. Basically it helps you focus on the notes you wanna play and practice. For instance on a musical keyboard, you may want to just highlight the C Minor scale so that you can play over it. This little app will let you select the required root note and the scale to generate this:",
   "main": "webpack.config.js",
   "scripts": {

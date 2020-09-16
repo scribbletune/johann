@@ -204,6 +204,13 @@ export const getTuningsForGuitar = () => [
     tuningIdx: 4,
     name: 4,
   },
+  {
+    label: 'Major Third',
+    display: 'ECG#ECG#',
+    strings: ['E4', 'C4', 'Ab3', 'E3', 'C3', 'Ab2'],
+    tuningIdx: 5,
+    name: 5,
+  },
 ];
 
 export const getTuningsForUkulele = () => [
