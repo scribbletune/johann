@@ -1,4 +1,4 @@
-@import "../common.less";
+@import '../common.less';
 
 @fretWidth: 40px;
 @fretHeight: 40px;
@@ -9,110 +9,143 @@
 @fretBorderColor: black;
 
 .guitarContainer {
-	position: relative;
+  position: relative;
 
-	.fretDots4 {
-		position: absolute;
-		left: 230px;
-		top: 56px;
-	}
+  .fretDots4 {
+    position: absolute;
+    left: 230px;
+    top: 56px;
+  }
 
-	.fretDots6 {
-		position: absolute;
-		left: 230px;
-		top: 96px;
-	}
+  .fretDots6 {
+    position: absolute;
+    left: 230px;
+    top: 96px;
+  }
 
-	.fretDot {
-		width: 10px;
-		height: 10px;
-		border-radius: 5px;
-		background: black;
-		display: inline-block;
-	}
+  .fretDots7 {
+    position: absolute;
+    left: 230px;
+    top: 116px;
+  }
 
-	.seventhFret { margin-left: 70px; }
-	.ninthFret { margin-left: 70px; }
-	.twelthFret { margin-left: 110px; }
-	.fifteenthFret { margin-left: 110px; }
+  .fretDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background: black;
+    display: inline-block;
+  }
 
+  .seventhFret {
+    margin-left: 70px;
+  }
+  .ninthFret {
+    margin-left: 70px;
+  }
+  .twelthFret {
+    margin-left: 110px;
+  }
+  .fifteenthFret {
+    margin-left: 110px;
+  }
 }
 
 .guitar {
-	margin: 15px;
-	font-family: sans-serif;
-	.str {
-		display: grid;
-		grid-template-columns:  repeat(25, @fretWidth);
-	}
+  margin: 15px;
+  font-family: sans-serif;
+  .str {
+    display: grid;
+    grid-template-columns: repeat(25, @fretWidth);
+  }
 
-	.fret {
-		border: 1px solid @fretBorderColor;
-		box-sizing: border-box;
-		height: @fretHeight;
-		position: relative;
-	}
+  .fret {
+    border: 1px solid @fretBorderColor;
+    box-sizing: border-box;
+    height: @fretHeight;
+    position: relative;
+  }
 
-	.fret::after {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		content: '';
-		color: black;
-		top: -@noteMarginTop;
-		position: absolute;
-		left: -@noteMarginLeft;
-		width: @highlightSide;
-		height: @highlightSide;
-		border-radius: @highlightBorderRadius;
-		-webkit-border-radius: @highlightBorderRadius;
-		color: white;
-		font-size: 10px;
-		opacity: 0;
-	}
+  .fret::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    content: '';
+    color: black;
+    top: -@noteMarginTop;
+    position: absolute;
+    left: -@noteMarginLeft;
+    width: @highlightSide;
+    height: @highlightSide;
+    border-radius: @highlightBorderRadius;
+    -webkit-border-radius: @highlightBorderRadius;
+    color: white;
+    font-size: 10px;
+    opacity: 0;
+  }
 
-	.str .highlight::after {
-		background: @highlightNote;
-		box-shadow: 0 0 2px #333;
-		opacity: 1;
-	}
+  .str .highlight::after {
+    background: @highlightNote;
+    box-shadow: 0 0 2px #333;
+    opacity: 1;
+  }
 
-	.str .rootNote::after { background: @highlightRootNote;}
-	.str:last-child .fret { border-color: white; }
-	/*.str:last-child .fret:first-child::after { margin-left: -25px; }*/
+  .str .rootNote::after {
+    background: @highlightRootNote;
+  }
+  .str:last-child .fret {
+    border-color: white;
+  }
+  /*.str:last-child .fret:first-child::after { margin-left: -25px; }*/
 
-	.B4:first-child,
-	.A4:first-child,
-	.G4:first-child,
-	.E4:first-child,
-	.D4:first-child,
-	.C4:first-child,
-	.B3:first-child,
-	.A3:first-child,
-	.G3:first-child,
-	.F3:first-child,
-	.E3:first-child,
-	.D3:first-child,
-	.C3:first-child,
-	.A2:first-child,
-	.E2:first-child,
-	.b2:first-child,
-	.c2:first-child,
-	.g2:first-child,
-	.d2:first-child, {
-		border-color: white;
-		border-right: 10px solid #333;
-	}
+  .B4:first-child,
+  .A4:first-child,
+  .G4:first-child,
+  .E4:first-child,
+  .D4:first-child,
+  .C4:first-child,
+  .B3:first-child,
+  .A3:first-child,
+  .G3:first-child,
+  .F3:first-child,
+  .E3:first-child,
+  .D3:first-child,
+  .C3:first-child,
+  .A2:first-child,
+  .E2:first-child,
+  .B1:first-child,
+  .b2:first-child,
+  .c2:first-child,
+  .g2:first-child,
+  .d2:first-child {
+    border-color: white;
+    border-right: 10px solid #333;
+  }
 
-	// Open strings are named near the start of the fretboard
-	.E4:first-child::after { content: 'E'; }
-	.B3:first-child::after { content: 'B'; }
-	.G3:first-child::after { content: 'G'; }
-	.D3:first-child::after { content: 'D'; }
-	.A2:first-child::after { content: 'A'; }
-	.E2:first-child::after { content: 'E'; }
+  // Open strings are named near the start of the fretboard
+  .E4:first-child::after {
+    content: 'E';
+  }
+  .B3:first-child::after {
+    content: 'B';
+  }
+  .G3:first-child::after {
+    content: 'G';
+  }
+  .D3:first-child::after {
+    content: 'D';
+  }
+  .A2:first-child::after {
+    content: 'A';
+  }
+  .E2:first-child::after {
+    content: 'E';
+  }
+  .B1:first-child::after {
+    content: 'B';
+  }
 
-/*
+  /*
 	.str:nth-child(4) .fret:nth-child(6),
 	.str:nth-child(4) .fret:nth-child(8),
 	.str:nth-child(4) .fret:nth-child(10),
@@ -123,21 +156,20 @@
 		border-top: 3px solid #333;
 	}
 */
-
 }
 
 .guitar-controls {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 /*:nth-child(n+11)*/
 
-@media(max-width: @mobileWidth) {
-	.guitar .str {
-		grid-template-columns: repeat(15, 40px);
-	}
+@media (max-width: @mobileWidth) {
+  .guitar .str {
+    grid-template-columns: repeat(15, 40px);
+  }
 
-	.fret:nth-child(n+15) {
-		display: none;
-	}
+  .fret:nth-child(n + 15) {
+    display: none;
+  }
 }
