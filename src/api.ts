@@ -211,6 +211,13 @@ export const getTuningsForGuitar = () => [
     tuningIdx: 5,
     name: 5,
   },
+  {
+    label: 'All Fourths',
+    display: 'FCGDAE',
+    strings: ['F4', 'C4', 'G3', 'D3', 'A2', 'E2'],
+    tuningIdx: 6,
+    name: 6,
+  },
 ];
 
 export const getTuningsForUkulele = () => [
