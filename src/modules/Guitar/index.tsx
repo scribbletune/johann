@@ -12,7 +12,6 @@ const Guitar = ({
   selectedInstrumentIdx,
   selectedTuningIdx,
 }) => {
-  console.log(notes);
   const instruments = getStringInstruments();
   const instrument = instruments[selectedInstrumentIdx];
   const tunings = instrument.getTunings();
