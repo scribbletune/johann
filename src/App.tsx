@@ -41,7 +41,6 @@ const App = () => {
 			</nav>
 			<NotesSetter />
 			<Route path='/piano' exact={true} component={LoadablePiano} />
-			<Route path='/piano' exact={true} component={LoadablePiano} />
 			<Route path='/guitar' exact={true} component={LoadableGuitar} />
 			<Route path='/keyboard' exact={true} component={LoadableComputerKeyboard} />
 		</section>
