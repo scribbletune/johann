@@ -37,6 +37,14 @@ const NotesSetter = ({ currentScale, currentChord, notesType, rootNote }) => {
 		<ul className="notesSetter">
 			<li>
 				<Dropdown 
+					data={notesTypeOptions} 
+					controlType="notesType" 
+					onChangeEventHandler={controlChanged} 
+					selectedValue={notesType}
+				/>
+			</li>
+			<li>
+				<Dropdown 
 					data={getPitches()} 
 					controlType="rootNote" 
 					onChangeEventHandler={controlChanged} 
@@ -44,14 +52,6 @@ const NotesSetter = ({ currentScale, currentChord, notesType, rootNote }) => {
 				/>
 			</li>
 			<li>{getChordScaleDropdown()}</li>
-			<li>
-				<Dropdown 
-					data={notesTypeOptions} 
-					controlType="notesType" 
-					onChangeEventHandler={controlChanged} 
-					selectedValue={notesType}
-				/>
-			</li>
 		</ul>
 	);
 };
