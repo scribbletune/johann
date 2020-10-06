@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import './Dropdown.less'
 /**
  * @param {Array} data A list of (object) items that have the name and value of the option to be displayed
  * @param {Function} onChangeEventHandler A function that will be triggered for the onChange event of the dropdown
@@ -19,7 +19,7 @@ const Dropdown = ({data, onChangeEventHandler, controlType, selectedValue, dispa
 		onChangeEventHandler(dispatch, dataObj);
 	};
 	return (
-		<select onChange={localOnChangeHandler.bind(this)} data-control-type={controlType} value={selectedValue}>
+		<select onChange={localOnChangeHandler.bind(this)} data-control-type={controlType} value={selectedValue} className="dropdown">
 			{list}
 		</select>
 	);

@@ -10,23 +10,28 @@
 
 .guitarContainer {
   position: relative;
+  overflow-x: auto;
+  overflow-y: visible;
 
   .fretDots4 {
     position: absolute;
     left: 230px;
-    top: 56px;
+    top: 71px;
+    width: 430px;
   }
 
   .fretDots6 {
     position: absolute;
     left: 230px;
-    top: 96px;
+    top: 111px;
+    width: 430px;
   }
 
   .fretDots7 {
     position: absolute;
     left: 230px;
-    top: 116px;
+    top: 131px;
+    width: 430px;
   }
 
   .fretDot {
@@ -35,6 +40,16 @@
     border-radius: 5px;
     background: black;
     display: inline-block;
+  }
+
+  .fretDot-top {
+    position: relative;
+    top: -20px;
+  }
+
+  .fretDot-bottom {
+    position: relative;
+    top: 20px;
   }
 
   .seventhFret {
@@ -163,16 +178,12 @@
 
 .guitar-controls {
   font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fret-board-flipper {
+  max-width: 200px;
 }
 
 /*:nth-child(n+11)*/
-
-@media (max-width: @mobileWidth) {
-  .guitar .str {
-    grid-template-columns: repeat(15, 40px);
-  }
-
-  .fret:nth-child(n + 15) {
-    display: none;
-  }
-}

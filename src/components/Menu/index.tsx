@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NotesSetter from '../NotesSetter/index';
 import './Menu.less';
 
 const Menu = () => {
@@ -11,15 +10,13 @@ const Menu = () => {
 
 	return (
 		<div className="menu">
-			<p>Generate chord &amp; scale charts to practice</p>
-			<nav>
-				<ul>
-					<li className={guitarSelected}><Link to="/guitar">Guitar</Link></li>
-					<li className={pianoSelected}><Link to="/piano">Piano</Link></li>
-					<li className={keyboardSelected}><Link to="/keyboard">Keyboard</Link></li>
-				</ul>
-			</nav>
-			<NotesSetter />
+			<div className="navbar-start">
+				<div className="navbar-item">
+					<div className={guitarSelected}><Link to="/guitar">Guitar</Link></div>
+					<div className={pianoSelected}><Link to="/piano">Piano</Link></div>
+					<div className={keyboardSelected}><Link to="/keyboard">Keyboard</Link></div>
+				</div>
+			</div>
 		</div>
 	);
 };

@@ -7,7 +7,7 @@ const FretboardFlipper = ({ dispatch }) => {
 		flipFretboard(dispatch);
 	};
 	return(
-		<button onClick={localFlipFretboard.bind(this)}>Flip fretboard vertically</button>
+		<button className="fret-board-flipper" onClick={localFlipFretboard.bind(this)}>Flip fretboard vertically</button>
 	);
 };
 

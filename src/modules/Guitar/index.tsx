@@ -30,15 +30,36 @@ const Guitar = ({
     strNotes.push(getStringNotes(strings[i], instrument.frets).map(noteMapper));
   }
 
-  const fretDots = (
-    <div className={`fretDots${instrument.numberOfStrings}`}>
-      <div className="fretDot fifthFret"></div>
-      <div className="fretDot seventhFret"></div>
-      <div className="fretDot ninthFret"></div>
-      <div className="fretDot twelthFret"></div>
-      <div className="fretDot fifteenthFret"></div>
-    </div>
-  );
+
+  const fretDots = () => {
+    return instrument.numberOfStrings % 2 === 0 ? (
+      <div className={`fretDots${instrument.numberOfStrings}`}>
+        <div className="fretDot fifthFret"></div>
+        <div className="fretDot seventhFret"></div>
+        <div className="fretDot ninthFret"></div>
+        <div className="fretDot twelthFret"></div>
+        <div className="fretDot fifteenthFret"></div>
+      </div>
+    ) : (
+      <div>
+        <div className={`fretDots${instrument.numberOfStrings}`}>
+          <div className="fretDot fretDot-top fifthFret"></div>
+          <div className="fretDot fretDot-top seventhFret"></div>
+          <div className="fretDot fretDot-top ninthFret"></div>
+          <div className="fretDot fretDot-top twelthFret"></div>
+          <div className="fretDot fretDot-top fifteenthFret"></div>
+        </div>
+        <div className={`fretDots${instrument.numberOfStrings}`}>
+          <div className="fretDot fretDot-bottom fifthFret"></div>
+          <div className="fretDot fretDot-bottom seventhFret"></div>
+          <div className="fretDot fretDot-bottom ninthFret"></div>
+          <div className="fretDot fretDot-bottom twelthFret"></div>
+          <div className="fretDot fretDot-bottom fifteenthFret"></div>
+        </div>
+      </div>
+    )
+  };
+
 
   const regularFretboard = (
     <div className="guitar">
@@ -60,7 +81,7 @@ const Guitar = ({
     <div className="instrument">
       <div className="guitarContainer">
         {fretboardIsFlipped ? flippedFretboard : regularFretboard}
-        {fretDots}
+        {fretDots()}
       </div>
       <GuitarControls />
     </div>
