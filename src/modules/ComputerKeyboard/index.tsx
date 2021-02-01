@@ -48,7 +48,7 @@ const ComputerKeyboard = ({ notes, rootNote }) => {
 					<div>N</div>
 					<div>M</div>
 					<div>{'<'}</div>
-					<div>></div>
+					<div>{'>'}</div>
 					<div>?</div>
 					<div className="fn-key">shift</div>
 				</div>
