@@ -10,22 +10,20 @@
 
 .guitarContainer {
   position: relative;
-
+  // The position of fret dots (the indicators of frets 5, 7, 9, 12 and 15 on a guitar)
+  // is shifted vertically
   .fretDots4 {
     position: absolute;
-    left: 230px;
     top: 56px;
   }
 
   .fretDots6 {
     position: absolute;
-    left: 230px;
     top: 96px;
   }
 
   .fretDots7 {
     position: absolute;
-    left: 230px;
     top: 116px;
   }
 
@@ -35,19 +33,6 @@
     border-radius: 5px;
     background: black;
     display: inline-block;
-  }
-
-  .seventhFret {
-    margin-left: 70px;
-  }
-  .ninthFret {
-    margin-left: 70px;
-  }
-  .twelthFret {
-    margin-left: 110px;
-  }
-  .fifteenthFret {
-    margin-left: 110px;
   }
 }
 
@@ -93,10 +78,50 @@
   .str .rootNote::after {
     background: @highlightRootNote;
   }
+
   .str:last-child .fret {
     border-color: white;
   }
+
   /*.str:last-child .fret:first-child::after { margin-left: -25px; }*/
+
+  /*
+	.str:nth-child(4) .fret:nth-child(6),
+	.str:nth-child(4) .fret:nth-child(8),
+	.str:nth-child(4) .fret:nth-child(10),
+	.str:nth-child(3) .fret:nth-child(13),
+	.str:nth-child(5) .fret:nth-child(13),
+	.str:nth-child(4) .fret:nth-child(16) {
+		border: none;
+		border-top: 3px solid #333;
+	}
+*/
+}
+
+.nonHFlippedGuitar {
+  // The position of fret dots (the indicators of frets 5, 7, 9, 12 and 15 on a guitar)
+  // is shifted vertically
+  .fretDots4 {
+    left: 230px;
+  }
+
+  .fretDots6 {
+    left: 230px;
+  }
+
+  .fretDots7 {
+    left: 230px;
+  }
+
+  .seventhFret,
+  .ninthFret {
+    margin-left: 70px;
+  }
+
+  .twelthFret,
+  .fifteenthFret {
+    margin-left: 110px;
+  }
 
   .B4:first-child,
   .A4:first-child,
@@ -124,41 +149,59 @@
     border-color: white;
     border-right: 10px solid #333;
   }
+}
 
-  // Open strings are named near the start of the fretboard
-  .E4:first-child::after {
-    content: 'E';
-  }
-  .B3:first-child::after {
-    content: 'B';
-  }
-  .G3:first-child::after {
-    content: 'G';
-  }
-  .D3:first-child::after {
-    content: 'D';
-  }
-  .A2:first-child::after {
-    content: 'A';
-  }
-  .E2:first-child::after {
-    content: 'E';
-  }
-  .B1:first-child::after {
-    content: 'B';
+.hFlippedGuitar {
+  // The position of fret dots (the indicators of frets 5, 7, 9, 12 and 15 on a guitar)
+  // is shifted horizontally for a horizontally flipped guitar
+  .fretDots4 {
+    right: 230px;
   }
 
-  /*
-	.str:nth-child(4) .fret:nth-child(6),
-	.str:nth-child(4) .fret:nth-child(8),
-	.str:nth-child(4) .fret:nth-child(10),
-	.str:nth-child(3) .fret:nth-child(13),
-	.str:nth-child(5) .fret:nth-child(13),
-	.str:nth-child(4) .fret:nth-child(16) {
-		border: none;
-		border-top: 3px solid #333;
-	}
-*/
+  .fretDots6 {
+    right: 230px;
+  }
+
+  .fretDots7 {
+    right: 230px;
+  }
+
+  .seventhFret,
+  .ninthFret {
+    margin-right: 70px;
+  }
+
+  .twelthFret,
+  .fifteenthFret {
+    margin-right: 110px;
+  }
+
+  .B4:last-child,
+  .A4:last-child,
+  .G4:last-child,
+  .E4:last-child,
+  .F4:last-child,
+  .D4:last-child,
+  .C4:last-child,
+  .B3:last-child,
+  .A3:last-child,
+  .G3:last-child,
+  .F3:last-child,
+  .E3:last-child,
+  .D3:last-child,
+  .C3:last-child,
+  .A2:last-child,
+  .Ab2:last-child,
+  .Ab3:last-child,
+  .E2:last-child,
+  .B1:last-child,
+  .b2:last-child,
+  .c2:last-child,
+  .g2:last-child,
+  .d2:last-child {
+    border-color: white;
+    border-left: 10px solid #333;
+  }
 }
 
 .guitar-controls {

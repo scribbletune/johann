@@ -106,24 +106,12 @@ export const sharpsToFlats = (note) => {
 
 export const getScale = (rootNote, scaleName) => {
   // concatenate scales from octave range 1 to 6
-  var o1 = scale(rootNote + 1 + ' ' + scaleName.toLowerCase()).map(
-    sharpsToFlats
-  );
-  var o2 = scale(rootNote + 2 + ' ' + scaleName.toLowerCase()).map(
-    sharpsToFlats
-  );
-  var o3 = scale(rootNote + 3 + ' ' + scaleName.toLowerCase()).map(
-    sharpsToFlats
-  );
-  var o4 = scale(rootNote + 4 + ' ' + scaleName.toLowerCase()).map(
-    sharpsToFlats
-  );
-  var o5 = scale(rootNote + 5 + ' ' + scaleName.toLowerCase()).map(
-    sharpsToFlats
-  );
-  var o6 = scale(rootNote + 6 + ' ' + scaleName.toLowerCase()).map(
-    sharpsToFlats
-  );
+  var o1 = scale(rootNote + 1 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
+  var o2 = scale(rootNote + 2 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
+  var o3 = scale(rootNote + 3 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
+  var o4 = scale(rootNote + 4 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
+  var o5 = scale(rootNote + 5 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
+  var o6 = scale(rootNote + 6 + ' ' + scaleName.toLowerCase()).map(sharpsToFlats);
   return o1.concat(o2, o3, o4, o5, o6);
 };
 
@@ -170,84 +158,84 @@ export const getOctavesOfPianoNotes = () => {
 
 export const getTuningsForGuitar = () => [
   {
-    label: 'Regular',
     display: 'EBGDAE',
-    strings: ['E4', 'B3', 'G3', 'D3', 'A2', 'E2'],
-    tuningIdx: 0,
+    label: 'Regular',
     name: 0,
+    strings: ['E2', 'A2', 'D3', 'G3', 'B3', 'E4'],
+    tuningIdx: 0,
   },
   {
-    label: 'Dropped D',
     display: 'EBGDAD',
-    strings: ['E4', 'B3', 'G3', 'D3', 'A2', 'D2'],
-    tuningIdx: 1,
+    label: 'Dropped D',
     name: 1,
+    strings: ['D2', 'A2', 'D3', 'G3', 'B3', 'E4'],
+    tuningIdx: 1,
   },
   {
-    label: 'Double dropped D',
     display: 'DADGBD',
-    strings: ['D4', 'A3', 'D3', 'G3', 'B2', 'D2'],
-    tuningIdx: 2,
+    label: 'Double dropped D',
     name: 2,
+    strings: ['D2', 'B2', 'G3', 'D3', 'A3', 'D4'],
+    tuningIdx: 2,
   },
   {
-    label: 'Drop C',
     display: 'DAFCGC',
-    strings: ['D4', 'A3', 'F3', 'C3', 'G2', 'C2'],
-    tuningIdx: 3,
+    label: 'Drop C',
     name: 3,
+    strings: ['C2', 'G2', 'C3', 'F3', 'A3', 'D4'],
+    tuningIdx: 3,
   },
   {
-    label: 'Open G',
     display: 'DGDGBD',
-    strings: ['D4', 'G3', 'D3', 'G3', 'B2', 'D2'],
-    tuningIdx: 4,
+    label: 'Open G',
     name: 4,
+    strings: ['D2', 'B2', 'G3', 'D3', 'G3', 'D4'],
+    tuningIdx: 4,
   },
   {
-    label: 'Major Third',
     display: 'ECG#ECG#',
-    strings: ['E4', 'C4', 'Ab3', 'E3', 'C3', 'Ab2'],
-    tuningIdx: 5,
+    label: 'Major Third',
     name: 5,
+    strings: ['Ab2', 'C3', 'E3', 'Ab3', 'C4', 'E4'],
+    tuningIdx: 5,
   },
   {
-    label: 'All Fourths',
     display: 'FCGDAE',
-    strings: ['F4', 'C4', 'G3', 'D3', 'A2', 'E2'],
-    tuningIdx: 6,
+    label: 'All Fourths',
     name: 6,
+    strings: ['E2', 'A2', 'D3', 'G3', 'C4', 'F4'],
+    tuningIdx: 6,
   },
 ];
 
 export const getTuningsForUkulele = () => [
   {
-    label: 'Regular',
     display: 'GCEA',
-    strings: ['A4', 'E4', 'C4', 'G4'],
-    tuningIdx: 0,
+    label: 'Regular',
     name: 0,
+    strings: ['G4', 'C4', 'E4', 'A4'],
+    tuningIdx: 0,
   },
   {
-    label: 'Low G',
     display: 'gCEA',
-    strings: ['A4', 'E4', 'C4', 'G3'],
-    tuningIdx: 1,
+    label: 'Low G',
     name: 1,
+    strings: ['G3', 'C4', 'E4', 'A4'],
+    tuningIdx: 1,
   },
   {
-    label: 'Drop G',
     display: 'GCEG',
-    strings: ['G4', 'E4', 'C4', 'G4'],
-    tuningIdx: 2,
+    label: 'Drop G',
     name: 2,
+    strings: ['G4', 'C4', 'E4', 'G4'],
+    tuningIdx: 2,
   },
   {
-    label: 'Baritone',
     display: 'DGBE',
-    strings: ['E3', 'B3', 'G3', 'D4'],
-    tuningIdx: 3,
+    label: 'Baritone',
     name: 3,
+    strings: ['D4', 'G3', 'B3', 'E3'],
+    tuningIdx: 3,
   },
 ];
 
@@ -255,7 +243,7 @@ export const getTuningsFor7StringsGuitar = () => [
   {
     label: 'Standard',
     display: 'EBGDAEB',
-    strings: ['E4', 'B3', 'G3', 'D3', 'A2', 'E2', 'B1'],
+    strings: ['B1', 'E2', 'A2', 'D3', 'G3', 'B3', 'E4'],
     tuningIdx: 0,
     name: 0,
   },

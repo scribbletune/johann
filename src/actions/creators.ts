@@ -1,10 +1,5 @@
 import constants from './constants';
-import {
-  getTuningsForGuitar,
-  getTuningsForUkulele,
-  getStringInstruments,
-  getTuningsFor7StringsGuitar,
-} from '../api';
+import { getTuningsForGuitar, getTuningsForUkulele, getStringInstruments, getTuningsFor7StringsGuitar } from '../api';
 
 const initApp = (dispatch) => dispatch({ type: constants.LOAD_NOTES });
 
@@ -15,9 +10,15 @@ const controlChanged = (dispatch, data) => {
   });
 };
 
-const flipFretboard = (dispatch) => {
+const vFlipFretboard = (dispatch) => {
   dispatch({
-    type: constants.FLIP_FRETBOARD,
+    type: constants.VFLIP_FRETBOARD,
+  });
+};
+
+const hFlipFretboard = (dispatch) => {
+  dispatch({
+    type: constants.HFLIP_FRETBOARD,
   });
 };
 
@@ -32,9 +33,7 @@ const changeTuning = (tuningMethod) => (dispatch, data) => {
 };
 
 const changeInstrument = (dispatch, data) => {
-  const instrument = getStringInstruments().find(
-    (el) => el.label === data.selectedInstrumentIdx
-  );
+  const instrument = getStringInstruments().find((el) => el.label === data.selectedInstrumentIdx);
   dispatch({
     type: constants.CHANGE_INSTRUMENT,
     data: {
@@ -51,7 +50,8 @@ const change7StringsGuitarTuning = changeTuning(getTuningsFor7StringsGuitar);
 export {
   initApp,
   controlChanged,
-  flipFretboard,
+  vFlipFretboard,
+  hFlipFretboard,
   changeTuning,
   changeGuitarTuning,
   changeUkuleleTuning,

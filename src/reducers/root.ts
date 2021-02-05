@@ -8,7 +8,8 @@ const initialState = {
   notesType: 'scale',
   rootNote: 'C',
   notes: [],
-  fretboardIsFlipped: false,
+  fretboardIsVFlipped: false,
+  fretboardIsHFlipped: false,
   selectedTuningIdx: 0,
   selectedInstrumentIdx: 0,
 };
@@ -35,9 +36,14 @@ export const rootReducer = (state = initialState, action: ActionType) => {
       });
       return newState;
 
-    case constants.FLIP_FRETBOARD:
+    case constants.VFLIP_FRETBOARD:
       return Object.assign({}, state, {
-        fretboardIsFlipped: !state.fretboardIsFlipped,
+        fretboardIsVFlipped: !state.fretboardIsVFlipped,
+      });
+
+    case constants.HFLIP_FRETBOARD:
+      return Object.assign({}, state, {
+        fretboardIsHFlipped: !state.fretboardIsHFlipped,
       });
 
     case constants.CHANGE_TUNING:

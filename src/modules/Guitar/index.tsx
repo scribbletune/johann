@@ -8,7 +8,8 @@ import './Guitar.less';
 const Guitar = ({
   notes,
   rootNote,
-  fretboardIsFlipped,
+  fretboardIsVFlipped,
+  fretboardIsHFlipped,
   selectedInstrumentIdx,
   selectedTuningIdx,
 }) => {
@@ -17,18 +18,22 @@ const Guitar = ({
   const tunings = instrument.getTunings();
   const strings = tunings[selectedTuningIdx].strings;
 
-  let strNotes = [];
-  const noteMapper = (note) => (
-    <Fret
-      rootNote={note.replace(/\d+/g, '') === rootNote}
-      highlight={notes.indexOf(note) > -1}
-      key={note}
-      note={note}
-    />
-  );
+  const allStringsWithNotes = [];
   for (let i = 0; i < instrument.numberOfStrings; ++i) {
-    strNotes.push(getStringNotes(strings[i], instrument.frets).map(noteMapper));
+    let aStringWithNotes = getStringNotes(strings[i], instrument.frets);
+    // add frets to the string
+    let aStringWithFrets = aStringWithNotes.map((note) => (
+      <Fret
+        rootNote={note.replace(/\d+/g, '') === rootNote}
+        highlight={notes.indexOf(note) > -1}
+        key={note}
+        note={note}
+      />
+    ));
+    allStringsWithNotes.push(aStringWithFrets);
   }
+
+  const hFlippedAllStringsWithNotes = allStringsWithNotes.map((el) => [...el].reverse());
 
   const fretDots = (
     <div className={`fretDots${instrument.numberOfStrings}`}>
@@ -40,27 +45,46 @@ const Guitar = ({
     </div>
   );
 
-  const regularFretboard = (
-    <div className="guitar">
-      {strNotes.map((u) => (
-        <div className="str">{u}</div>
-      ))}
+  const hFlippedFretDots = (
+    <div className={`fretDots${instrument.numberOfStrings}`}>
+      <div className="fretDot fifteenthFret"></div>
+      <div className="fretDot twelthFret"></div>
+      <div className="fretDot ninthFret"></div>
+      <div className="fretDot seventhFret"></div>
+      <div className="fretDot fifthFret"></div>
     </div>
   );
 
-  const flippedFretboard = (
-    <div className="guitar">
-      {strNotes.reverse().map((u) => (
-        <div className="str">{u}</div>
-      ))}
-    </div>
-  );
+  const regularFretboard = () => {
+    const arr = fretboardIsHFlipped ? [...hFlippedAllStringsWithNotes] : [...allStringsWithNotes];
+    return (
+      <>
+        {arr.map((u) => (
+          <div className="str">{u}</div>
+        ))}
+      </>
+    );
+  };
+
+  const flippedFretboard = () => {
+    const arr = fretboardIsHFlipped ? [...hFlippedAllStringsWithNotes] : [...allStringsWithNotes];
+    arr.reverse();
+    return (
+      <>
+        {arr.map((u) => (
+          <div className="str">{u}</div>
+        ))}
+      </>
+    );
+  };
 
   return (
     <div className="instrument">
       <div className="guitarContainer">
-        {fretboardIsFlipped ? flippedFretboard : regularFretboard}
-        {fretDots}
+        <div className={fretboardIsHFlipped ? 'guitar hFlippedGuitar' : 'guitar nonHFlippedGuitar'}>
+          {fretboardIsVFlipped ? flippedFretboard() : regularFretboard()}
+          {fretboardIsHFlipped ? hFlippedFretDots : fretDots}
+        </div>
       </div>
       <GuitarControls />
     </div>
@@ -70,7 +94,8 @@ const Guitar = ({
 const mapStateToProps = (state) => ({
   notes: state.notes,
   rootNote: state.rootNote,
-  fretboardIsFlipped: state.fretboardIsFlipped,
+  fretboardIsVFlipped: state.fretboardIsVFlipped,
+  fretboardIsHFlipped: state.fretboardIsHFlipped,
   selectedTuningIdx: state.selectedTuningIdx,
   selectedInstrumentIdx: state.selectedInstrumentIdx,
 });
