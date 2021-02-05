@@ -29,6 +29,7 @@
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.13.1",
     "less-loader": "^4.1.0",
+    "prettier": "^2.2.1",
     "style-loader": "^0.23.0",
     "ts-loader": "^5.3.1",
     "typescript": "^3.9.7",
@@ -46,5 +47,11 @@
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.5",
     "scribbletune": "^1.7.0"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "tabWidth": 2
   }
 }
