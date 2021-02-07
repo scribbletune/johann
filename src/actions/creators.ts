@@ -47,6 +47,19 @@ const changeGuitarTuning = changeTuning(getTuningsForGuitar);
 const changeUkuleleTuning = changeTuning(getTuningsForUkulele);
 const change7StringsGuitarTuning = changeTuning(getTuningsFor7StringsGuitar);
 
+const setMidiNoteOn = (dispatch, data) => {
+  dispatch({
+    type: constants.MIDI_NOTE_ON,
+    data,
+  });
+};
+
+const setMidiNoteOff = (dispatch) => {
+  dispatch({
+    type: constants.MIDI_NOTE_OFF,
+  });
+};
+
 export {
   initApp,
   controlChanged,
@@ -57,4 +70,6 @@ export {
   changeUkuleleTuning,
   change7StringsGuitarTuning,
   changeInstrument,
+  setMidiNoteOn,
+  setMidiNoteOff,
 };

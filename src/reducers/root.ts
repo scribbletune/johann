@@ -12,6 +12,7 @@ const initialState = {
   fretboardIsHFlipped: false,
   selectedTuningIdx: 0,
   selectedInstrumentIdx: 0,
+  activeMidiNote: '',
 };
 
 interface ActionType {
@@ -51,6 +52,13 @@ export const rootReducer = (state = initialState, action: ActionType) => {
 
     case constants.CHANGE_INSTRUMENT:
       return Object.assign({}, state, action.data);
+
+    case constants.MIDI_NOTE_ON:
+      // action.data is a note such as C3 or Db5 etc
+      return Object.assign({}, state, { activeMidiNote: action.data });
+
+    case constants.MIDI_NOTE_OFF:
+      return Object.assign({}, state, { activeMidiNote: '' });
 
     default:
       return state;

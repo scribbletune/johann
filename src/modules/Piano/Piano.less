@@ -1,99 +1,134 @@
-@import "../common";
+@import '../common';
 
 @whiteKeyWidth: 60px;
 @blackKeyWidth: 40px;
-@blackKeyHalfWidth: @blackKeyWidth/2;
+@blackKeyHalfWidth: @blackKeyWidth / 2;
 @whiteKeyColor: #f1f2f3;
 @blackKeyColor: #222;
 
 .piano {
-	display: grid;
-	grid-template-columns: repeat(3, 420px);
+  display: grid;
+  grid-template-columns: repeat(3, 420px);
 }
 
 .octave {
-	display: grid;
-	grid-template-columns: @whiteKeyWidth @blackKeyWidth @whiteKeyWidth @blackKeyWidth @whiteKeyWidth @whiteKeyWidth @blackKeyWidth @whiteKeyWidth @blackKeyWidth @whiteKeyWidth @blackKeyWidth @whiteKeyWidth;
+  display: grid;
+  grid-template-columns: @whiteKeyWidth @blackKeyWidth @whiteKeyWidth @blackKeyWidth @whiteKeyWidth @whiteKeyWidth @blackKeyWidth @whiteKeyWidth @blackKeyWidth @whiteKeyWidth @blackKeyWidth @whiteKeyWidth;
 }
 
 .piano .key {
-	-webkit-border-bottom-right-radius: 3px;
-	-webkit-border-bottom-left-radius: 3px;
-	-moz-border-radius-bottomright: 3px;
-	-moz-border-radius-bottomleft: 3px;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
-	box-shadow: 0px 0px 1px #000 ;
-	position: relative;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  box-shadow: 0px 0px 1px #000;
+  position: relative;
 }
 
 .white-key {
-	background: @whiteKeyColor;
-	border-bottom: 14px solid #c9c9c9;
-	height: 250px;
-	width: @whiteKeyWidth;
+  background: @whiteKeyColor;
+  border-bottom: 14px solid #c9c9c9;
+  height: 250px;
+  width: @whiteKeyWidth;
+}
+
+.white-key.activeMidiNote {
+  background-color: #d8d8d8;
+  border-bottom: 14px solid #d8d8d8;
 }
 
 .black-key {
-	width: @blackKeyWidth;
-	background: @blackKeyColor;
-	border-bottom: 20px solid #000;
-	height: 180px;
-	z-index: 1;
+  width: @blackKeyWidth;
+  background: @blackKeyColor;
+  border-bottom: 20px solid #000;
+  height: 180px;
+  z-index: 1;
+}
+
+.black-key.activeMidiNote {
+  background-color: #000;
+  border-bottom: 20px solid @blackKeyColor;
 }
 
 .piano {
-	.db { margin-left: -@blackKeyHalfWidth * 1; }
-	.d { margin-left: -@blackKeyHalfWidth * 2; }
-	.eb { margin-left: -@blackKeyHalfWidth * 3; }
-	.e { margin-left: -@blackKeyHalfWidth * 4; }
-	.f { margin-left: -@blackKeyHalfWidth * 4; }
-	.gb { margin-left: -@blackKeyHalfWidth * 5; }
-	.g { margin-left: -@blackKeyHalfWidth * 6; }
-	.ab { margin-left: -@blackKeyHalfWidth * 7; }
-	.a { margin-left: -@blackKeyHalfWidth * 8; }
-	.bb { margin-left: -@blackKeyHalfWidth * 9; }
-	.b { margin-left: -@blackKeyHalfWidth * 10; }
+  .db {
+    margin-left: -@blackKeyHalfWidth * 1;
+  }
+  .d {
+    margin-left: -@blackKeyHalfWidth * 2;
+  }
+  .eb {
+    margin-left: -@blackKeyHalfWidth * 3;
+  }
+  .e {
+    margin-left: -@blackKeyHalfWidth * 4;
+  }
+  .f {
+    margin-left: -@blackKeyHalfWidth * 4;
+  }
+  .gb {
+    margin-left: -@blackKeyHalfWidth * 5;
+  }
+  .g {
+    margin-left: -@blackKeyHalfWidth * 6;
+  }
+  .ab {
+    margin-left: -@blackKeyHalfWidth * 7;
+  }
+  .a {
+    margin-left: -@blackKeyHalfWidth * 8;
+  }
+  .bb {
+    margin-left: -@blackKeyHalfWidth * 9;
+  }
+  .b {
+    margin-left: -@blackKeyHalfWidth * 10;
+  }
 }
 
-.piano .key::after { 
-	content: '';
-	font-family: sans-serif;
-	font-weight: bold;
-	font-size: 10px;
+.piano .key::after {
+  content: '';
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 10px;
 }
 
-.piano .white-key::after { color: @whiteKeyColor; }
-.piano .black-key::after { color: @blackKeyColor; }
+.piano .white-key::after {
+  color: @whiteKeyColor;
+}
+.piano .black-key::after {
+  color: @blackKeyColor;
+}
 
 .octave .highlight::after {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 30px;
-	height: 30px;
-	border-radius: 15px;
-	-webkit-border-radius: 15px;
-	background: @highlightNote;
-	position: absolute;
-	left: 50%;
-	margin-left: -15px;
-	bottom: 8px;
-	box-shadow: 0 0 5px #333;
-	color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  background: @highlightNote;
+  position: absolute;
+  left: 50%;
+  margin-left: -15px;
+  bottom: 8px;
+  box-shadow: 0 0 5px #333;
+  color: black;
 }
 
 .octave .rootNote::after {
-	background: @highlightRootNote;
+  background: @highlightRootNote;
 }
 
+@media (max-width: @mobileWidth) {
+  .piano {
+    grid-template-columns: repeat(1, 420px);
+  }
 
-@media(max-width: @mobileWidth) {
-	.piano {
-		grid-template-columns: repeat(1, 420px);
-	}
-
-	.octave:not(:first-child) {
-		display: none;
-	}
+  .octave:not(:first-child) {
+    display: none;
+  }
 }
