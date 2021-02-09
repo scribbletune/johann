@@ -117,10 +117,10 @@ export const getScale = (rootNote, scaleName) => {
 
 export const getChord = (chordName) => {
   // concatenate chords from octave range 2 to 5
-  var o2 = chord(chordName + '-2');
-  var o3 = chord(chordName + '-3');
-  var o4 = chord(chordName + '-4');
-  var o5 = chord(chordName + '-5');
+  var o2 = chord(chordName + '_2');
+  var o3 = chord(chordName + '_3');
+  var o4 = chord(chordName + '_4');
+  var o5 = chord(chordName + '_5');
   return o2.concat(o3, o4, o5);
 };
 
