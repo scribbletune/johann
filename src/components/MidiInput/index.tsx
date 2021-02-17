@@ -37,7 +37,7 @@ const MidiInput = ({ dispatch }) => {
       sysex: false,
     }).then(onMIDISuccess, onMIDIFailure);
   } else {
-    alert('No MIDI support in your browser.');
+    console.log('No MIDI support in your browser.');
   }
 
   return '';
